@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -8,11 +9,9 @@ public class Logic {
 
 
     public static void main(String[] args) {
-
-        String guess  ;
-
-        Scanner scan = new Scanner(System.in);
         int number;
+        String guess  ;
+        Scanner scan = new Scanner(System.in);
         boolean yes;
         Random generator;
         int[] array = new int[4];
@@ -36,16 +35,29 @@ public class Logic {
 
         }
         guess = scan.next();
-        char[] chararay = guess.toCharArray();
-        for(int i = 0;i<4;i++){
-            System.out.print(chararay[i]);
+        String strArr[] = guess.split("");
+        int numArr[] = new int[strArr.length];
+        for (int i = 0; i < strArr.length; i++) {
+            numArr[i] = Integer.parseInt(strArr[i]);
+        }
+        int Bullcount = 0, cowcount = 0;
+        for(int i = 0;i<numArr.length;i++){
+            if(numArr[i] == array[i]) Bullcount++;
+        }
+        for(int i = 0;i<numArr.length;i++){
+            for(int j = 0;j< numArr.length;j++){
+                if(numArr[i] == array[j]) cowcount++;
+            }
+        }
+
+        System.out.print("Кількість биків:" + Bullcount + "Кількість корів:" + cowcount );
+
         }
 
 
 
-
     }
 
 
 
-    }
+
