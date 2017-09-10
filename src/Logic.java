@@ -6,8 +6,6 @@ import java.util.Scanner;
  * Created by IIDEMONII on 08.09.2017.
  */
 public class Logic {
-
-
     public static void main(String[] args) {
         int number;
         String guess  ;
@@ -41,14 +39,15 @@ public class Logic {
             numArr[i] = Integer.parseInt(strArr[i]);
         }
         int Bullcount = 0, cowcount = 0;
-        for(int i = 0;i<numArr.length;i++){
-            if(numArr[i] == array[i]) Bullcount++;
+        for(int i = 0;i<numArr.length;i++) {
+            if (numArr[i] == array[i]) { Bullcount++ ; --cowcount;}
         }
         for(int i = 0;i<numArr.length;i++){
-            for(int j = 0;j< numArr.length;j++){
-                if(numArr[i] == array[j]) cowcount++;
+            for(int j = 0;j<numArr.length;j++){
+                if (numArr[i] == array[i]) cowcount++;
             }
         }
+
 
         System.out.print("Кількість биків:" + Bullcount + "Кількість корів:" + cowcount );
 
