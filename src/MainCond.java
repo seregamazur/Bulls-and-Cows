@@ -10,7 +10,7 @@ public class MainCond {
         do{
         int bullcount = 0;
         int cowcount = 0;
-        System.out.print("Введіть ваше 4-х значне число:");
+        System.out.println("Введіть ваше 4-х значне число:");
         int guess;
         try{
             guess = input.nextInt();
