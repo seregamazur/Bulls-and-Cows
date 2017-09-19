@@ -3,16 +3,17 @@ package Interface;
 import javax.swing.*;
 import java.awt.*;
 import javax.swing.ScrollPaneConstants;
+import javax.swing.border.Border;
 
 public class Reader extends JFrame {;
-    JTextPane textp ;
+    JTextArea textp ;
     JScrollPane pane;
     JButton b1,b2,b3,b4;
     JTextField t1;
     public Reader(String s){
         super(s);
         setLayout(null);
-        textp = new JTextPane();
+        textp = new JTextArea();
         pane = new JScrollPane(textp);
         t1 = new JTextField();
         b2 = new JButton("Ввід");
@@ -26,7 +27,7 @@ public class Reader extends JFrame {;
         b4.setBounds(480,12,100,20);
         textp.setBounds(30,120,250,300);
 
-        pane.setBounds(50,120,15,300);
+
 
         pane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
         add(t1);
@@ -34,8 +35,9 @@ public class Reader extends JFrame {;
         add(b3);
         add(b1);
         add(b4);
-        add(textp);
+        //add(textp);
         add(pane);
+
 
 
 
