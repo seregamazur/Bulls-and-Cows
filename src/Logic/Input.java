@@ -12,13 +12,12 @@ public class Input {
 public void Incompare() {
     ErrorType err = new ErrorType();
     Scanner input = new Scanner(System.in);
-    Reader r = new Reader("Слава україні");
     int guess;
     boolean right = false;
     do{
     try{
     guess = input.nextInt();
-    if(GenerateNumb.hasDupes(guess) || guess < 1000) continue;right = false;
+    if(GenerateNumb.hasDupes(guess) || guess < 1000) continue;right = false;err.viewErr();
 }catch(InputMismatchException e){
       err.viewErr();
     continue;
