@@ -34,6 +34,7 @@ public class Reader extends JFrame {
         b4.setBounds(480,12,100,20);
         table.setBounds(20,140,300,300);
         guessStr = t1.getText();
+        t1.getText();
         pane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
         add(t1);
         add(b2);
@@ -51,7 +52,7 @@ public class Reader extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 if(e.getSource() == b4){
                     dispose();
-                                   }
+                }
                 if(e.getSource() == b2){
                     in.Incompare();
                 }

@@ -10,7 +10,7 @@ public class GiveUp {
     JOptionPane give;
     public void up(){
         give = new JOptionPane();
-        give.showMessageDialog(give, "The right numb is:" + gen.guessStr );
+        give.showMessageDialog( null,"The right numb is:" + gen.numbStr );
     }
 
 }
