@@ -1,7 +1,5 @@
 package Interface;
-
 import Logic.Input;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -9,20 +7,22 @@ import java.awt.event.ActionListener;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.border.Border;
 
-public class Reader extends JFrame {;
-    Input in = new Input();
-    JTextArea textp ;
+public class Reader extends JFrame {
+    JTable table = new JTable();
     JScrollPane pane;
     JButton b1,b2,b3,b4;
+  public   String guessStr;
     JTextField t1;
-    int guess;
     eHandler handler = new eHandler();
+    GiveUp stand = new GiveUp();
     public Reader(String s){
         super(s);
         setLayout(null);
-        textp = new JTextArea();
-        pane = new JScrollPane(textp);
+        pane = new JScrollPane(table);
         t1 = new JTextField();
+        table.setFillsViewportHeight(true);
+
+
         b2 = new JButton("Ввід");
         b3 = new JButton("Здаюсь!");
         b1 = new JButton("Нова гра");
@@ -32,14 +32,8 @@ public class Reader extends JFrame {;
         b3.setBounds(200,12,100,20);
         b1.setBounds(310,12,160,20);
         b4.setBounds(480,12,100,20);
-        textp.setBounds(30,120,250,300);
-
-
-
-
-
-
-
+        table.setBounds(20,140,300,300);
+        guessStr = t1.getText();
         pane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
         add(t1);
         add(b2);
@@ -47,16 +41,22 @@ public class Reader extends JFrame {;
         add(b1);
         add(b4);
         add(pane);
+        add(table);
         b2.addActionListener(handler);
-        b4.addActionListener(handler);}
+        b4.addActionListener(handler);
+        b3.addActionListener(handler);}
 
         public class eHandler implements ActionListener{
+        Input in = new Input();
             public void actionPerformed(ActionEvent e) {
                 if(e.getSource() == b4){
                     dispose();
                                    }
                 if(e.getSource() == b2){
                     in.Incompare();
+                }
+                if(e.getSource() == b3){
+                stand.up();
                 }
 
 

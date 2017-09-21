@@ -5,23 +5,15 @@ import java.util.Scanner;
 
 public class MainCond {
 public int guesses = 0;
+public  String guessStr;
 
 public void cond(String numbStr){
+    Input in = new Input();
 boolean guessed = false;
-Scanner input = new Scanner(System.in);
     do{
     int bullcount = 0;
     int cowcount = 0;
-    System.out.println("Введіть ваше 4-х значне число:");
-    int guess;
-    try{
-        guess = input.nextInt();
-        if(GenerateNumb.hasDupes(guess) || guess < 1000) continue;
-    }catch(InputMismatchException e){
-        continue;
-    }
-    guesses++;
-    String guessStr = guess + "";
+
     for(int i= 0;i < 4;i++){
         if(guessStr.charAt(i) == numbStr.charAt(i)){
             bullcount++;

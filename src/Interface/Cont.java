@@ -1,8 +1,5 @@
-
-import Interface.Reader;
-
+package Interface;
 import javax.swing.JFrame;
-import java.awt.event.ActionEvent;
 
 public class Cont {
     public static void main(String[] args) {

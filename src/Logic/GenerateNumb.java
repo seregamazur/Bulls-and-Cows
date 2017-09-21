@@ -3,15 +3,17 @@ package Logic;
 import java.util.Random;
 
 public class GenerateNumb extends MainCond {
-public static void go() {
+    public static String numbStr;
+
+
+    public static void go() {
     MainCond result = new MainCond();
     Random gen = new Random();
-    boolean guessed = false;
     int numb;
     while(hasDupes(numb = gen.nextInt(9000) + 1000)) {
         ;
     }
-    String numbStr = numb +"";
+    numbStr = numb +"";
     result.cond(numbStr);
 }
 public static boolean hasDupes(int num) {

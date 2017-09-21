@@ -1,29 +1,24 @@
 package Logic;
 
-
 import Interface.ErrorType;
 import Interface.Reader;
 
-import javax.swing.*;
 import java.util.InputMismatchException;
-import java.util.Scanner;
-
 public class Input {
 public void Incompare() {
-    ErrorType err = new ErrorType();
-    Scanner input = new Scanner(System.in);
-    int guess;
-    boolean right = false;
-    do{
+
+    ErrorType er = new ErrorType();
+    Reader r = new Reader(null);
+
     try{
-    guess = input.nextInt();
-    if(GenerateNumb.hasDupes(guess) || guess < 1000) continue;right = false;err.viewErr();
-}catch(InputMismatchException e){
-      err.viewErr();
-    continue;
+        int  guess = Integer.parseInt(r.guessStr);
+    if(GenerateNumb.hasDupes(guess) || guess < 1000) { er.Error();}
+}catch(InputMismatchException | NumberFormatException e) {
+       er.Error();
+    }
+
+
+
+
 }
-
-
-
-}while(!right);
-}}
+}
