@@ -8,6 +8,7 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.border.Border;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+import javax.swing.table.DefaultTableModel;
 
 public class Reader extends JFrame {
     Input in = new Input();
@@ -17,16 +18,16 @@ public class Reader extends JFrame {
     JScrollPane pane;
     JButton b1,b2,b3,b4;
     JTextField t1;
-    public String guessStr;
+    public static String guessStr;
 
 
 
     public Reader(String a) {
         super(a);
+        String column_names[]= {"№","Число"};
         setLayout(null);
         pane = new JScrollPane(table);
         t1 = new JTextField();
-        table.setFillsViewportHeight(true);
         b2 = new JButton("Ввід");
         b3 = new JButton("Здаюсь!");
         b1 = new JButton("Нова гра");
@@ -37,19 +38,21 @@ public class Reader extends JFrame {
         b1.setBounds(310, 12, 160, 20);
         b4.setBounds(480, 12, 100, 20);
         table.setBounds(20, 140, 300, 300);
-        pane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+       DefaultTableModel table_model=new DefaultTableModel(column_names,999);
+        table=new JTable(table_model);
         add(t1);
         add(b2);
         add(b3);
         add(b1);
         add(b4);
-        add(pane);
-        add(table);
+        add(new JScrollPane(table));
         b2.addActionListener(handler);
         b4.addActionListener(handler);
         b3.addActionListener(handler);
         }
-
+        public void text(){
+        guessStr = t1.getText();
+        }
 
 
         public class eHandler implements ActionListener{
@@ -58,8 +61,7 @@ public class Reader extends JFrame {
                     dispose();
                 }
                 if(e.getSource() == b2){
-                   guessStr = t1.getText();
-                    System.out.println(guessStr);
+                   text();
                     in.Incompare();
                 }
                 if(e.getSource() == b3){
@@ -71,6 +73,7 @@ public class Reader extends JFrame {
 
 
     }}}
+
 
 
 

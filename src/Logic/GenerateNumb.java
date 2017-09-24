@@ -2,7 +2,7 @@ package Logic;
 import java.util.Random;
 public class GenerateNumb {
     public static String numbStr ;
-public static void go() {
+public  void go() {
 Random gen = new Random();
 int numb;
 while(hasDupes(numb = gen.nextInt(9000) + 1000)) {;}
