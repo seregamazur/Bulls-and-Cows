@@ -7,16 +7,17 @@ import java.util.Scanner;
 
 public class MainCond {
 public int guesses = 0;
-Reader r = new Reader(null);
+Reader r1 = new Reader(null);
+GenerateNumb gen = new GenerateNumb();
 
-public void cond(String numbStr){
+public void cond(){
     boolean guessed = false;
     int bullcount = 0;
     int cowcount = 0;
     for(int i= 0;i < 4;i++){
-        if(r.guessStr.charAt(i) == numbStr.charAt(i)){
+        if(r1.guessStr.charAt(i) == gen.numbStr.charAt(i)){
             bullcount++;
-        }else if(numbStr.contains(r.guessStr.charAt(i)+"")){
+        }else if(gen.numbStr.contains(r1.guessStr.charAt(i)+"")){
             cowcount++;
         }
     }
