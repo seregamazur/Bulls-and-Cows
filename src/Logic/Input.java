@@ -6,7 +6,7 @@ import java.util.InputMismatchException;
 public class Input {
 
 public void Incompare() {
-    Reader r2 = new Reader(null);
+    Reader r2 = new Reader("pav");
     ErrorType er = new ErrorType();
     MainCond cond1 = new MainCond();
     try{

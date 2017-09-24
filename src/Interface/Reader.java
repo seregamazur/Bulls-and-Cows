@@ -12,13 +12,13 @@ import javax.swing.event.DocumentListener;
 public class Reader extends JFrame {
     Input in = new Input();
     eHandler handler = new eHandler();
-    listener list = new listener();
     GiveUp stand = new GiveUp();
     JTable table = new JTable();
     JScrollPane pane;
     JButton b1,b2,b3,b4;
     JTextField t1;
-     public   String guessStr;
+    public String guessStr;
+
 
 
     public Reader(String a) {
@@ -48,24 +48,8 @@ public class Reader extends JFrame {
         b2.addActionListener(handler);
         b4.addActionListener(handler);
         b3.addActionListener(handler);
-        t1.getDocument().addDocumentListener(list);
-
         }
 
-        public class listener implements DocumentListener{
-
-            public void removeUpdate(DocumentEvent event) {
-                t1.getText();
-            }
-
-            public void insertUpdate(DocumentEvent event) {
-                t1.getText();
-            }
-
-            public void changedUpdate(DocumentEvent event) {
-
-            }
-        };
 
 
         public class eHandler implements ActionListener{
@@ -74,7 +58,8 @@ public class Reader extends JFrame {
                     dispose();
                 }
                 if(e.getSource() == b2){
-
+                   guessStr = t1.getText();
+                    System.out.println(guessStr);
                     in.Incompare();
                 }
                 if(e.getSource() == b3){
