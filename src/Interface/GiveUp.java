@@ -5,12 +5,11 @@ import Logic.GenerateNumb;
 import javax.swing.*;
 import java.awt.*;
 
-public class GiveUp {
-    GenerateNumb gen = new GenerateNumb();
+public class GiveUp extends GenerateNumb{
     JOptionPane give;
     public void up(){
         give = new JOptionPane();
-        give.showMessageDialog( null,"The right numb is:" + gen.numbStr );
+        give.showMessageDialog( null,"The right numb is:" + numbStr );
     }
 
 }

@@ -5,7 +5,7 @@ import Interface.Reader;
 import java.util.InputMismatchException;
 public class Input {
 
-public void Incompare() {
+protected void Incompare()  {
     Reader r2 = new Reader("pav");
     ErrorType er = new ErrorType();
     GenerateNumb gen1 = new GenerateNumb();

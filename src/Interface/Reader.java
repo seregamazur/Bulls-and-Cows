@@ -31,6 +31,7 @@ public class Reader extends JFrame {
         b3 = new JButton("Здаюсь!");
         b1 = new JButton("Нова гра");
         b4 = new JButton("Вихід");
+        table = new JTable();
         b2.setBounds(130, 12, 60, 20); //y - высота(чем больше тем ниже) x - ширина
         t1.setBounds(20, 10, 100, 25);
         b3.setBounds(200, 12, 100, 20);
@@ -47,19 +48,19 @@ public class Reader extends JFrame {
         b3.addActionListener(handler);
         b1.addActionListener(handler);
         }
-        public void text(){
+       protected void text(){
         guessStr = t1.getText();
         }
 
 
-    public class eHandler implements ActionListener{
+     class eHandler extends  Input implements ActionListener{
         public void actionPerformed(ActionEvent e) {
             if(e.getSource().equals(b4)){
                 dispose();
             }
             if(e.getSource().equals(b2)){
                text();
-                in.Incompare();
+                Incompare();
             }
             if(e.getSource().equals(b3)){
             stand.up();

@@ -1,9 +1,9 @@
 package Interface;
 
+
 import Logic.GenerateNumb;
 
-public class NewGame {
-    GenerateNumb start = new GenerateNumb();
-    public void newgame(){
-    start.go();
+class NewGame extends GenerateNumb {
+   protected void newgame(){
+    go();
 }}
