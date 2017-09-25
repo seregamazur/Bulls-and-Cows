@@ -26,8 +26,8 @@ public void cond(){
     }else{
         System.out.println(cowcount+" Корів і "+bullcount+" биків");
 
-}while(!guessed);
+}if(guessed == true){
     System.out.println("Ви виграли за "+guesses+" спроб.");
 }
 
-}
+}}
