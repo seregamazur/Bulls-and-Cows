@@ -12,7 +12,7 @@ protected void Incompare()  {
     MainCond cond1 = new MainCond();
      try{
         int  guess = Integer.parseInt(r2.guessStr);
-    if(gen1.hasDupes(guess) || guess < 1000) { er.Error();}
+    if(gen1.hasDupes(guess) || guess < 1000 ) { er.Error();}
     else {  cond1.cond();}
 }catch(InputMismatchException | NumberFormatException e) {
     }

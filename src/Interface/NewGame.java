@@ -4,6 +4,6 @@ package Interface;
 import Logic.GenerateNumb;
 
 class NewGame extends GenerateNumb {
-   protected void newgame(){
+   public void newgame(){
     go();
 }}

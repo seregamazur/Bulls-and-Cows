@@ -9,4 +9,5 @@ import javax.swing.*;
     public void Error(){
         error.showMessageDialog(null,"Вами було введено число неправильного формату.");
     }
+    public void Error1(){error.showMessageDialog(null,"Вами не було введено число.");}
 }

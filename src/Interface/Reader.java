@@ -10,21 +10,20 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
 public class Reader extends JFrame {
-    Input in = new Input();
     eHandler handler = new eHandler();
+    ErrorType er = new ErrorType();
     GiveUp stand = new GiveUp();
-    JTable table ;
     NewGame game = new NewGame();
-    JButton b1,b2,b3,b4;
-    JTextField t1;
+    private JTable table ;
+    private JButton b1,b2,b3,b4;
+    private JTextField t1;
     public static String guessStr;
 
 
 
-    public Reader(String a) {
+     public Reader(String a) {
         super(a);
         String column_names[]= {"№","Число"};
-        //table = new JTable(model,column_names);
         setLayout(null);
         t1 = new JTextField();
         b2 = new JButton("Ввід");
@@ -49,6 +48,7 @@ public class Reader extends JFrame {
         b1.addActionListener(handler);
         }
        protected void text(){
+         if(t1.getText().isEmpty()){er.Error1();}
         guessStr = t1.getText();
         }
 
