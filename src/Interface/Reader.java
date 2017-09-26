@@ -4,6 +4,7 @@ import Logic.Input;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.NumberFormat;
 import java.util.LinkedList;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableModel;
@@ -16,16 +17,19 @@ public class Reader extends JFrame {
     NewGame game = new NewGame();
     private JTable table ;
     private JButton b1,b2,b3,b4;
-    private JTextField t1;
+    private JFormattedTextField t1;
     public static String guessStr;
+    NumberFormat f;
+    int size = 4;
 
 
 
      public Reader(String a) {
         super(a);
         String column_names[]= {"№","Число"};
+         f = NumberFormat.getNumberInstance();
         setLayout(null);
-        t1 = new JTextField();
+        t1 = new JFormattedTextField(f);
         b2 = new JButton("Ввід");
         b3 = new JButton("Здаюсь!");
         b1 = new JButton("Нова гра");
@@ -48,8 +52,8 @@ public class Reader extends JFrame {
         b1.addActionListener(handler);
         }
        protected void text(){
-         if(t1.getText().isEmpty()){er.Error1();}
-        guessStr = t1.getText();
+         if(t1.getText().isEmpty()){er.Error1();}else{
+        guessStr = t1.getText();}
         }
 
 
