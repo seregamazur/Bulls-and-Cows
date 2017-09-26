@@ -1,10 +1,19 @@
 package Interface;
 
-import javax.swing.JFrame;
+import javax.imageio.ImageIO;
+import javax.swing.*;
+import java.io.File;
+import java.io.IOException;
 
 public class Cont {
     public static void main(String[] args) {
         Reader r = new Reader("Бики та корови.Гра");
+        try {
+            r.setIconImage(ImageIO.read(new File("res/bicho1.png")));
+        }
+        catch (IOException exc) {
+            exc.printStackTrace();
+        }
         r.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         r.setSize(600, 500);
         r.setResizable(false);
