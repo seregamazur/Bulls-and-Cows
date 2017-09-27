@@ -23,10 +23,10 @@ public void cond(){
     if(bullcount == 4){
         guessed = true;
     }else{
-        System.out.println(cowcount+" Корів і "+bullcount+" биків");
+        System.out.println((Integer.toString(cowcount)+" Корів і "+Integer.toString(bullcount)+" биків"));
 
 }if(guessed == true){
-    System.out.println("Ви виграли за "+guesses+" спроб.");
+        System.out.println("Ви виграли за "+Integer.toString(guesses)+" спроб.");
 }
 
 }}
