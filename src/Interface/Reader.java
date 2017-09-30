@@ -2,10 +2,8 @@ package Interface;
 import Logic.Input;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.net.URL;
 import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.DocumentFilter;
@@ -58,7 +56,9 @@ public class Reader extends JFrame {
          if(t1.getText().isEmpty()){er.Error1();}
          else{guessStr = t1.getText();}
         }
-
+        protected void text1(){
+            System.out.println(area.getText());
+        }
 
      class eHandler extends  Input implements ActionListener{
         public void actionPerformed(ActionEvent e) {
@@ -68,6 +68,7 @@ public class Reader extends JFrame {
             if(e.getSource().equals(b2)){
                text();
                 Incompare();
+                text1();
             }
             if(e.getSource().equals(b3)){
             stand.up();

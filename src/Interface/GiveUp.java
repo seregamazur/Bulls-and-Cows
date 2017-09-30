@@ -3,7 +3,6 @@ package Interface;
 import Logic.GenerateNumb;
 
 import javax.swing.*;
-import java.awt.*;
 
 public class GiveUp extends GenerateNumb{
     JOptionPane give;
