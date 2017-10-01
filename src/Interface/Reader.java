@@ -1,4 +1,5 @@
 package Interface;
+import Logic.GenerateNumb;
 import Logic.Input;
 
 import java.awt.*;
@@ -6,12 +7,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
+import java.util.InputMismatchException;
 import javax.swing.*;
 
 import Interface.NewGame;
 
 import javax.imageio.ImageIO;
 import javax.swing.border.Border;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
@@ -19,6 +22,8 @@ import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.DocumentFilter;
 import javax.swing.text.PlainDocument;
+
+import static javax.swing.JOptionPane.showMessageDialog;
 
 
 public class Reader extends javax.swing.JFrame {
@@ -89,13 +94,20 @@ public class Reader extends javax.swing.JFrame {
         });
 
 
+
        {
             boolean[] canEdit = new boolean [] {
                     false, false, false, false
             };
-           String headers[] = { "Cпроба", "Число","корова","бик" };
-           final Object rows[][] = { { "one", "1"," 4","3" }, { "two", "2"," 4","3" }, { "three", "3"," 4","3"} };
-           JTable jTable1 = new JTable(rows, headers);
+
+           String headers[] = { "Cпроба", "Число","","" };
+           final Object rows[][] = {};
+           model=new DefaultTableModel(rows,headers){
+               public boolean isCellEditable(int row, int headers) {
+                   return false;
+               }
+           };
+           JTable jTable1 = new JTable(model);
             Icon redIcon = new ImageIcon("res/bichochok.png");
             Icon blueIcon = new ImageIcon("res/korovka.png");
 
@@ -164,6 +176,9 @@ public class Reader extends javax.swing.JFrame {
 
         pack();
     }}
+    public void res(){
+
+    }
     private void jButton4ActionPerformed(java.awt.event.ActionEvent e) {
 
         dispose();
@@ -179,13 +194,43 @@ public class Reader extends javax.swing.JFrame {
         stand.up();
 
     }  public void jButton1ActionPerformed(java.awt.event.ActionEvent e) {
-        ErrorType er = new ErrorType();
-        Input in = new Input();
+
             if(jTextField1.getText().isEmpty()){er.Error1();}
             else{
                 guessStr = jTextField1.getText();
+                guessStr.trim();
+                try{
+                    int  guess = Integer.parseInt(guessStr);
+                    if(gen.hasDupes(guess) || guess < 1000 ) { er.Error();}
+                else {guesses++;
+                        boolean guessed = false;
+
+                        for(int i= 0;i < 4;i++){
+                            if(guessStr.charAt(i) == gen.numbStr.charAt(i)){
+                                bullcount++;
+                            }else if(gen.numbStr.contains(guessStr.charAt(i)+"")){
+                                cowcount++;
+                            }
+                        }
+                        if(bullcount == 4){
+                            guessed = true;
+                        }else{
+                            System.out.println(((Integer.toString(cowcount)+" Корів і "+Integer.toString(bullcount)+" биків")));
+
+
+                        }if(guessed == true){
+                            showMessageDialog(null,"Ви виграли за " +guesses +" спроб!");
+                        }
+                        model.insertRow(model.getRowCount(),new Object[]{guesses,guessStr, cowcount, bullcount});
+                        cowcount = 0;
+                        bullcount = 0;}
+                }catch(InputMismatchException | NumberFormatException es) {
+
+
             }
-            //in.incompare();
+            }
+
+
 
 
 
@@ -226,15 +271,18 @@ public class Reader extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    public int bullcount = 0;
+    public int cowcount = 0;
+    public int guesses = 0;
+    private DefaultTableModel model;
+    Input in = new Input();
+    ErrorType er = new ErrorType();
+    GenerateNumb gen = new GenerateNumb();
     private javax.swing.JTextField jTextField1;
 }
 
 
 
-//        protected void text1(){
-//            System.out.println(area.getText());
-//        }
-//
 
     class DigitFilter extends DocumentFilter {
         private static final String DIGITS = "\\d+";
@@ -255,9 +303,7 @@ class JComponentTableCellRenderer implements TableCellRenderer {
         return (JComponent) value;
     }
 }
-//    }
-//
-//    }
+
 
 
 
