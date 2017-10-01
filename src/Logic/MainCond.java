@@ -3,7 +3,7 @@ import Interface.Reader;
 
 public class MainCond extends GenerateNumb {
 public int guesses = 0;
-Reader r1 = new Reader(null);
+Reader r1 = new Reader();
 
 public void cond(){
     boolean guessed = false;
@@ -19,10 +19,10 @@ public void cond(){
     if(bullcount == 4){
         guessed = true;
     }else{
-        r1.area.setText((Integer.toString(cowcount)+" Корів і "+Integer.toString(bullcount)+" биків"));
+        System.out.println(((Integer.toString(cowcount)+" Корів і "+Integer.toString(bullcount)+" биків")));
 
 }if(guessed == true){
-        r1.area.append("Ви виграли за "+Integer.toString(guesses)+" спроб.");
+        System.out.println(("Ви виграли за "+Integer.toString(guesses)+" спроб."));
 }
 
 }}
