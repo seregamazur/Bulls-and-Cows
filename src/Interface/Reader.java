@@ -1,6 +1,6 @@
 package Interface;
 import Logic.GenerateNumb;
-import Logic.Input;
+
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -10,7 +10,6 @@ import java.io.IOException;
 import java.util.InputMismatchException;
 import javax.swing.*;
 
-import Interface.NewGame;
 
 import javax.imageio.ImageIO;
 import javax.swing.border.Border;
@@ -54,9 +53,13 @@ public class Reader extends javax.swing.JFrame {
            exc.printStackTrace();
        }
 
-
-        setPreferredSize(new java.awt.Dimension(600, 500));
-       setLocationRelativeTo(null);
+       Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        sizeWidth = 600;
+       sizeHeight = 500;
+        locationX = (screenSize.width - sizeWidth) / 2;
+       locationY = (screenSize.height - sizeHeight) / 2;
+       setBounds(locationX, locationY, sizeWidth, sizeHeight);
+       setVisible(true);
 
         jButton1.setText("Ввід");
        jButton1.addActionListener((ActionListener) new ActionListener() {
@@ -130,10 +133,7 @@ public class Reader extends javax.swing.JFrame {
 
     column1.setHeaderRenderer(renderer);
     column1.setHeaderValue(redLabel);
-//            public boolean isCellEditable(int rowIndex, int columnIndex) {
-//                return canEdit [columnIndex];
-//            }
-//        }
+
         jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -176,21 +176,19 @@ public class Reader extends javax.swing.JFrame {
 
         pack();
     }}
-    public void res(){
 
-    }
     private void jButton4ActionPerformed(java.awt.event.ActionEvent e) {
 
         dispose();
 
     }  private void jButton3ActionPerformed(java.awt.event.ActionEvent e) {
-
         NewGame game = new NewGame();
-        game.go();
+
+        game.newgame();
 
     }  private void jButton2ActionPerformed(java.awt.event.ActionEvent e) {
 
-        GiveUp stand = new GiveUp();
+
         stand.up();
 
     }  public void jButton1ActionPerformed(java.awt.event.ActionEvent e) {
@@ -271,11 +269,17 @@ public class Reader extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    public int bullcount = 0;
-    public int cowcount = 0;
-    public int guesses = 0;
-    private DefaultTableModel model;
-    Input in = new Input();
+    private static int sizeWidth;
+    private static int sizeHeight;
+    GiveUp stand = new GiveUp();
+    private int  locationX;
+    private int locationY;
+    protected int bullcount = 0;
+    protected int cowcount = 0;
+    protected int guesses = 0;
+    protected DefaultTableModel model;
+
+    //Input in = new Input();
     ErrorType er = new ErrorType();
     GenerateNumb gen = new GenerateNumb();
     private javax.swing.JTextField jTextField1;
