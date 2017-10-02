@@ -212,9 +212,6 @@ public class Reader extends javax.swing.JFrame {
                         }
                         if(bullcount == 4){
                             guessed = true;
-                        }else{
-                            System.out.println(((Integer.toString(cowcount)+" Корів і "+Integer.toString(bullcount)+" биків")));
-
 
                         }if(guessed == true){
                             showMessageDialog(null,"Ви виграли за " +guesses +" спроб!");
