@@ -55,7 +55,7 @@ public class Reader extends javax.swing.JFrame {
 
        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         sizeWidth = 600;
-       sizeHeight = 500;
+        sizeHeight = 500;
         locationX = (screenSize.width - sizeWidth) / 2;
        locationY = (screenSize.height - sizeHeight) / 2;
        setBounds(locationX, locationY, sizeWidth, sizeHeight);

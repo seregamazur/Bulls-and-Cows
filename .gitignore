@@ -1,3 +1,5 @@
 BullsAndCows.iml
 /out
 .idea
+/Bulls/nbproject/private/
+/Bulls/build/
