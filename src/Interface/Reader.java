@@ -16,14 +16,11 @@ import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 import javax.swing.text.PlainDocument;
 import static javax.swing.JOptionPane.showMessageDialog;
-
-
 public class Reader extends javax.swing.JFrame {
     public static String  guessStr ;
     public Reader() {
         initComponents();
     }
-
 public void initComponents() {
 jButton1 = new javax.swing.JButton();
 jTextField1 = new javax.swing.JTextField();
@@ -32,8 +29,6 @@ jButton3 = new javax.swing.JButton();
 jButton4 = new javax.swing.JButton();
 jScrollPane1 = new javax.swing.JScrollPane();
 jTable1 = new javax.swing.JTable();
-
-
 setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 setTitle("Бики та корови");setResizable(false);setVisible(true);
 try {
@@ -63,7 +58,6 @@ jButton2.addActionListener((ActionListener) new ActionListener() {
         jButton2ActionPerformed(evt);
     }
 });
-
 jButton3.setText("Нова гра");
 jButton3.addActionListener((ActionListener) new ActionListener() {
     public void actionPerformed(ActionEvent evt) {
