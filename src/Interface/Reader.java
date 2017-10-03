@@ -137,8 +137,7 @@ layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
     private void jButton4ActionPerformed(java.awt.event.ActionEvent e) {
         dispose();}
       private void jButton3ActionPerformed(java.awt.event.ActionEvent e) {
-        NewGame game = new NewGame();
-        game.newgame();}
+        newgame();}
       private void jButton2ActionPerformed(java.awt.event.ActionEvent e) {
         stand.up();}
       private void jButton1ActionPerformed(java.awt.event.ActionEvent e) {
@@ -167,6 +166,14 @@ layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         cowcount = 0;
                         bullcount = 0;}
                 }catch(InputMismatchException | NumberFormatException es) {}}
+    }
+    private void newgame(){
+        guesses = 0;
+        int rowCount = model.getRowCount();
+        for (int i = rowCount - 1; i >= 0; i--) {
+            model.removeRow(i);
+        }
+        gen.go();
     }
     public static void main(String args[]) {
         try {
@@ -205,10 +212,13 @@ layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
     protected int bullcount = 0;
     protected int cowcount = 0;
     protected int guesses = 0;
-    protected DefaultTableModel model;
+    public DefaultTableModel model;
     ErrorType er = new ErrorType();
     GiveUp stand = new GiveUp();
     GenerateNumb gen = new GenerateNumb();
+
+
+
 }
 
 

@@ -3,11 +3,14 @@ package Interface;
 
 import Logic.GenerateNumb;
 
-class NewGame extends Reader {
+class NewGame extends Reader  {
     GenerateNumb gen = new GenerateNumb();
+
    public void newgame(){
-       cowcount = 0;
-       bullcount = 0;
        guesses = 0;
+       int rowCount = model.getRowCount();
+       for (int i = rowCount - 1; i >= 0; i--) {
+           model.removeRow(i);
+       }
     gen.go();
 }}
