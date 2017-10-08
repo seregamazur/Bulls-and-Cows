@@ -17,10 +17,29 @@ import javax.swing.table.TableColumnModel;
 import javax.swing.text.PlainDocument;
 import static javax.swing.JOptionPane.showMessageDialog;
 public class Reader extends javax.swing.JFrame {
-    public static String  guessStr ;
+
     public Reader() {
         initComponents();
     }
+    public static String  guessStr ;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JTextField jTextField1;
+    private static int sizeWidth;
+    private static int sizeHeight;
+    private int  locationX;
+    private int locationY;
+    protected int bullcount = 0;
+    protected int cowcount = 0;
+    protected int guesses = 0;
+    public DefaultTableModel model;
+    ErrorType er = new ErrorType();
+    GiveUp stand = new GiveUp();
+    GenerateNumb gen = new GenerateNumb();
 public void initComponents() {
 jButton1 = new javax.swing.JButton();
 jTextField1 = new javax.swing.JTextField();
@@ -175,51 +194,13 @@ layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         }
         gen.go();
     }
-    public static void main(String args[]) {
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Reader.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Reader.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Reader.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Reader.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Reader().setVisible(true);
-            }
-        });
+
     }
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private static int sizeWidth;
-    private static int sizeHeight;
-    private int  locationX;
-    private int locationY;
-    protected int bullcount = 0;
-    protected int cowcount = 0;
-    protected int guesses = 0;
-    public DefaultTableModel model;
-    ErrorType er = new ErrorType();
-    GiveUp stand = new GiveUp();
-    GenerateNumb gen = new GenerateNumb();
 
 
 
-}
+
+
 
 
 
