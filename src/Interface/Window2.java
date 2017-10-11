@@ -30,10 +30,6 @@ public class Window2 extends javax.swing.JFrame {
         final JTable jTable1 = new JTable();
         DefaultTableModel model;
 
-    public void setjTextField1(JTextField jTextField1) {
-        this.jTextField1 = jTextField1;
-    }
-
     JTextField jTextField1 = new JTextField();
         public void Window2(){
             initComponents();
@@ -116,6 +112,15 @@ public class Window2 extends javax.swing.JFrame {
                     exitActionPerformed(evt);
                 }
             });
+            gen.getNumber();
+        }
+        private void endGame(){
+            cond.setGuesses(0);
+            int rowCount = model.getRowCount();
+            for (int i = rowCount - 1; i >= 0; i--) {
+                model.removeRow(i);
+            }
+            gen.getNumber();
         }
         private void startFrame(){
             javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -167,17 +172,14 @@ public class Window2 extends javax.swing.JFrame {
                 model.insertRow(model.getRowCount(),new Object[]{cond.getGuesses(),cond.getGuessStr(),cond.getBullcount(),cond.getCowcount()});
                         cond.setCowcount(0);
                         cond.setBullcount(0);
-        }}
-    private void newGameActionPerformed(java.awt.event.ActionEvent e) {
-        cond.setGuesses(0);
-        int rowCount = model.getRowCount();
-        for (int i = rowCount - 1; i >= 0; i--) {
-            model.removeRow(i);
         }
-        gen.getNumber();
+                   ;}
+    private void newGameActionPerformed(java.awt.event.ActionEvent e) {
+       endGame();
     }
     private void capitulateActionPerformed(java.awt.event.ActionEvent e) {
         er.GiveUp(gen);
+        endGame();
         }
             }
 

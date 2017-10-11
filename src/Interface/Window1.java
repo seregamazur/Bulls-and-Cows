@@ -1,5 +1,7 @@
 package Interface;
 
+import Logic.GenerateNumb;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -61,6 +63,7 @@ public class Window1 extends JFrame {
     private void startActionPerformed(java.awt.event.ActionEvent e) {
         dispose();
         face.start();
+
 }
 private void startFrame(){
     javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);

@@ -39,12 +39,17 @@ public class Condition {
     private int cowcount;
     private int guesses;
 
+    public void setGuessed(boolean guessed) {
+        this.guessed = guessed;
+    }
+
+    private boolean guessed = false;
     public void cond(GenerateNumb go){
         try{
             int  guess = Integer.parseInt(guessStr);
             if(gen.hasDupes(guess) || guess < 1000 ) { er.Error();}
             else {guesses++;
-                boolean guessed = false;
+                guessed = false;
                 for(int i= 0;i < 4;i++){
                     if(guessStr.charAt(i) == go.getNumbStr().charAt(i)){
                         bullcount++;
