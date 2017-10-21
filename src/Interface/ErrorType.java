@@ -1,6 +1,5 @@
 package Interface;
 
-import Logic.Condition;
 import Logic.GenerateNumb;
 
 import javax.swing.*;

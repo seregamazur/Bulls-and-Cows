@@ -7,6 +7,15 @@ import java.util.InputMismatchException;
 import static javax.swing.JOptionPane.showMessageDialog;
 
 public class Condition {
+    public int getSize() {
+        return size;
+    }
+
+    public void setSize(int size) {
+        this.size = size;
+    }
+
+    private int size;
     final ErrorType er = new ErrorType();
     final GenerateNumb gen = new GenerateNumb();
     public String getGuessStr() {
@@ -39,25 +48,21 @@ public class Condition {
     private int cowcount;
     private int guesses;
 
-    public void setGuessed(boolean guessed) {
-        this.guessed = guessed;
-    }
-
     private boolean guessed = false;
     public void cond(GenerateNumb go){
         try{
             int  guess = Integer.parseInt(guessStr);
-            if(gen.hasDupes(guess) || guess < 1000 ) { er.Error();}
+            if(gen.hasDupes(guess) ) { er.Error();}
             else {guesses++;
                 guessed = false;
-                for(int i= 0;i < 4;i++){
+                for(int i= 0;i < size;i++){
                     if(guessStr.charAt(i) == go.getNumbStr().charAt(i)){
                         bullcount++;
                     }else if(go.getNumbStr().contains(getGuessStr().charAt(i)+"")){
                         cowcount++;
                     }
                 }
-                if(bullcount == 4){
+                if(bullcount == size){
                     guessed = true;
                 }if(guessed == true){
                     showMessageDialog(null,"Ви виграли за " + getGuesses() +" спроб!");

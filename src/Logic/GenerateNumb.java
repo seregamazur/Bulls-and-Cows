@@ -1,6 +1,7 @@
 package Logic;
 import java.util.Random;
 public class GenerateNumb {
+
     private int numb;
 
     public String getNumbStr() {
@@ -11,9 +12,14 @@ public class GenerateNumb {
         NumbStr = numbStr;
     }
     private String NumbStr;
-    public  int getNumber() {
+    public  int getNumber(Condition cond) {
+
 Random gen = new Random();
-while(hasDupes(numb = gen.nextInt(9000) + 1000)) {;}
+if(cond.getSize() == 3){
+while(hasDupes(numb = gen.nextInt(900) + 100)) {;}}
+else if(cond.getSize() == 4) {while(hasDupes(numb = gen.nextInt(9000) + 1000)) {;}}
+else if(cond.getSize() == 5) {while(hasDupes(numb = gen.nextInt(90000) + 10000)) {;}}
+else if(cond.getSize() == 6) {while(hasDupes(numb = gen.nextInt(900000) + 100000)) {;}}
 setNumbStr(numb + "");
 return numb;
 }

@@ -28,6 +28,8 @@ public class Window2 extends javax.swing.JFrame {
         final JButton exit = new JButton();
         final JScrollPane jScrollPane1 =  new JScrollPane();
         final JTable jTable1 = new JTable();
+        javax.swing.JComboBox<String> jComboBox1 = new JComboBox<>();
+        JLabel label = new JLabel();
         DefaultTableModel model;
 
     JTextField jTextField1 = new JTextField();
@@ -85,6 +87,9 @@ public class Window2 extends javax.swing.JFrame {
             column2.setHeaderValue(bullLabel);
         }
         private void initComponents(){
+            label.setText("Кількість цифр");
+            jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "3", "4", "5", "6" }));
+            jComboBox1.setSelectedItem("4");
             jTextField1.setFont(new java.awt.Font("Tahoma", 0, 14));
             PlainDocument doc = (PlainDocument) jTextField1.getDocument();
             doc.setDocumentFilter(new DigitFilter());
@@ -112,39 +117,47 @@ public class Window2 extends javax.swing.JFrame {
                     exitActionPerformed(evt);
                 }
             });
-            gen.getNumber();
+            gen.getNumber(cond);
         }
         private void endGame(){
+            cond.setSize(Integer.parseInt( jComboBox1.getSelectedItem().toString()));
             cond.setGuesses(0);
             int rowCount = model.getRowCount();
             for (int i = rowCount - 1; i >= 0; i--) {
                 model.removeRow(i);
             }
-            gen.getNumber();
+            gen.getNumber(cond);
         }
         private void startFrame(){
             javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
             getContentPane().setLayout(layout);
             layout.setHorizontalGroup(
                     layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                    .addContainerGap()
+                            .addGroup(layout.createSequentialGroup()
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(layout.createSequentialGroup()
-                                                    .addGap(4, 4, 4)
+                                                    .addGap(24, 24, 24)
                                                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                    .addComponent(input, javax.swing.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
+                                                    .addComponent(input, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
                                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                    .addComponent(capitulate, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addGap(2, 2, 2)
-                                                    .addComponent(newGame, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                    .addComponent(newGame, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addGap(2, 6, Short.MAX_VALUE))
                                             .addGroup(layout.createSequentialGroup()
-                                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addGap(0, 0, Short.MAX_VALUE)))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(exit, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addContainerGap())
+                                                    .addContainerGap()
+                                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                                    .addComponent(capitulate, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                    .addComponent(exit, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addContainerGap())
+                                            .addGroup(layout.createSequentialGroup()
+                                                    .addComponent(label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addGap(67, 67, 67))))
             );
             layout.setVerticalGroup(
                     layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -153,12 +166,20 @@ public class Window2 extends javax.swing.JFrame {
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                             .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(input)
-                                            .addComponent(capitulate)
                                             .addComponent(newGame)
+                                            .addComponent(capitulate)
                                             .addComponent(exit))
-                                    .addGap(30, 30, 30)
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 369, Short.MAX_VALUE)
-                                    .addContainerGap())
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                    .addGap(55, 55, 55)
+                                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                                            .addComponent(label)
+                                                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                    .addContainerGap(335, Short.MAX_VALUE))
+                                            .addGroup(layout.createSequentialGroup()
+                                                    .addGap(27, 27, 27)
+                                                    .addComponent(jScrollPane1)
+                                                    .addContainerGap())))
             );
             pack();
         }
