@@ -1,10 +1,12 @@
 package Logic;
-import Interface.Face;
-import Interface.Window1;
+
+import Interface.MainMenu;
 
 public class Controll {
     public static void main(String[] args) {
-        Window1 win = new Window1();
-        win.Window1();
+        menu();
+    }
+    public static void menu(){
+        MainMenu win = new MainMenu();
     }
 }
