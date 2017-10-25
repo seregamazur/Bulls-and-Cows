@@ -16,7 +16,7 @@ import java.io.File;
 import java.io.IOException;
 
 public class WithComp extends JFrame {
-    final JScrollPane jScrollPane1 =  new JScrollPane();
+    final JScrollPane jScrollPane1 = new JScrollPane();
     final ButtonGroup buttonGroup = new ButtonGroup();
     final JRadioButton set3 = new JRadioButton();
     final JRadioButton set4 = new JRadioButton();
@@ -28,23 +28,26 @@ public class WithComp extends JFrame {
     JPasswordField pass = new JPasswordField();
     final JTable jTable1 = new JTable();
     DefaultTableModel model;
-    public WithComp(){
+
+    public WithComp() {
         initComponents();
         screen();
         startFrame();
         table();
     }
-    private void screen(){
+
+    private void screen() {
         final int sizeWidth;
         final int sizeHeight;
-        final int  locationX;
+        final int locationX;
         final int locationY;
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Бики та корови");setResizable(false);setVisible(true);
+        setTitle("Бики та корови");
+        setResizable(false);
+        setVisible(true);
         try {
             setIconImage(ImageIO.read(new File("res/bicho1.png")));
-        }
-        catch (IOException exc) {
+        } catch (IOException exc) {
             exc.printStackTrace();
         }
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -54,10 +57,11 @@ public class WithComp extends JFrame {
         locationY = (screenSize.height - sizeHeight) / 2;
         setBounds(locationX, locationY, sizeWidth, sizeHeight);
     }
-    private void table(){
-        String headers[] = { "Cпроба", "Число","","" };
+
+    private void table() {
+        String headers[] = {"Cпроба", "Число", "", ""};
         final Object rows[][] = {};
-        model=new DefaultTableModel(rows,headers){
+        model = new DefaultTableModel(rows, headers) {
             public boolean isCellEditable(int row, int headers) {
                 return false;
             }
@@ -80,7 +84,8 @@ public class WithComp extends JFrame {
         column2.setHeaderRenderer(renderer);
         column2.setHeaderValue(bullLabel);
     }
-    private void initComponents(){
+
+    private void initComponents() {
         backMenu.addActionListener((ActionListener) new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 backMenuActionPerformed(evt);
@@ -107,7 +112,8 @@ public class WithComp extends JFrame {
         backMenu.setText("Повернутись до меню");
         backMenu.setPreferredSize(new java.awt.Dimension(160, 30));
     }
-    private void startFrame(){
+
+    private void startFrame() {
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -163,6 +169,7 @@ public class WithComp extends JFrame {
 
         pack();
     }
+
     private void backMenuActionPerformed(java.awt.event.ActionEvent e) {
         dispose();
         Controll.menu();
