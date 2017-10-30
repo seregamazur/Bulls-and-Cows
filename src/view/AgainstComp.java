@@ -21,22 +21,22 @@ import java.io.IOException;
 
 public class AgainstComp extends javax.swing.JFrame {
     GenerateNumb gen = new GenerateNumb();
-    final ErrorType er = new ErrorType();
-    final Condition cond = new Condition();
-    final JButton input = new JButton();
-    final JButton backMenu = new JButton();
-    final JButton capitulate = new JButton();
-    final JButton newGame = new JButton();
-    final JLabel numbCountl = new JLabel();
-    final JLabel timerl = new JLabel();
-    final JLabel settingsl = new JLabel();
-    final JPanel settings = new JPanel();
-    final JScrollPane jScrollPane1 = new JScrollPane();
-    final JTable jTable1 = new JTable();
-    final Font font = new Font("Tahoma", 0, 14);
-    final JComboBox<String> jComboBox1 = new JComboBox<>();
-    DefaultTableModel model;
-    JTextField jTextField1 = new JTextField();
+    final private ErrorType er = new ErrorType();
+    final private Condition cond = new Condition();
+    final private JButton input = new JButton();
+    final private JButton backMenu = new JButton();
+    final private JButton capitulate = new JButton();
+    final private JButton newGame = new JButton();
+    final private JLabel numbCountLabel = new JLabel();
+    final private JLabel timerl = new JLabel();
+    final private JLabel settingsLabel = new JLabel();
+    final private JPanel settings = new JPanel();
+    final private JScrollPane jScrollPane1 = new JScrollPane();
+    final private JTable jTable1 = new JTable();
+    final private Font font = new Font("Tahoma", 0, 14);
+    final private JComboBox<String> jComboBox1 = new JComboBox<>();
+    private DefaultTableModel model;
+    private JTextField jTextField1 = new JTextField();
 
     public AgainstComp() {
         initComponents();
@@ -99,15 +99,15 @@ public class AgainstComp extends javax.swing.JFrame {
         backMenu.setFont(font);
         backMenu.setText("Повернутись до меню");
         timerl.setFont(font);
-        numbCountl.setFont(font);
+        numbCountLabel.setFont(font);
         timerl.setFont(font);
-        settingsl.setFont(font);
+        settingsLabel.setFont(font);
         input.setFont(font);
         newGame.setFont(font);
         capitulate.setFont(font);
-        numbCountl.setText("Кількість цифр у числі");
+        numbCountLabel.setText("Кількість цифр у числі");
         timerl.setText("Таймер");
-        settingsl.setText("Налаштування");
+        settingsLabel.setText("Налаштування");
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"3", "4", "5", "6"}));
         jComboBox1.setSelectedItem("4");
         jTextField1.setFont(new java.awt.Font("Tahoma", 0, 14));
@@ -158,12 +158,12 @@ public class AgainstComp extends javax.swing.JFrame {
                                 .addGroup(settingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(settingsLayout.createSequentialGroup()
                                                 .addContainerGap()
-                                                .addComponent(settingsl))
+                                                .addComponent(settingsLabel))
                                         .addGroup(settingsLayout.createSequentialGroup()
                                                 .addGap(18, 18, 18)
                                                 .addGroup(settingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                                         .addComponent(timerl, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(numbCountl))
+                                                        .addComponent(numbCountLabel))
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                                 .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addContainerGap(47, Short.MAX_VALUE))
@@ -172,10 +172,10 @@ public class AgainstComp extends javax.swing.JFrame {
                 settingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(settingsLayout.createSequentialGroup()
                                 .addContainerGap()
-                                .addComponent(settingsl)
+                                .addComponent(settingsLabel)
                                 .addGap(30, 30, 30)
                                 .addGroup(settingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(numbCountl)
+                                        .addComponent(numbCountLabel)
                                         .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
                                 .addComponent(timerl)

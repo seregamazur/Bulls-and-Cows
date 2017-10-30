@@ -16,18 +16,18 @@ import java.io.File;
 import java.io.IOException;
 
 public class WithComp extends JFrame {
-    final JScrollPane jScrollPane1 = new JScrollPane();
-    final JComboBox<String> jComboBox1 = new JComboBox<>();
-    final JButton input = new JButton();
-    final JButton newGame = new JButton();
-    final JButton backMenu = new JButton();
-    final JLabel numbCountl = new JLabel();
-    final JLabel timerl = new JLabel();
-    final JLabel settingsl = new JLabel();
-    final JPanel settings = new JPanel();
-    JPasswordField pass = new JPasswordField();
-    final JTable jTable1 = new JTable();
-    DefaultTableModel model;
+    final private JScrollPane jScrollPane1 = new JScrollPane();
+    final private JComboBox<String> jComboBox1 = new JComboBox<>();
+    final private JButton input = new JButton();
+    final private JButton newGame = new JButton();
+    final private JButton backMenu = new JButton();
+    final private JLabel numbCountl = new JLabel();
+    final private JLabel timerl = new JLabel();
+    final private JLabel settingsl = new JLabel();
+    final private JPanel settings = new JPanel();
+    private JPasswordField pass = new JPasswordField();
+    final private JTable jTable1 = new JTable();
+
 
     public WithComp() {
         initComponents();
@@ -59,6 +59,7 @@ public class WithComp extends JFrame {
     }
 
     private void table() {
+         DefaultTableModel model;
         String headers[] = {"Cпроба", "Число", "", ""};
         final Object rows[][] = {};
         model = new DefaultTableModel(rows, headers) {
