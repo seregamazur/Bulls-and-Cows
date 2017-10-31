@@ -10,8 +10,7 @@ import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 import java.io.File;
 import java.io.IOException;
 
@@ -21,20 +20,19 @@ public class WithComp extends JFrame {
     final private JButton input = new JButton();
     final private JButton newGame = new JButton();
     final private JButton backMenu = new JButton();
-    final private JLabel numbCountl = new JLabel();
-    final private JLabel timerl = new JLabel();
-    final private JLabel settingsl = new JLabel();
+    final private JLabel numbCountLabel = new JLabel();
+    final private JLabel timerLabel = new JLabel();
+    final private JLabel settingsLabel = new JLabel();
     final private JPanel settings = new JPanel();
+    final private  Font font = new Font("Tahoma", 0, 14);
     private JPasswordField pass = new JPasswordField();
-    final private JTable jTable1 = new JTable();
 
 
     public WithComp() {
         initComponents();
-        screen();
-        startFrame();
         table();
-    }
+        screen();
+        startFrame();}
 
     private void screen() {
         final int sizeWidth;
@@ -87,11 +85,30 @@ public class WithComp extends JFrame {
     }
 
     private void initComponents() {
+        numbCountLabel.setText("Кількість цифр у числі");
+        timerLabel.setText("Таймер");
+        settingsLabel.setText("Налаштування");
+        backMenu.setFont(font);
+        input.setFont(font);
+        newGame.setFont(font);
+        timerLabel.setFont(font);
+        numbCountLabel.setFont(font);
+        settingsLabel.setFont(font);
+        jComboBox1.setSelectedItem("4");
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "3", "4", "5", "6" }));
         backMenu.addActionListener((ActionListener) new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 backMenuActionPerformed(evt);
             }
         });
+        KeyListener listener = new KeyAdapter(){
+            public void keyTyped(KeyEvent e){
+                char c = e.getKeyChar();
+                if ( ((c < '0') || (c > '9')) && (c != KeyEvent.VK_BACK_SPACE)) {
+                    e.consume();
+                }
+            }};
+        pass.addKeyListener(listener);
 
         input.setText("Загадати!");
         input.setPreferredSize(new java.awt.Dimension(100, 30));
@@ -111,13 +128,13 @@ public class WithComp extends JFrame {
                         .addGroup(settingsLayout.createSequentialGroup()
                                 .addGroup(settingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(settingsLayout.createSequentialGroup()
-                                                .addContainerGap(200,Short.MAX_VALUE)
-                                                .addComponent(settingsl))
+                                                .addContainerGap()
+                                                .addComponent(settingsLabel))
                                         .addGroup(settingsLayout.createSequentialGroup()
                                                 .addGap(18, 18, 18)
                                                 .addGroup(settingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                        .addComponent(timerl, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(numbCountl))
+                                                        .addComponent(timerLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(numbCountLabel))
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                                 .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addContainerGap(47, Short.MAX_VALUE))
@@ -126,61 +143,52 @@ public class WithComp extends JFrame {
                 settingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(settingsLayout.createSequentialGroup()
                                 .addContainerGap()
-                                .addComponent(settingsl)
+                                .addComponent(settingsLabel)
                                 .addGap(30, 30, 30)
                                 .addGroup(settingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(numbCountl)
+                                        .addComponent(numbCountLabel)
                                         .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
-                                .addComponent(timerl)
+                                .addComponent(timerLabel)
                                 .addContainerGap(258, Short.MAX_VALUE))
         );
 
-        backMenu.setText("backMenu");
-
-        input.setText("Ввід");
-        input.setToolTipText("Якщо впевнені");
-
-        newGame.setText("Нова гра");
-
-        pass.setText("pass");
+        jComboBox1.getAccessibleContext().setAccessibleParent(settings);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(layout.createSequentialGroup()
-                                                .addContainerGap()
-                                                .addComponent(backMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(pass, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(input, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                                .addContainerGap(23, Short.MAX_VALUE)
-                                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(31, 31, 31)))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(layout.createSequentialGroup()
-                                                .addGap(45, 45, 45)
-                                                .addComponent(newGame)
-                                                .addGap(96, 96, 96))
-                                        .addComponent(settings, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                                .addComponent(backMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(25, 25, 25)
+                                                .addComponent(pass, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(input, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(newGame, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(26, 26, 26))
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                                .addGap(0, 14, Short.MAX_VALUE)
+                                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(31, 31, 31)
+                                                .addComponent(settings, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
         layout.setVerticalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
-                                .addGap(21, 21, 21)
+                                .addContainerGap()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(pass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(input)
                                         .addComponent(newGame)
-                                        .addComponent(pass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(backMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                                        .addComponent(backMenu))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(layout.createSequentialGroup()
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addGap(29, 29, 29))
                                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
