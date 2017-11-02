@@ -9,5 +9,8 @@ public class Face {
     public void start1() {
         WithComp wind = new WithComp();
     }
+    public void startSettings(){
+        Settings wind = new Settings();
+    }
 
 }
