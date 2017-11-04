@@ -17,7 +17,7 @@ import java.io.File;
 import java.io.IOException;
 
 public class AgainstComp extends javax.swing.JFrame {
-    private GenerateNumb gen = new GenerateNumb();
+    final private GenerateNumb gen = new GenerateNumb();
     final private ErrorType er = new ErrorType();
     final private Condition cond = new Condition();
     final private JButton input = new JButton();
@@ -222,5 +222,3 @@ public class AgainstComp extends javax.swing.JFrame {
     }
 
 }
-
-

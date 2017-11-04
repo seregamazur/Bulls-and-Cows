@@ -168,7 +168,7 @@ public class MainMenu extends JFrame {
             props.load(input);
             set.getTimer().setSelected(Boolean.valueOf(props.getProperty("TimerSet")));
             set.getjComboBox1().setSelectedItem(props.getProperty("DigitsCount"));
-
+            input.close();
         } catch (IOException ex) {
             ex.printStackTrace();
         }
