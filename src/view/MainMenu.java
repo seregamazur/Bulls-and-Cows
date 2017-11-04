@@ -6,7 +6,10 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
 
 public class MainMenu extends JFrame {
     Face face = new Face();
@@ -85,12 +88,14 @@ public class MainMenu extends JFrame {
         face.start();
     }
     private void settingsActionPerformed(java.awt.event.ActionEvent e) {
-        face.startSettings();
+        readUserSettings();
+
     }
 
     private void withcompActionPerformed(java.awt.event.ActionEvent e) {
         dispose();
         face.start1();
+
     }
 
 
@@ -149,6 +154,23 @@ public class MainMenu extends JFrame {
             }
         } catch (ClassNotFoundException | UnsupportedLookAndFeelException | InstantiationException | IllegalAccessException ex) {
             java.util.logging.Logger.getLogger(MainMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+    }
+    private void readUserSettings(){
+        Settings set = new Settings();
+        Properties props = new Properties();
+        InputStream input = null;
+
+        try {
+            File f = new File("settings.ini");
+            input = new FileInputStream(f);
+
+            props.load(input);
+            set.getTimer().setSelected(Boolean.valueOf(props.getProperty("TimerSet")));
+            set.getjComboBox1().setSelectedItem(props.getProperty("DigitsCount"));
+
+        } catch (IOException ex) {
+            ex.printStackTrace();
         }
     }
 }

@@ -27,10 +27,8 @@ public class AgainstComp extends javax.swing.JFrame {
     final private JLabel numbCountLabel = new JLabel();
     final private JLabel timerLabel = new JLabel();
     final private JLabel settingsLabel = new JLabel();
-    final private JPanel settings = new JPanel();
     final private JScrollPane jScrollPane1 = new JScrollPane();
-    final private  Font font = new Font("Tahoma", 0, 14);
-    final private JComboBox<String> jComboBox1 = new JComboBox<>();
+    final private Font font = new Font("Tahoma", 0, 14);
     private DefaultTableModel model;
     private JTextField jTextField1 = new JTextField();
 
@@ -48,7 +46,7 @@ public class AgainstComp extends javax.swing.JFrame {
         final int locationX;
         final int locationY;
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Бики та корови");
+        setTitle("Відгадати число");
         setResizable(false);
         setVisible(true);
         try {
@@ -103,18 +101,19 @@ public class AgainstComp extends javax.swing.JFrame {
         numbCountLabel.setText("Кількість цифр у числі");
         timerLabel.setText("Таймер");
         settingsLabel.setText("Налаштування");
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"3", "4", "5", "6"}));
-        jComboBox1.setSelectedItem("4");
+
+
         jTextField1.setFont(new java.awt.Font("Tahoma", 0, 14));
         input.setText("Ввід");
         input.setToolTipText("Якщо впевнені");
-        KeyListener listener = new KeyAdapter(){
-            public void keyTyped(KeyEvent e){
+        KeyListener listener = new KeyAdapter() {
+            public void keyTyped(KeyEvent e) {
                 char c = e.getKeyChar();
-                if ( ((c < '0') || (c > '9')) && (c != KeyEvent.VK_BACK_SPACE)) {
+                if (((c < '0') || (c > '9')) && (c != KeyEvent.VK_BACK_SPACE)) {
                     e.consume();
                 }
-            }};
+            }
+        };
         jTextField1.addKeyListener(listener);
 
 
@@ -144,7 +143,6 @@ public class AgainstComp extends javax.swing.JFrame {
     }
 
     private void endGame() {
-        cond.setSize(Integer.parseInt(jComboBox1.getSelectedItem().toString()));
         cond.setGuesses(0);
         int rowCount = model.getRowCount();
         for (int i = rowCount - 1; i >= 0; i--) {
@@ -160,7 +158,7 @@ public class AgainstComp extends javax.swing.JFrame {
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
                                 .addContainerGap()
-                                .addComponent(backMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(backMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -173,7 +171,7 @@ public class AgainstComp extends javax.swing.JFrame {
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addContainerGap(64, Short.MAX_VALUE)
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(64, 64, 64))
+                                .addGap(120, 120, 120))
         );
         layout.setVerticalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -195,12 +193,12 @@ public class AgainstComp extends javax.swing.JFrame {
     }
 
     private void inputActionPerformed(java.awt.event.ActionEvent e) {
+        cond.setGuessStr(jTextField1.getText());
         if (jTextField1.getText().isEmpty()) {
             er.Error1();
-        }
-
-                else {
-            cond.setGuessStr(jTextField1.getText());
+        } else if (Integer.parseInt(cond.getGuessStr()) != cond.getSize()) {
+            er.Error();
+        } else {
             cond.cond(gen);
             model.insertRow(model.getRowCount(), new Object[]{cond.getGuesses(), cond.getGuessStr(), cond.getBullcount(), cond.getCowcount()});
             cond.setCowcount(0);
@@ -218,6 +216,7 @@ public class AgainstComp extends javax.swing.JFrame {
         er.GiveUp(gen);
         endGame();
     }
+
     private void backMenuActionPerformed(java.awt.event.ActionEvent e) {
         dispose();
         Controll.menu();

@@ -1,35 +1,48 @@
 package view;
 
-import logics.Controll;
-
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
+import java.util.Properties;
 
 public class Settings extends JFrame {
-   private JComboBox jComboBox1 = new JComboBox<>();
+    public JComboBox getjComboBox1() {
+        return jComboBox1;
+    }
+
+    private JComboBox jComboBox1 = new JComboBox<>();
     final private JLabel settingsLabel = new JLabel();
     final private JLabel numbCountLabel = new JLabel();
     final private JLabel timerLabel = new JLabel();
-    final private JCheckBox jCheckBox1 = new JCheckBox();
+
+    public JCheckBox getTimer() {
+        return timer;
+    }
+
+    final private JCheckBox timer = new JCheckBox();
     final private JButton exit = new JButton();
     final private JButton save = new JButton();
-    public Settings(){
+
+    public Settings() {
         initComponents();
         screen();
         startFrame();
     }
-    private void initComponents(){
+
+    private void initComponents() {
         settingsLabel.setText("Налаштування");
         timerLabel.setText("Використовувати таймер");
         exit.setText("Вихід");
         save.setText("Зберегти зміни");
         numbCountLabel.setText("Кількість цифр в числі");
-        jComboBox1.setModel(new DefaultComboBoxModel<>(new String[] { "3", "4", "5", "6" }));
+        jComboBox1.setModel(new DefaultComboBoxModel<>(new String[]{"3", "4", "5", "6"}));
+        jComboBox1.setSelectedItem("4");
         exit.addActionListener((ActionListener) new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 exitActionPerformed(evt);
@@ -41,13 +54,14 @@ public class Settings extends JFrame {
             }
         });
     }
+
     private void screen() {
         final int sizeWidth;
         final int sizeHeight;
         final int locationX;
         final int locationY;
         setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
-        setTitle("Бики та корови");
+        setTitle("Налаштування");
         setResizable(false);
         setVisible(true);
         try {
@@ -62,14 +76,17 @@ public class Settings extends JFrame {
         locationY = (screenSize.height - sizeHeight) / 2;
         setBounds(locationX, locationY, sizeWidth, sizeHeight);
     }
+
     private void exitActionPerformed(java.awt.event.ActionEvent e) {
         dispose();
     }
+
     private void saveActionPerformed(java.awt.event.ActionEvent e) {
+        writeUserSettings();
         dispose();
     }
 
-    private void startFrame(){
+    private void startFrame() {
         GroupLayout layout = new GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -88,7 +105,7 @@ public class Settings extends JFrame {
                                                                         .addGroup(layout.createSequentialGroup()
                                                                                 .addComponent(timerLabel)
                                                                                 .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                                                                                .addComponent(jCheckBox1)))
+                                                                                .addComponent(timer)))
                                                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE))
                                                         .addGroup(layout.createSequentialGroup()
                                                                 .addComponent(save)
@@ -111,7 +128,7 @@ public class Settings extends JFrame {
                                         .addComponent(jComboBox1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                                        .addComponent(jCheckBox1)
+                                        .addComponent(timer)
                                         .addComponent(timerLabel))
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
@@ -121,5 +138,22 @@ public class Settings extends JFrame {
         );
 
         pack();
+    }
+
+    private void writeUserSettings() {
+        try {
+            String numbCount = "DigitsCount";
+            String timerBool = "TimerSet";
+            Properties props = new Properties();
+            props.setProperty(numbCount, getjComboBox1().getSelectedItem().toString());
+            props.setProperty(timerBool, Boolean.toString(timer.isSelected()));
+            File f = new File("settings.ini");
+            OutputStream out = new FileOutputStream(f);
+            props.store(out, null);
+            out.close();
+        } catch (Exception io) {
+            io.printStackTrace();
+        }
+
     }
 }

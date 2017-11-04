@@ -16,7 +16,6 @@ import java.io.IOException;
 
 public class WithComp extends JFrame {
     final private JScrollPane jScrollPane1 = new JScrollPane();
-    final private JComboBox<String> jComboBox1 = new JComboBox<>();
     final private JButton input = new JButton();
     final private JButton newGame = new JButton();
     final private JButton backMenu = new JButton();
@@ -24,7 +23,7 @@ public class WithComp extends JFrame {
     final private JLabel timerLabel = new JLabel();
     final private JLabel settingsLabel = new JLabel();
     final private JPanel settings = new JPanel();
-    final private  Font font = new Font("Tahoma", 0, 14);
+    final private Font font = new Font("Tahoma", 0, 14);
     private JPasswordField pass = new JPasswordField();
 
 
@@ -32,7 +31,8 @@ public class WithComp extends JFrame {
         initComponents();
         table();
         screen();
-        startFrame();}
+        startFrame();
+    }
 
     private void screen() {
         final int sizeWidth;
@@ -40,7 +40,7 @@ public class WithComp extends JFrame {
         final int locationX;
         final int locationY;
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Бики та корови");
+        setTitle("Загадати число");
         setResizable(false);
         setVisible(true);
         try {
@@ -57,7 +57,7 @@ public class WithComp extends JFrame {
     }
 
     private void table() {
-         DefaultTableModel model;
+        DefaultTableModel model;
         String headers[] = {"Cпроба", "Число", "", ""};
         final Object rows[][] = {};
         model = new DefaultTableModel(rows, headers) {
@@ -94,20 +94,19 @@ public class WithComp extends JFrame {
         timerLabel.setFont(font);
         numbCountLabel.setFont(font);
         settingsLabel.setFont(font);
-        jComboBox1.setSelectedItem("4");
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "3", "4", "5", "6" }));
         backMenu.addActionListener((ActionListener) new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 backMenuActionPerformed(evt);
             }
         });
-        KeyListener listener = new KeyAdapter(){
-            public void keyTyped(KeyEvent e){
+        KeyListener listener = new KeyAdapter() {
+            public void keyTyped(KeyEvent e) {
                 char c = e.getKeyChar();
-                if ( ((c < '0') || (c > '9')) && (c != KeyEvent.VK_BACK_SPACE)) {
+                if (((c < '0') || (c > '9')) && (c != KeyEvent.VK_BACK_SPACE)) {
                     e.consume();
                 }
-            }};
+            }
+        };
         pass.addKeyListener(listener);
 
         input.setText("Загадати!");
