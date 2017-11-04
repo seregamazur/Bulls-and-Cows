@@ -193,20 +193,19 @@ public class AgainstComp extends javax.swing.JFrame {
     }
 
     private void inputActionPerformed(java.awt.event.ActionEvent e) {
-        cond.setGuessStr(jTextField1.getText());
         if (jTextField1.getText().isEmpty()) {
             er.Error1();
-        } else if (Integer.parseInt(cond.getGuessStr()) != cond.getSize()) {
-            er.Error();
-        } else {
+        } else {cond.setGuessStr(jTextField1.getText());}
+            if (Integer.valueOf(cond.getGuessStr().length()) != cond.getSize()) {
+            er.Error();}
+            else{
             cond.cond(gen);
             model.insertRow(model.getRowCount(), new Object[]{cond.getGuesses(), cond.getGuessStr(), cond.getBullcount(), cond.getCowcount()});
             cond.setCowcount(0);
             cond.setBullcount(0);
-        }
-        ;
+
         jTextField1.setText(null);
-    }
+    }}
 
     private void newGameActionPerformed(java.awt.event.ActionEvent e) {
         endGame();

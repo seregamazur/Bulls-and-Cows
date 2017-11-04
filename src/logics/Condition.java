@@ -61,9 +61,6 @@ public class Condition {
     public void cond(GenerateNumb go) {
         try {
             int guess = Integer.parseInt(guessStr);
-            if (gen.hasDupes(guess)) {
-                er.Error();
-            } else {
                 guesses++;
                 guessed = false;
                 for (int i = 0; i < size; i++) {
@@ -79,7 +76,7 @@ public class Condition {
                 if (guessed == true) {
                     showMessageDialog(null, "Ви виграли за " + getGuesses() + " спроб!");
                 }
-            }
+
         } catch (InputMismatchException | NumberFormatException es) {
         }
     }
