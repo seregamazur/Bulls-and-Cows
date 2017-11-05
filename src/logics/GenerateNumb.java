@@ -34,7 +34,7 @@ public class GenerateNumb {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
-        int digit = Integer.parseInt(props.getProperty("DigitsCount"));
+         int digit = Integer.parseInt(props.getProperty("DigitsCount"));
          cond.setSize(digit);
         Random gen = new Random();
         if (digit == 3) {

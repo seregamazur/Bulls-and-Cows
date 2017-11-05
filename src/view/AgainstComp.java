@@ -16,7 +16,7 @@ import java.awt.event.*;
 import java.io.File;
 import java.io.IOException;
 
-public class AgainstComp extends javax.swing.JFrame {
+public class AgainstComp extends JFrame {
     final private GenerateNumb gen = new GenerateNumb();
     final private ErrorType er = new ErrorType();
     final private Condition cond = new Condition();
@@ -45,7 +45,7 @@ public class AgainstComp extends javax.swing.JFrame {
         final int sizeHeight;
         final int locationX;
         final int locationY;
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setTitle("Відгадати число");
         setResizable(false);
         setVisible(true);
@@ -103,7 +103,7 @@ public class AgainstComp extends javax.swing.JFrame {
         settingsLabel.setText("Налаштування");
 
 
-        jTextField1.setFont(new java.awt.Font("Tahoma", 0, 14));
+        jTextField1.setFont(new Font("Tahoma", 0, 14));
         input.setText("Ввід");
         input.setToolTipText("Якщо впевнені");
         KeyListener listener = new KeyAdapter() {
@@ -139,7 +139,7 @@ public class AgainstComp extends javax.swing.JFrame {
                 backMenuActionPerformed(evt);
             }
         });
-        backMenu.setPreferredSize(new java.awt.Dimension(180, 30));
+        backMenu.setPreferredSize(new Dimension(180, 30));
     }
 
     private void endGame() {
@@ -152,39 +152,39 @@ public class AgainstComp extends javax.swing.JFrame {
     }
 
     private void startFrame() {
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        GroupLayout layout = new GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
                                 .addContainerGap()
-                                .addComponent(backMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(backMenu, GroupLayout.PREFERRED_SIZE, 160, GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(input, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jTextField1, GroupLayout.PREFERRED_SIZE, 96, GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(input, GroupLayout.PREFERRED_SIZE, 86, GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(capitulate)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(newGame)
                                 .addGap(0, 0, Short.MAX_VALUE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addContainerGap(64, Short.MAX_VALUE)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 350, GroupLayout.PREFERRED_SIZE)
                                 .addGap(120, 120, 120))
         );
         layout.setVerticalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
                                 .addGap(8, 8, 8)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jTextField1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                         .addComponent(input)
                                         .addComponent(capitulate)
                                         .addComponent(newGame)
                                         .addComponent(backMenu))
                                 .addGap(18, 18, 18)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 241, GroupLayout.PREFERRED_SIZE)
                                 .addContainerGap(26, Short.MAX_VALUE))
         );
 
@@ -192,31 +192,34 @@ public class AgainstComp extends javax.swing.JFrame {
         endGame();
     }
 
-    private void inputActionPerformed(java.awt.event.ActionEvent e) {
+    private void inputActionPerformed(ActionEvent e) {
         if (jTextField1.getText().isEmpty()) {
             er.Error1();
-        } else {cond.setGuessStr(jTextField1.getText());}
-            if (Integer.valueOf(cond.getGuessStr().length()) != cond.getSize()) {
-            er.Error();}
-            else{
+        } else {
+            cond.setGuessStr(jTextField1.getText());
+        }
+        if (Integer.valueOf(cond.getGuessStr().length()) != cond.getSize()) {
+            er.Error(cond);
+        } else {
             cond.cond(gen);
             model.insertRow(model.getRowCount(), new Object[]{cond.getGuesses(), cond.getGuessStr(), cond.getBullcount(), cond.getCowcount()});
             cond.setCowcount(0);
             cond.setBullcount(0);
 
-        jTextField1.setText(null);
-    }}
+            jTextField1.setText(null);
+        }
+    }
 
-    private void newGameActionPerformed(java.awt.event.ActionEvent e) {
+    private void newGameActionPerformed(ActionEvent e) {
         endGame();
     }
 
-    private void capitulateActionPerformed(java.awt.event.ActionEvent e) {
+    private void capitulateActionPerformed(ActionEvent e) {
         er.GiveUp(gen);
         endGame();
     }
 
-    private void backMenuActionPerformed(java.awt.event.ActionEvent e) {
+    private void backMenuActionPerformed(ActionEvent e) {
         dispose();
         Controll.menu();
     }
