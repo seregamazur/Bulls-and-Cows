@@ -1,6 +1,8 @@
 package view;
 
+import logics.Condition;
 import logics.Controll;
+import logics.GenerateNumb;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -16,6 +18,8 @@ import java.io.File;
 import java.io.IOException;
 
 public class WithComp extends JFrame {
+    final private ErrorType er = new ErrorType();
+    final private GenerateNumb gen = new GenerateNumb();
     final private JScrollPane jScrollPane1 = new JScrollPane();
     final private JButton input = new JButton();
     final private JButton newGame = new JButton();
@@ -23,9 +27,10 @@ public class WithComp extends JFrame {
     final private JLabel numbCountLabel = new JLabel();
     final private JLabel timerLabel = new JLabel();
     final private JLabel settingsLabel = new JLabel();
-    final private JPanel settings = new JPanel();
+    final private Condition cond = new Condition();
     final private Font font = new Font("Tahoma", 0, 14);
-    private JPasswordField pass = new JPasswordField();
+    private JTextField jTextField1 = new JTextField();
+    private DefaultTableModel model;
 
 
     public WithComp() {
@@ -58,7 +63,6 @@ public class WithComp extends JFrame {
     }
 
     private void table() {
-        DefaultTableModel model;
         String headers[] = {"Cпроба", "Число", "", ""};
         final Object rows[][] = {};
         model = new DefaultTableModel(rows, headers) {
@@ -100,6 +104,16 @@ public class WithComp extends JFrame {
                 backMenuActionPerformed(evt);
             }
         });
+        input.addActionListener((ActionListener) new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                inputActionPerformed(evt);
+            }
+        });
+        newGame.addActionListener((ActionListener) new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                newGameActionPerformed(evt);
+            }
+        });
         KeyListener listener = new KeyAdapter() {
             public void keyTyped(KeyEvent e) {
                 char c = e.getKeyChar();
@@ -108,7 +122,7 @@ public class WithComp extends JFrame {
                 }
             }
         };
-        pass.addKeyListener(listener);
+        jTextField1.addKeyListener(listener);
 
         input.setText("Загадати!");
         input.setPreferredSize(new Dimension(100, 30));
@@ -129,7 +143,7 @@ public class WithComp extends JFrame {
                                 .addContainerGap()
                                 .addComponent(backMenu, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(pass, GroupLayout.PREFERRED_SIZE, 90, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jTextField1, GroupLayout.PREFERRED_SIZE, 90, GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(input, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
@@ -145,7 +159,7 @@ public class WithComp extends JFrame {
                         .addGroup(layout.createSequentialGroup()
                                 .addContainerGap()
                                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                        .addComponent(pass, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jTextField1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                         .addComponent(backMenu, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                         .addComponent(input, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                         .addComponent(newGame, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
@@ -161,6 +175,34 @@ public class WithComp extends JFrame {
         dispose();
         Controll.menu();
     }
+
+    private void inputActionPerformed(ActionEvent e) {
+        gen.read(cond);
+        if (jTextField1.getText().isEmpty()) {
+            er.Error1();
+        } else {
+            cond.setGuessStr(jTextField1.getText());
+
+        if (Integer.valueOf(cond.getGuessStr().length()) != cond.getSize()) {
+            er.Error(cond);}
+            else{
+        while (!cond.isGuessed() ){
+        gen.getNumb();
+        cond.comp(gen);
+        model.insertRow(model.getRowCount(), new Object[]{cond.getGuesses(), gen.getNumbStr(), cond.getBullcount(), cond.getCowcount()});
+        cond.setCowcount(0);
+        cond.setBullcount(0);
+    }}}}
+    private void newGameActionPerformed(ActionEvent e)  {
+    cond.setGuesses(0);
+    int rowCount = model.getRowCount();
+        for (int i = rowCount - 1; i >= 0; i--) {
+        model.removeRow(i);
+    }
+    jTextField1.setText(null);
+        cond.setGuessStr(null);
+        cond.setGuessed(false);
+        }
 
 
 }

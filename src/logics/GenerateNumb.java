@@ -1,6 +1,5 @@
 package logics;
 
-import view.Settings;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -22,21 +21,28 @@ public class GenerateNumb {
     }
 
     private String NumbStr;
+    private Random gen = new Random();
 
-    public int getNumber(Condition cond) {
+    public int getDigit() {
+        return digit;
+    }
+
+    private int digit;
+
+    public int getNumber(Condition cond)  {
         Properties props = new Properties();
         InputStream input = null;
-
         try {
             File f = new File("settings.ini");
             input = new FileInputStream(f);
             props.load(input);
+            input.close();
         } catch (IOException ex) {
             ex.printStackTrace();
         }
-         int digit = Integer.parseInt(props.getProperty("DigitsCount"));
+          digit = Integer.parseInt(props.getProperty("DigitsCount"));
          cond.setSize(digit);
-        Random gen = new Random();
+
         if (digit == 3) {
             while (hasDupes(numb = gen.nextInt(900) + 100)) {
                 ;
@@ -56,6 +62,42 @@ public class GenerateNumb {
         }
         setNumbStr(numb + "");
         return numb;
+    }
+    public void read(Condition cond){
+        Properties props = new Properties();
+        InputStream input = null;
+        try {
+            File f = new File("settings.ini");
+            input = new FileInputStream(f);
+            props.load(input);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        digit = Integer.parseInt(props.getProperty("DigitsCount"));
+        cond.setSize(digit);
+    }
+    public int getNumb() {
+
+        if (digit == 3) {
+            while (hasDupes(numb = gen.nextInt(900) + 100)) {
+                ;
+            }
+        } else if (digit == 4) {
+            while (hasDupes(numb = gen.nextInt(9000) + 1000)) {
+                ;
+            }
+        } else if (digit == 5) {
+            while (hasDupes(numb = gen.nextInt(90000) + 10000)) {
+                ;
+            }
+        } else if (digit == 6) {
+            while (hasDupes(numb = gen.nextInt(900000) + 100000)) {
+                ;
+            }
+        }
+        NumbStr = numb + "";
+        return numb;
+
     }
 
     public boolean hasDupes(int num) {

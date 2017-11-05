@@ -56,11 +56,18 @@ public class Condition {
     private int cowcount;
     private int guesses;
 
+    public boolean isGuessed() {
+        return guessed;
+    }
+
+    public void setGuessed(boolean guessed) {
+        this.guessed = guessed;
+    }
+
     private boolean guessed = false;
 
     public void cond(GenerateNumb go) {
         try {
-            int guess = Integer.parseInt(guessStr);
                 guesses++;
                 guessed = false;
                 for (int i = 0; i < size; i++) {
@@ -73,12 +80,32 @@ public class Condition {
                 if (bullcount == size) {
                     guessed = true;
                 }
-                if (guessed == true) {
+                if (guessed) {
                     showMessageDialog(null, "Ви виграли за " + getGuesses() + " спроб!");
                 }
 
         } catch (InputMismatchException | NumberFormatException es) {
         }
     }
-}
+    public void comp(GenerateNumb go) {
+        try {
+            guesses++;
+            guessed = false;
+            for (int i = 0; i < size; i++) {
+                if (guessStr.charAt(i) == go.getNumbStr().charAt(i)) {
+                    bullcount++;
+                } else if (go.getNumbStr().contains(guessStr.charAt(i) + "")) {
+                    cowcount++;
+                }
+            }
+            if (bullcount == size) {
+                guessed = true;
+            }
+            if (guessed) {
+                showMessageDialog(null, "Комп'ютер відгадав ваше число за " + guesses + " спроб!");
+
+
+        }} catch (InputMismatchException | NumberFormatException es) {
+        }
+}}
 

@@ -197,7 +197,7 @@ public class AgainstComp extends JFrame {
             er.Error1();
         } else {
             cond.setGuessStr(jTextField1.getText());
-        }
+
         if (Integer.valueOf(cond.getGuessStr().length()) != cond.getSize()) {
             er.Error(cond);
         } else {
@@ -208,7 +208,7 @@ public class AgainstComp extends JFrame {
 
             jTextField1.setText(null);
         }
-    }
+    }}
 
     private void newGameActionPerformed(ActionEvent e) {
         endGame();
