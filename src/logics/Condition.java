@@ -1,8 +1,10 @@
 package logics;
 
-import view.ErrorType;
 
+
+import java.util.HashSet;
 import java.util.InputMismatchException;
+import java.util.Set;
 
 import static javax.swing.JOptionPane.showMessageDialog;
 
@@ -10,14 +12,20 @@ public class Condition {
     public int getSize() {
         return size;
     }
+    public Set<Integer> getExceptedNumb() {
+        return exceptedNumb;
+    }
+
+
+
+    private Set<Integer>exceptedNumb = new HashSet<>();
 
     public void setSize(int size) {
         this.size = size;
     }
 
     private int size;
-    final ErrorType er = new ErrorType();
-    final GenerateNumb gen = new GenerateNumb();
+
 
     public String getGuessStr() {
         return guessStr;
@@ -67,6 +75,7 @@ public class Condition {
     private boolean guessed = false;
 
     public void cond(GenerateNumb go) {
+        if(exceptedNumb.contains(guessStr)) guesses--;
         try {
                 guesses++;
                 guessed = false;
@@ -77,10 +86,12 @@ public class Condition {
                         cowcount++;
                     }
                 }
+                exceptedNumb.add(Integer.parseInt(guessStr));
                 if (bullcount == size) {
                     guessed = true;
                 }
                 if (guessed) {
+                    exceptedNumb.clear();
                     showMessageDialog(null, "Ви виграли за " + getGuesses() + " спроб!");
                 }
 
@@ -98,10 +109,16 @@ public class Condition {
                     cowcount++;
                 }
             }
+            exceptedNumb.add(Integer.parseInt(go.getNumbStr()));
             if (bullcount == size) {
                 guessed = true;
             }
+            else if(bullcount == 0 && cowcount == 0){
+                guesses--;
+                exceptedNumb.add(Integer.parseInt(go.getNumbStr()));
+            }
             if (guessed) {
+                exceptedNumb.clear();
                 showMessageDialog(null, "Комп'ютер відгадав ваше число за " + guesses + " спроб!");
 
 

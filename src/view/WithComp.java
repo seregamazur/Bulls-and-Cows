@@ -2,6 +2,7 @@ package view;
 
 import logics.Condition;
 import logics.Controll;
+import logics.ErrorType;
 import logics.GenerateNumb;
 
 import javax.imageio.ImageIO;
@@ -187,12 +188,13 @@ public class WithComp extends JFrame {
             er.Error(cond);}
             else{
         while (!cond.isGuessed() ){
-        gen.getNumb();
+        gen.getNumb(cond);
         cond.comp(gen);
+        if(cond.getExceptedNumb().contains(gen.getNumbStr())|| (cond.getCowcount() == 0 && cond.getBullcount() == 0)){;}else{
         model.insertRow(model.getRowCount(), new Object[]{cond.getGuesses(), gen.getNumbStr(), cond.getBullcount(), cond.getCowcount()});
         cond.setCowcount(0);
         cond.setBullcount(0);
-    }}}}
+    }}}}}
     private void newGameActionPerformed(ActionEvent e)  {
     cond.setGuesses(0);
     int rowCount = model.getRowCount();

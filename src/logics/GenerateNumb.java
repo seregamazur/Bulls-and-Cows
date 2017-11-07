@@ -10,6 +10,7 @@ import java.util.Random;
 
 public class GenerateNumb {
 
+
     private int numb;
 
     public String getNumbStr() {
@@ -23,9 +24,6 @@ public class GenerateNumb {
     private String NumbStr;
     private Random gen = new Random();
 
-    public int getDigit() {
-        return digit;
-    }
 
     private int digit;
 
@@ -76,7 +74,8 @@ public class GenerateNumb {
         digit = Integer.parseInt(props.getProperty("DigitsCount"));
         cond.setSize(digit);
     }
-    public int getNumb() {
+    public int getNumb(Condition cond) {
+
 
         if (digit == 3) {
             while (hasDupes(numb = gen.nextInt(900) + 100)) {
@@ -95,10 +94,12 @@ public class GenerateNumb {
                 ;
             }
         }
+        if(cond.getExceptedNumb().size()>1 && cond.getExceptedNumb().contains(numb) ){
+        getNumb(cond);}
+        else{
         NumbStr = numb + "";
-        return numb;
 
-    }
+    }return numb;}
 
     public boolean hasDupes(int num) {
         for (boolean[] digs = new boolean[10]; num > 0; num /= 10) {

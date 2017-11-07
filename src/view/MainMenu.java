@@ -1,5 +1,7 @@
 package view;
 
+import logics.Face;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -13,13 +15,12 @@ import java.util.Properties;
 
 public class MainMenu extends JFrame {
     Face face = new Face();
-    final JButton players = new JButton();
-    final JButton exit = new JButton();
-    final JButton againstcomp = new JButton();
-    final JButton withcomp = new JButton();
-    final JButton settings = new JButton();
-    final JLabel label = new JLabel();
-    final JPanel jPanel1 = new JPanel();
+    final private JButton players = new JButton();
+    final private JButton exit = new JButton();
+    final private JButton againstcomp = new JButton();
+    final private JButton withcomp = new JButton();
+    final private JButton settings = new JButton();
+    final private JLabel label = new JLabel();
 
     public MainMenu() {
         initComponents();
@@ -112,10 +113,10 @@ public class MainMenu extends JFrame {
                                         .addGroup(layout.createSequentialGroup()
                                                 .addGap(208, 208, 208)
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addComponent(settings, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                         .addGroup(layout.createSequentialGroup()
-                                                                .addGap(12, 12, 12)
-                                                                .addComponent(exit, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                                                .addGap(10, 10, 10)
+                                                                .addComponent(exit, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                        .addComponent(settings, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                                                 .addGap(0, 0, Short.MAX_VALUE)))
                                 .addContainerGap())
                         .addGroup(layout.createSequentialGroup()
@@ -131,7 +132,7 @@ public class MainMenu extends JFrame {
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
                                 .addContainerGap()
-                                .addComponent(label, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE)
+                                .addComponent(label, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(players, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -141,7 +142,7 @@ public class MainMenu extends JFrame {
                                 .addComponent(settings, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(exit, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(19, 19, 19))
+                                .addGap(23, 23, 23))
         );
 
         pack();
