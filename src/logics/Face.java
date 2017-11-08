@@ -2,7 +2,6 @@ package logics;
 
 
 import view.AgainstComp;
-import view.Settings;
 import view.WithComp;
 
 public class Face {
@@ -14,8 +13,5 @@ public class Face {
         new WithComp();
     }
 
-    public void startSettings() {
-        new Settings();
-    }
 
 }
