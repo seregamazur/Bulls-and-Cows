@@ -77,10 +77,11 @@ public class MainMenu extends JFrame {
         locationX = (screenSize.width - sizeWidth) / 2;
         locationY = (screenSize.height - sizeHeight) / 2;
         setBounds(locationX, locationY, sizeWidth, sizeHeight);
+
     }
 
     private void exitActionPerformed(java.awt.event.ActionEvent e) {
-        dispose();
+        System.exit(0);
 
     }
 
@@ -89,7 +90,9 @@ public class MainMenu extends JFrame {
         face.start();
     }
     private void settingsActionPerformed(java.awt.event.ActionEvent e) {
+        setFocusableWindowState(false);
         readUserSettings();
+
 
     }
 

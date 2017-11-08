@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Properties;
 
-public class Settings extends JFrame {
+public class Settings extends JDialog {
     public JComboBox getjComboBox1() {
         return jComboBox1;
     }
@@ -75,6 +75,8 @@ public class Settings extends JFrame {
         locationX = (screenSize.width - sizeWidth) / 2;
         locationY = (screenSize.height - sizeHeight) / 2;
         setBounds(locationX, locationY, sizeWidth, sizeHeight);
+
+
     }
 
     private void exitActionPerformed(java.awt.event.ActionEvent e) {
@@ -84,6 +86,7 @@ public class Settings extends JFrame {
     private void saveActionPerformed(java.awt.event.ActionEvent e) {
         writeUserSettings();
         dispose();
+
     }
 
     private void startFrame() {
