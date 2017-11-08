@@ -89,6 +89,7 @@ public class MainMenu extends JFrame {
         dispose();
         face.start();
     }
+
     private void settingsActionPerformed(java.awt.event.ActionEvent e) {
         setFocusableWindowState(false);
         readUserSettings();
@@ -160,18 +161,19 @@ public class MainMenu extends JFrame {
             java.util.logging.Logger.getLogger(MainMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
     }
-    private void readUserSettings(){
-        Settings set = new Settings();
+
+    private void readUserSettings() {
+        Settings UserSettings = new Settings();
         Properties props = new Properties();
-        InputStream input = null;
+        InputStream input;
 
         try {
             File f = new File("settings.ini");
             input = new FileInputStream(f);
 
             props.load(input);
-            set.getTimer().setSelected(Boolean.valueOf(props.getProperty("TimerSet")));
-            set.getjComboBox1().setSelectedItem(props.getProperty("DigitsCount"));
+            UserSettings.getTimer().setSelected(Boolean.valueOf(props.getProperty("TimerSet")));
+            UserSettings.getjComboBox1().setSelectedItem(props.getProperty("DigitsCount"));
             input.close();
         } catch (IOException ex) {
             ex.printStackTrace();

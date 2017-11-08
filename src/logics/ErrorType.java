@@ -13,7 +13,10 @@ public class ErrorType {
     public void Error1() {
         error.showMessageDialog(null, "Вами не було введено число.");
     }
-    public void Error2() {error.showMessageDialog(null,"Ви вже вводили дане число");}
+
+    public void Error2() {
+        error.showMessageDialog(null, "Ви вже вводили дане число");
+    }
 
     public void GiveUp(GenerateNumb go) {
         error.showMessageDialog(null, "Ви програли!\nПравильним числом було:" + go.getNumbStr());

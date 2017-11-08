@@ -197,22 +197,29 @@ public class AgainstComp extends JFrame {
         if (jTextField1.getText().isEmpty()) {
             er.Error1();
         } else {
-            if(cond.getExceptedNumb().contains(Integer.parseInt(jTextField1.getText()))){er.Error2();}else{
-            cond.setGuessStr(jTextField1.getText());}
+            if (cond.getExceptedNumb().contains(Integer.parseInt(jTextField1.getText()))) {
+                er.Error2();
+            } else {
+                cond.setGuessStr(jTextField1.getText());
+            }
+        }
 
         if (Integer.valueOf(cond.getGuessStr().length()) != cond.getSize()) {
             er.Error(cond);
         } else {
-            if(cond.getExceptedNumb().contains(Integer.parseInt(cond.getGuessStr()))){;}else{
-            cond.cond(gen);
+            if (cond.getExceptedNumb().contains(Integer.parseInt(cond.getGuessStr()))) {
+                ;
+            } else {
+                cond.cond(gen);
 
-            model.insertRow(model.getRowCount(), new Object[]{cond.getGuesses(), cond.getGuessStr(), cond.getBullcount(), cond.getCowcount()});
-            cond.setCowcount(0);
-            cond.setBullcount(0);
+                model.insertRow(model.getRowCount(), new Object[]{cond.getGuesses(), cond.getGuessStr(), cond.getBullcount(), cond.getCowcount()});
+                cond.setCowcount(0);
+                cond.setBullcount(0);
 
-            jTextField1.setText(null);
+                jTextField1.setText(null);
+            }
         }
-    }}}
+    }
 
     private void newGameActionPerformed(ActionEvent e) {
         jTextField1.setText(null);

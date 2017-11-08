@@ -1,6 +1,6 @@
 package logics;
 
-        import view.MainMenu;
+import view.MainMenu;
 
 public class Controll {
     public static void main(String[] args) {
@@ -8,6 +8,6 @@ public class Controll {
     }
 
     public static void menu() {
-        MainMenu win = new MainMenu();
+        new MainMenu();
     }
 }

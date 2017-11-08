@@ -7,7 +7,6 @@ import logics.GenerateNumb;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
-
 import javax.swing.border.Border;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
@@ -184,27 +183,34 @@ public class WithComp extends JFrame {
         } else {
             cond.setGuessStr(jTextField1.getText());
 
-        if (Integer.valueOf(cond.getGuessStr().length()) != cond.getSize()) {
-            er.Error(cond);}
-            else{
-        while (!cond.isGuessed() ){
-        gen.getNumb(cond);
-        cond.comp(gen);
-        if(cond.getExceptedNumb().contains(gen.getNumbStr())|| (cond.getCowcount() == 0 && cond.getBullcount() == 0)){;}else{
-        model.insertRow(model.getRowCount(), new Object[]{cond.getGuesses(), gen.getNumbStr(), cond.getBullcount(), cond.getCowcount()});
-        cond.setCowcount(0);
-        cond.setBullcount(0);
-    }}}}}
-    private void newGameActionPerformed(ActionEvent e)  {
-    cond.setGuesses(0);
-    int rowCount = model.getRowCount();
-        for (int i = rowCount - 1; i >= 0; i--) {
-        model.removeRow(i);
+            if (Integer.valueOf(cond.getGuessStr().length()) != cond.getSize()) {
+                er.Error(cond);
+            } else {
+                while (!cond.isGuessed()) {
+                    gen.getNumb(cond);
+                    cond.comp(gen);
+                    if (cond.getExceptedNumb().contains(gen.getNumbStr()) || (cond.getCowcount() == 0 && cond.getBullcount() == 0)) {
+                        ;
+                    } else {
+                        model.insertRow(model.getRowCount(), new Object[]{cond.getGuesses(), gen.getNumbStr(), cond.getBullcount(), cond.getCowcount()});
+                        cond.setCowcount(0);
+                        cond.setBullcount(0);
+                    }
+                }
+            }
+        }
     }
-    jTextField1.setText(null);
+
+    private void newGameActionPerformed(ActionEvent e) {
+        cond.setGuesses(0);
+        int rowCount = model.getRowCount();
+        for (int i = rowCount - 1; i >= 0; i--) {
+            model.removeRow(i);
+        }
+        jTextField1.setText(null);
         cond.setGuessStr(null);
         cond.setGuessed(false);
-        }
+    }
 
 
 }

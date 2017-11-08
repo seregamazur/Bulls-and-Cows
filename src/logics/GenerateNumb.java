@@ -27,7 +27,7 @@ public class GenerateNumb {
 
     private int digit;
 
-    public int getNumber(Condition cond)  {
+    public int getNumber(Condition cond) {
         Properties props = new Properties();
         InputStream input = null;
         try {
@@ -38,8 +38,8 @@ public class GenerateNumb {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
-          digit = Integer.parseInt(props.getProperty("DigitsCount"));
-         cond.setSize(digit);
+        digit = Integer.parseInt(props.getProperty("DigitsCount"));
+        cond.setSize(digit);
 
         if (digit == 3) {
             while (hasDupes(numb = gen.nextInt(900) + 100)) {
@@ -61,7 +61,8 @@ public class GenerateNumb {
         setNumbStr(numb + "");
         return numb;
     }
-    public void read(Condition cond){
+
+    public void read(Condition cond) {
         Properties props = new Properties();
         InputStream input = null;
         try {
@@ -74,6 +75,7 @@ public class GenerateNumb {
         digit = Integer.parseInt(props.getProperty("DigitsCount"));
         cond.setSize(digit);
     }
+
     public int getNumb(Condition cond) {
 
 
@@ -94,12 +96,14 @@ public class GenerateNumb {
                 ;
             }
         }
-        if(cond.getExceptedNumb().size()>1 && cond.getExceptedNumb().contains(numb) ){
-        getNumb(cond);}
-        else{
-        NumbStr = numb + "";
+        if (cond.getExceptedNumb().size() > 1 && cond.getExceptedNumb().contains(numb)) {
+            getNumb(cond);
+        } else {
+            NumbStr = numb + "";
 
-    }return numb;}
+        }
+        return numb;
+    }
 
     public boolean hasDupes(int num) {
         for (boolean[] digs = new boolean[10]; num > 0; num /= 10) {

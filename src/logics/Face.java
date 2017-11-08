@@ -7,15 +7,15 @@ import view.WithComp;
 
 public class Face {
     public void start() {
-        AgainstComp wind = new AgainstComp();
+        new AgainstComp();
     }
 
     public void start1() {
-        WithComp wind = new WithComp();
+        new WithComp();
     }
 
     public void startSettings() {
-        Settings wind = new Settings();
+        new Settings();
     }
 
 }
