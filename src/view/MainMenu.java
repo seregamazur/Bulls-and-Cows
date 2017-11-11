@@ -29,7 +29,7 @@ public class MainMenu extends JFrame {
     }
 
     public void initComponents() {
-        label.setIcon(new ImageIcon("E:\\GIT\\BullsAndCows\\src\\res\\21.png"));
+        label.setIcon(new ImageIcon("res/21.png"));
         exit.setText("Вихід");
         exit.addActionListener((ActionListener) new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
@@ -91,7 +91,7 @@ public class MainMenu extends JFrame {
     }
 
     private void settingsActionPerformed(java.awt.event.ActionEvent e) {
-        setFocusableWindowState(false);
+
         readUserSettings();
 
 

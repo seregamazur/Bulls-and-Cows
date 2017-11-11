@@ -8,10 +8,7 @@ import logics.GenerateNumb;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.Border;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableCellRenderer;
-import javax.swing.table.TableColumn;
-import javax.swing.table.TableColumnModel;
+import javax.swing.table.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
@@ -72,6 +69,10 @@ public class WithComp extends JFrame {
         };
         JTable jTable1 = new JTable(model);
         jScrollPane1.setViewportView(jTable1);
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment( JLabel.CENTER );
+        for(int i = 0;i<4;i++){
+        jTable1.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);}
         Icon cowIcon = new ImageIcon("res/korovka.png");
         Icon bullIcon = new ImageIcon("res/bichochok.png");
         Border headerBorder = UIManager.getBorder("TableHeader.cellBorder");
@@ -132,6 +133,8 @@ public class WithComp extends JFrame {
 
         backMenu.setText("Повернутись до меню");
         backMenu.setPreferredSize(new Dimension(180, 30));
+        jScrollPane1.setVerticalScrollBarPolicy(
+                JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
     }
 
     private void startFrame() {
@@ -172,7 +175,7 @@ public class WithComp extends JFrame {
     }
 
     private void backMenuActionPerformed(ActionEvent e) {
-        dispose();
+        setVisible(false);
         Controll.menu();
     }
 
@@ -199,6 +202,9 @@ public class WithComp extends JFrame {
                 }
             }
         }
+        if(cond.isGuessed()){
+            input.setEnabled(false);
+            jTextField1.setEnabled(false);}
     }
 
     private void newGameActionPerformed(ActionEvent e) {
@@ -208,6 +214,8 @@ public class WithComp extends JFrame {
             model.removeRow(i);
         }
         jTextField1.setText(null);
+        jTextField1.setEnabled(true);
+        input.setEnabled(true);
         cond.setGuessStr(null);
         cond.setGuessed(false);
     }

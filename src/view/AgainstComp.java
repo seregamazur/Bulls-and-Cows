@@ -8,10 +8,7 @@ import logics.GenerateNumb;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.Border;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableCellRenderer;
-import javax.swing.table.TableColumn;
-import javax.swing.table.TableColumnModel;
+import javax.swing.table.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
@@ -47,7 +44,7 @@ public class AgainstComp extends JFrame {
         final int locationX;
         final int locationY;
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Відгадати число");
+        setTitle("Загадати число");
         setResizable(false);
         setVisible(true);
         try {
@@ -56,8 +53,8 @@ public class AgainstComp extends JFrame {
             exc.printStackTrace();
         }
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        sizeWidth = 600;
-        sizeHeight = 600;
+        sizeWidth = 450;
+        sizeHeight = 359;
         locationX = (screenSize.width - sizeWidth) / 2;
         locationY = (screenSize.height - sizeHeight) / 2;
         setBounds(locationX, locationY, sizeWidth, sizeHeight);
@@ -73,6 +70,10 @@ public class AgainstComp extends JFrame {
         };
         JTable jTable1 = new JTable(model);
         jScrollPane1.setViewportView(jTable1);
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment( JLabel.CENTER );
+        for(int i = 0;i<4;i++){
+            jTable1.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);}
         Icon cowIcon = new ImageIcon("res/korovka.png");
         Icon bullIcon = new ImageIcon("res/bichochok.png");
         Border headerBorder = UIManager.getBorder("TableHeader.cellBorder");
@@ -141,6 +142,8 @@ public class AgainstComp extends JFrame {
             }
         });
         backMenu.setPreferredSize(new Dimension(180, 30));
+        jScrollPane1.setVerticalScrollBarPolicy(
+                JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
     }
 
     private void endGame() {
@@ -219,10 +222,16 @@ public class AgainstComp extends JFrame {
                 jTextField1.setText(null);
             }
         }
+        if(cond.isGuessed()){
+            input.setEnabled(false);
+            jTextField1.setEnabled(false);
+            capitulate.setEnabled(false);}
     }
 
     private void newGameActionPerformed(ActionEvent e) {
         jTextField1.setText(null);
+        jTextField1.setEnabled(true);
+        input.setEnabled(true);
         cond.getExceptedNumb().clear();
         endGame();
     }
@@ -234,7 +243,7 @@ public class AgainstComp extends JFrame {
 
     private void backMenuActionPerformed(ActionEvent e) {
         cond.getExceptedNumb().clear();
-        dispose();
+        setVisible(false);
         Controll.menu();
     }
 

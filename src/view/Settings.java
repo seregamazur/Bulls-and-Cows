@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Properties;
 
-public class Settings extends JDialog {
+public class Settings extends JFrame {
     public JComboBox getjComboBox1() {
         return jComboBox1;
     }
@@ -85,7 +85,7 @@ public class Settings extends JDialog {
 
     private void saveActionPerformed(java.awt.event.ActionEvent e) {
         writeUserSettings();
-        dispose();
+        setVisible(false);
 
     }
 
