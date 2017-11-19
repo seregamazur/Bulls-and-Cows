@@ -3,6 +3,7 @@ package view;
 import logics.Face;
 
 import javax.imageio.ImageIO;
+import javax.jws.soap.SOAPBinding;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -91,7 +92,6 @@ public class MainMenu extends JFrame {
     }
 
     private void settingsActionPerformed(java.awt.event.ActionEvent e) {
-
         readUserSettings();
 
 
@@ -164,6 +164,7 @@ public class MainMenu extends JFrame {
 
     private void readUserSettings() {
         Settings UserSettings = new Settings();
+
         Properties props = new Properties();
         InputStream input;
 
@@ -179,4 +180,5 @@ public class MainMenu extends JFrame {
             ex.printStackTrace();
         }
     }
+
 }

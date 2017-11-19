@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Properties;
 
-public class Settings extends JFrame {
+public class Settings extends JDialog {
     public JComboBox getjComboBox1() {
         return jComboBox1;
     }
@@ -30,8 +30,8 @@ public class Settings extends JFrame {
     final private JButton save = new JButton();
 
     public Settings() {
-        initComponents();
         screen();
+        initComponents();
         startFrame();
     }
 
@@ -62,7 +62,7 @@ public class Settings extends JFrame {
         final int locationY;
         setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
         setTitle("Налаштування");
-        setResizable(false);
+        setResizable(true);
         setVisible(true);
         try {
             setIconImage(ImageIO.read(new File("res/bicho1.png")));
@@ -80,7 +80,8 @@ public class Settings extends JFrame {
     }
 
     private void exitActionPerformed(java.awt.event.ActionEvent e) {
-        dispose();
+        setVisible(false);
+
     }
 
     private void saveActionPerformed(java.awt.event.ActionEvent e) {

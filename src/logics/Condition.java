@@ -1,6 +1,7 @@
 package logics;
 
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.InputMismatchException;
 import java.util.Set;
@@ -25,7 +26,18 @@ public class Condition {
 
     private int size;
 
+    public int getLuckyCount() {
+        return cowcount + bullcount;
+    }
 
+
+    public ArrayList<Integer> getMyList() {
+        return myList;
+    }
+
+    private ArrayList<Integer> myList = new ArrayList<>();
+
+    private int luckyCount = getBullcount() + getCowcount();
     public String getGuessStr() {
         return guessStr;
     }
@@ -86,6 +98,7 @@ public class Condition {
                 }
             }
             exceptedNumb.add(Integer.parseInt(guessStr));
+
             if (bullcount == size) {
                 guessed = true;
             }
@@ -99,6 +112,7 @@ public class Condition {
     }
 
     public void comp(GenerateNumb go) {
+        myList.clear();
         try {
             guesses++;
             guessed = false;
@@ -110,13 +124,21 @@ public class Condition {
                 }
             }
             exceptedNumb.add(Integer.parseInt(go.getNumbStr()));
-            if (bullcount == size) {
-                guessed = true;
-            } else if (bullcount == 0 && cowcount == 0) {
+            luckyCount = bullcount +cowcount;
+            if (luckyCount == 0) {
                 guesses--;
                 exceptedNumb.add(Integer.parseInt(go.getNumbStr()));
             }
+            else{myList.add(luckyCount);
+            myList.add(Integer.parseInt(go.getNumbStr()));
+                System.out.println(myList);}
+
+             if (bullcount == size) {
+                guessed = true;
+            }
+
             if (guessed) {
+                myList.clear();
                 exceptedNumb.clear();
                 showMessageDialog(null, "Комп'ютер відгадав ваше число за " + guesses + " спроб!");
 
