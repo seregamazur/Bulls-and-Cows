@@ -207,7 +207,7 @@ public class AgainstComp extends JFrame {
             }
         }
 
-        if (Integer.valueOf(cond.getGuessStr().length()) != cond.getSize()) {
+        if (Integer.valueOf(cond.getGuessStr().length()) != cond.getSize() || gen.hasDupes(Integer.valueOf(cond.getGuessStr()))) {
             er.Error(cond);
         } else {
             if (cond.getExceptedNumb().contains(Integer.parseInt(cond.getGuessStr()))) {
@@ -232,6 +232,7 @@ public class AgainstComp extends JFrame {
         jTextField1.setText(null);
         jTextField1.setEnabled(true);
         input.setEnabled(true);
+        capitulate.setEnabled(true);
         cond.getExceptedNumb().clear();
         endGame();
     }

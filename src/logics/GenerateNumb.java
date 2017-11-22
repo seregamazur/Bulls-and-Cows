@@ -78,42 +78,28 @@ public class GenerateNumb {
     }
 
     public int getNumb(Condition cond) {
-        if(digit == 3 || cond.getLuckyCount() == 0){
-        while (hasDupes(numb =  gen.nextInt  ((int) (9*(Math.pow(10,digit-1)))) + (int) Math.pow(10,digit-1))) {
-            ;
-        }}
-        else if  (digit == 3 &&  cond.getLuckyCount() == 1) {
-            int n[]  = new int[4];
-            for(int i = 0;i<4;i++) { n[i] =  (Integer)cond.getMyList().toArray()[i];
-            System.out.println(n[i]);}
-            while (hasDupes(numb =  gen.nextInt  ((int) (9*(Math.pow(10,digit-2)))) + (int) Math.pow(10,digit-2))) {
+        if (digit == 3 ) {
+            while (hasDupes(numb = gen.nextInt((int) (9 * (Math.pow(10, digit - 1)))) + (int) Math.pow(10, digit - 1))) {
                 ;
             }
-            numb =+ (Integer) (cond.getMyList().toArray()[2]);
+        }
+        else if (digit == 4 ) {
+            while (hasDupes(numb = gen.nextInt((int) (9 * (Math.pow(10, digit - 1)))) + (int) Math.pow(10, digit - 1))) {
+                ;
             }
-//            }
-//         if (digit == 4 ) {
-//            while (hasDupes(numb =  gen.nextInt  ((int) (9*(Math.pow(10,digit-1)))) + (int) Math.pow(10,digit-1))) {
-//                ;
-//            }
-//        } else if (digit == 5 ) {
-//            while (hasDupes(numb =  gen.nextInt  ((int) (9*(Math.pow(10,digit-1)))) + (int) Math.pow(10,digit-1))) {
-//                ;
-//            }
-//        } else if (digit == 6 ) {
-//            while (hasDupes(numb =  gen.nextInt  ((int) (9*(Math.pow(10,digit-1)))) + (int) Math.pow(10,digit-1))) {
-//                ;
-//            }
-//        }
-//        if (cond.getExceptedNumb().size() > 1 && cond.getExceptedNumb().contains(numb)) {
-//            getNumb(cond);
-//        } else {
-//            NumbStr = numb + "";
-//
-//        }
-        NumbStr = numb + "";
+        } else if (digit == 5 ) {
+            while (hasDupes(numb = gen.nextInt((int) (9 * (Math.pow(10, digit - 1)))) + (int) Math.pow(10, digit - 1))) {
+                ;
+            }
+        } else if (digit == 6 ) {
+            while (hasDupes(numb = gen.nextInt((int) (9 * (Math.pow(10, digit - 1)))) + (int) Math.pow(10, digit - 1))) {
+                ;
+            }
+        }
+        setNumbStr(numb + "");
         return numb;
     }
+
 
 
     public boolean hasDupes(int num) {

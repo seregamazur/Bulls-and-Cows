@@ -27,7 +27,7 @@ public class Condition {
     private int size;
 
     public int getLuckyCount() {
-        return cowcount + bullcount;
+        return luckyCount;
     }
 
 
@@ -35,9 +35,17 @@ public class Condition {
         return myList;
     }
 
+    public void setMyList(ArrayList<Integer> myList) {
+        this.myList = myList;
+    }
+
     private ArrayList<Integer> myList = new ArrayList<>();
 
-    private int luckyCount = getBullcount() + getCowcount();
+    public void setLuckyCount(int luckyCount) {
+        this.luckyCount = luckyCount;
+    }
+
+    private int luckyCount = 0;
     public String getGuessStr() {
         return guessStr;
     }
@@ -112,7 +120,6 @@ public class Condition {
     }
 
     public void comp(GenerateNumb go) {
-        myList.clear();
         try {
             guesses++;
             guessed = false;
@@ -124,14 +131,15 @@ public class Condition {
                 }
             }
             exceptedNumb.add(Integer.parseInt(go.getNumbStr()));
-            luckyCount = bullcount +cowcount;
+            setLuckyCount(bullcount +cowcount);
             if (luckyCount == 0) {
                 guesses--;
                 exceptedNumb.add(Integer.parseInt(go.getNumbStr()));
             }
-            else{myList.add(luckyCount);
-            myList.add(Integer.parseInt(go.getNumbStr()));
-                System.out.println(myList);}
+            else {
+                myList.add(Integer.parseInt(go.getNumbStr()));
+                //System.out.println(myList);
+            }
 
              if (bullcount == size) {
                 guessed = true;
@@ -147,5 +155,6 @@ public class Condition {
         } catch (InputMismatchException | NumberFormatException es) {
         }
     }
+
 }
 

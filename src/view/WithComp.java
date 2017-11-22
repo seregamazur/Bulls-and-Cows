@@ -1,9 +1,6 @@
 package view;
 
-import logics.Condition;
-import logics.Controll;
-import logics.ErrorType;
-import logics.GenerateNumb;
+import logics.*;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -15,6 +12,7 @@ import java.io.File;
 import java.io.IOException;
 
 public class WithComp extends JFrame {
+    final private Move move = new Move();
     final private ErrorType er = new ErrorType();
     final private GenerateNumb gen = new GenerateNumb();
     final private JScrollPane jScrollPane1 = new JScrollPane();
@@ -186,7 +184,7 @@ public class WithComp extends JFrame {
         } else {
             cond.setGuessStr(jTextField1.getText());
 
-            if (Integer.valueOf(cond.getGuessStr().length()) != cond.getSize()) {
+            if (Integer.valueOf(cond.getGuessStr().length()) != cond.getSize() || gen.hasDupes(Integer.valueOf(cond.getGuessStr()))) {
                 er.Error(cond);
             } else {
                 while (!cond.isGuessed()) {
@@ -195,13 +193,19 @@ public class WithComp extends JFrame {
                     if (cond.getExceptedNumb().contains(gen.getNumbStr()) || (cond.getCowcount() == 0 && cond.getBullcount() == 0)) {
                         ;
                     } else {
+                        if( !cond.isGuessed() && cond.getBullcount() == cond.getSize()){
+                            model.insertRow(model.getRowCount(), new Object[]{cond.getGuesses(), gen.getNumbStr(), cond.getBullcount(), cond.getCowcount()});
+                            move.tryTo(gen);
+                                model.insertRow(model.getRowCount(), new Object[]{cond.getGuesses()+1, move.getFinalStr(), move.getBullcount(), move.getCowcount()});
+                                move.setBullcount(0);
+                                move.setCowcount(0);
+                        }else{
                         model.insertRow(model.getRowCount(), new Object[]{cond.getGuesses(), gen.getNumbStr(), cond.getBullcount(), cond.getCowcount()});
                         cond.setCowcount(0);
                         cond.setBullcount(0);
                     }
                 }
-            }
-        }
+            }}}
         if(cond.isGuessed()){
             input.setEnabled(false);
             jTextField1.setEnabled(false);}
@@ -219,6 +223,7 @@ public class WithComp extends JFrame {
         cond.setGuessStr(null);
         cond.setGuessed(false);
     }
+
 
 
 }
