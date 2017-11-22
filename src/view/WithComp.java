@@ -10,9 +10,17 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
 
 public class WithComp extends JFrame {
-    final private Move move = new Move();
+    private int gem;
+    private String finalStr;
+    public void setFinalStr(String finalStr) {
+        this.finalStr = finalStr;
+    }
+        public String getFinalStr() {
+        return finalStr;}
+//    final private Move move = new Move();
     final private ErrorType er = new ErrorType();
     final private GenerateNumb gen = new GenerateNumb();
     final private JScrollPane jScrollPane1 = new JScrollPane();
@@ -194,22 +202,42 @@ public class WithComp extends JFrame {
                         ;
                     } else {
                         if( !cond.isGuessed() && cond.getCowcount() == cond.getSize()){
+                            gem = Integer.parseInt(this.gen.getNumbStr());
                             model.insertRow(model.getRowCount(), new Object[]{cond.getGuesses(), gen.getNumbStr(), cond.getBullcount(), cond.getCowcount()});
-                            move.tryTo(gen);
-                                model.insertRow(model.getRowCount(), new Object[]{cond.getGuesses()+1, move.getFinalStr(), move.getBullcount(), move.getCowcount()});
-                                move.setBullcount(0);
-                                move.setCowcount(0);
-                        }else{
+                                cond.setCowcount(0);
+                            cond.setBullcount(0);
+                            cond.setGuesses(cond.getGuesses()+1);
+                            int[]digits = this.gen.getNumbStr().chars().map(c -> c-='0').toArray();
+                            StringBuilder builder = new StringBuilder();
+                            for (int i : digits) {
+                                builder.append(i);
+                            }
+                            setFinalStr(builder.toString());
+
+                            while(!getFinalStr().equals(cond.getGuessStr())){nextPermutation(digits);
+                                for (int i : digits) {
+                                    builder.append(i);
+                                }
+                                setFinalStr(builder.toString());
+                            for (int i = 0; i < cond.getSize(); i++) {
+                                if (cond.getGuessStr().charAt(i) == Arrays.toString(digits).charAt(i)) {
+                                    cond.setBullcount(cond.getBullcount()+1);
+                                } else if (cond.getGuessStr().contains(Arrays.toString(digits).charAt(i) + "")) {
+                                    cond.setCowcount(cond.getCowcount()+1);
+                                }
+                            }}
+                                model.insertRow(model.getRowCount(), new Object[]{cond.getGuesses()+1, getFinalStr(), cond.getBullcount(), cond.getCowcount()});
+                        } else{
                         model.insertRow(model.getRowCount(), new Object[]{cond.getGuesses(), gen.getNumbStr(), cond.getBullcount(), cond.getCowcount()});
                         cond.setCowcount(0);
                         cond.setBullcount(0);
                     }
                 }
-            }}}
+            }}
         if(cond.isGuessed()){
             input.setEnabled(false);
             jTextField1.setEnabled(false);}
-    }
+    }}
 
     private void newGameActionPerformed(ActionEvent e) {
         cond.setGuesses(0);
@@ -222,6 +250,35 @@ public class WithComp extends JFrame {
         input.setEnabled(true);
         cond.setGuessStr(null);
         cond.setGuessed(false);
+    }
+    public void nextPermutation(int[] digits) {
+        int i = digits.length - 2;
+        while (i >= 0 && digits[i + 1] <= digits[i]) {
+            i--;
+        }
+        if (i >= 0) {
+            int j = digits.length - 1;
+            while (j >= 0 && digits[j] <= digits[i]) {
+                j--;
+            }
+            swap(digits, i, j);
+        }
+        reverse(digits, i + 1);
+    }
+
+    private void reverse(int[] digits, int start) {
+        int i = start, j = digits.length - 1;
+        while (i < j) {
+            swap(digits, i, j);
+            i++;
+            j--;
+        }
+    }
+
+    private void swap(int[] digits, int i, int j) {
+        int temp = digits[i];
+        digits[i] = digits[j];
+        digits[j] = temp;
     }
 
 
