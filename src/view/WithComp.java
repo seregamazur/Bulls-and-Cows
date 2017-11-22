@@ -193,7 +193,7 @@ public class WithComp extends JFrame {
                     if (cond.getExceptedNumb().contains(gen.getNumbStr()) || (cond.getCowcount() == 0 && cond.getBullcount() == 0)) {
                         ;
                     } else {
-                        if( !cond.isGuessed() && cond.getBullcount() == cond.getSize()){
+                        if( !cond.isGuessed() && cond.getCowcount() == cond.getSize()){
                             model.insertRow(model.getRowCount(), new Object[]{cond.getGuesses(), gen.getNumbStr(), cond.getBullcount(), cond.getCowcount()});
                             move.tryTo(gen);
                                 model.insertRow(model.getRowCount(), new Object[]{cond.getGuesses()+1, move.getFinalStr(), move.getBullcount(), move.getCowcount()});
