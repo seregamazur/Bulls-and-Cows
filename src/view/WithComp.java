@@ -10,7 +10,6 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
 import java.io.IOException;
-import java.util.Arrays;
 
 import static javax.swing.JOptionPane.showMessageDialog;
 
@@ -70,9 +69,10 @@ public class WithComp extends JFrame {
         JTable jTable1 = new JTable(model);
         jScrollPane1.setViewportView(jTable1);
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
-        centerRenderer.setHorizontalAlignment( JLabel.CENTER );
-        for(int i = 0;i<4;i++){
-        jTable1.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);}
+        centerRenderer.setHorizontalAlignment(JLabel.CENTER);
+        for (int i = 0; i < 4; i++) {
+            jTable1.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
+        }
         Icon cowIcon = new ImageIcon("res/korovka.png");
         Icon bullIcon = new ImageIcon("res/bichochok.png");
         Border headerBorder = UIManager.getBorder("TableHeader.cellBorder");
@@ -195,20 +195,20 @@ public class WithComp extends JFrame {
                     if (cond.getExceptedNumb().contains(gen.getNumbStr()) || (cond.getCowcount() == 0 && cond.getBullcount() == 0)) {
                         ;
                     } else {
-                        if( !cond.isGuessed() && cond.getLuckyCount() == cond.getSize()){
+                        if (!cond.isGuessed() && cond.getLuckyCount() == cond.getSize()) {
                             model.insertRow(model.getRowCount(), new Object[]{cond.getGuesses(), gen.getNumbStr(), cond.getBullcount(), cond.getCowcount()});
-                                cond.setCowcount(0);
+                            cond.setCowcount(0);
                             cond.setBullcount(0);
-                            cond.setGuesses(cond.getGuesses()+1);
-                            int[]digits = this.gen.getNumbStr().chars().map(c -> c-='0').toArray();
+                            cond.setGuesses(cond.getGuesses() + 1);
+                            int[] digits = this.gen.getNumbStr().chars().map(c -> c -= '0').toArray();
                             StringBuilder builder = new StringBuilder();
 
-                            while(!builder.toString().equals(cond.getGuessStr())){
-                                nextPermutation(digits);
+                            while (!builder.toString().equals(cond.getGuessStr())) {
+                                Move.nextPermutation(digits);
                                 for (int i : digits) {
                                     builder.append(i);
                                 }
-                                if (builder.toString().equals(cond.getGuessStr())){
+                                if (builder.toString().equals(cond.getGuessStr())) {
                                     cond.setBullcount(cond.getSize());
                                     cond.setCowcount(0);
                                     cond.setGuessed(true);
@@ -217,44 +217,50 @@ public class WithComp extends JFrame {
                                     showMessageDialog(null, "Комп'ютер відгадав ваше число за " + cond.getGuesses() + " спроб!");
                                     model.insertRow(model.getRowCount(), new Object[]{cond.getGuesses(), builder.toString(), cond.getBullcount(), cond.getCowcount()});
                                     return;
-                                }else{
-                                builder.delete(0, builder.length());
-                                cond.setCowcount(0);cond.setBullcount(0);
+                                } else {
+                                    builder.delete(0, builder.length());
+                                    cond.setCowcount(0);
+                                    cond.setBullcount(0);
                                     for (int i : digits) {
                                         builder.append(i);
                                     }
                                     String finalStr = builder.toString();
                                     System.out.println(finalStr);
-                            for (int i = 0; i < cond.getSize(); i++) {
-                                if (cond.getGuessStr().charAt(i) == finalStr.charAt(i)) {
-                                    cond.setBullcount(cond.getBullcount()+1);
-                                } else if (cond.getGuessStr().contains(finalStr.charAt(i) + "")) {
-                                    cond.setCowcount(cond.getCowcount()+1);
-                                }builder.delete(0,builder.length());
-                            }
+                                    for (int i = 0; i < cond.getSize(); i++) {
+                                        if (cond.getGuessStr().charAt(i) == finalStr.charAt(i)) {
+                                            cond.setBullcount(cond.getBullcount() + 1);
+                                        } else if (cond.getGuessStr().contains(finalStr.charAt(i) + "")) {
+                                            cond.setCowcount(cond.getCowcount() + 1);
+                                        }
+                                        builder.delete(0, builder.length());
+                                    }
 
-                                for (int i : digits) {
-                                    builder.append(i);
+                                    for (int i : digits) {
+                                        builder.append(i);
+                                    }
+                                    model.insertRow(model.getRowCount(), new Object[]{cond.getGuesses(), builder.toString(), cond.getBullcount(), cond.getCowcount()});
+                                    cond.setGuesses(cond.getGuesses() + 1);
+
+                                    builder.delete(0, builder.length());
                                 }
-                                model.insertRow(model.getRowCount(), new Object[]{cond.getGuesses(), builder.toString(), cond.getBullcount(), cond.getCowcount()});
-                                cond.setGuesses(cond.getGuesses()+1);
-
-                                builder.delete(0, builder.length());
-                            }}
+                            }
                             cond.setCowcount(0);
                             cond.setBullcount(0);
-                            cond.setGuesses(cond.getGuesses()+1);
-                        } else{
-                        model.insertRow(model.getRowCount(), new Object[]{cond.getGuesses(), gen.getNumbStr(), cond.getBullcount(), cond.getCowcount()});
-                        cond.setCowcount(0);
-                        cond.setBullcount(0);
+                            cond.setGuesses(cond.getGuesses() + 1);
+                        } else {
+                            model.insertRow(model.getRowCount(), new Object[]{cond.getGuesses(), gen.getNumbStr(), cond.getBullcount(), cond.getCowcount()});
+                            cond.setCowcount(0);
+                            cond.setBullcount(0);
+                        }
                     }
                 }
+                if (cond.isGuessed()) {
+                    input.setEnabled(false);
+                    jTextField1.setEnabled(false);
+                }
             }
-        if(cond.isGuessed()){
-            input.setEnabled(false);
-            jTextField1.setEnabled(false);}
-    }}}
+        }
+    }
 
     private void newGameActionPerformed(ActionEvent e) {
         cond.setGuesses(0);
@@ -268,36 +274,6 @@ public class WithComp extends JFrame {
         cond.setGuessStr(null);
         cond.setGuessed(false);
     }
-    public void nextPermutation(int[] digits) {
-        int i = digits.length - 2;
-        while (i >= 0 && digits[i + 1] <= digits[i]) {
-            i--;
-        }
-        if (i >= 0) {
-            int j = digits.length - 1;
-            while (j >= 0 && digits[j] <= digits[i]) {
-                j--;
-            }
-            swap(digits, i, j);
-        }
-        reverse(digits, i + 1);
-    }
-
-    private void reverse(int[] digits, int start) {
-        int i = start, j = digits.length - 1;
-        while (i < j) {
-            swap(digits, i, j);
-            i++;
-            j--;
-        }
-    }
-
-    private void swap(int[] digits, int i, int j) {
-        int temp = digits[i];
-        digits[i] = digits[j];
-        digits[j] = temp;
-    }
-
 
 
 }

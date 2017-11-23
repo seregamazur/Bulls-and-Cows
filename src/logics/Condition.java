@@ -46,6 +46,7 @@ public class Condition {
     }
 
     private int luckyCount = 0;
+
     public String getGuessStr() {
         return guessStr;
     }
@@ -131,16 +132,15 @@ public class Condition {
                 }
             }
             exceptedNumb.add(Integer.parseInt(go.getNumbStr()));
-            setLuckyCount(bullcount +cowcount);
+            setLuckyCount(bullcount + cowcount);
             if (luckyCount == 0) {
                 guesses--;
                 exceptedNumb.add(Integer.parseInt(go.getNumbStr()));
-            }
-            else {
+            } else {
                 myList.add(Integer.parseInt(go.getNumbStr()));
             }
 
-             if (bullcount == size) {
+            if (bullcount == size) {
                 guessed = true;
             }
 

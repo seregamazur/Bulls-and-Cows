@@ -41,20 +41,19 @@ public class GenerateNumb {
         digit = Integer.parseInt(props.getProperty("DigitsCount"));
         cond.setSize(digit);
 
-        if (digit == 3 ) {
+        if (digit == 3) {
             while (hasDupes(numb = gen.nextInt((int) (9 * (Math.pow(10, digit - 1)))) + (int) Math.pow(10, digit - 1))) {
                 ;
             }
-        }
-        else if (digit == 4 ) {
+        } else if (digit == 4) {
             while (hasDupes(numb = gen.nextInt((int) (9 * (Math.pow(10, digit - 1)))) + (int) Math.pow(10, digit - 1))) {
                 ;
             }
-        } else if (digit == 5 ) {
+        } else if (digit == 5) {
             while (hasDupes(numb = gen.nextInt((int) (9 * (Math.pow(10, digit - 1)))) + (int) Math.pow(10, digit - 1))) {
                 ;
             }
-        } else if (digit == 6 ) {
+        } else if (digit == 6) {
             while (hasDupes(numb = gen.nextInt((int) (9 * (Math.pow(10, digit - 1)))) + (int) Math.pow(10, digit - 1))) {
                 ;
             }
@@ -78,20 +77,19 @@ public class GenerateNumb {
     }
 
     public int getNumb(Condition cond) {
-        if (digit == 3 ) {
+        if (digit == 3) {
             while (hasDupes(numb = gen.nextInt((int) (9 * (Math.pow(10, digit - 1)))) + (int) Math.pow(10, digit - 1))) {
                 ;
             }
-        }
-        else if (digit == 4 ) {
+        } else if (digit == 4) {
             while (hasDupes(numb = gen.nextInt((int) (9 * (Math.pow(10, digit - 1)))) + (int) Math.pow(10, digit - 1))) {
                 ;
             }
-        } else if (digit == 5 ) {
+        } else if (digit == 5) {
             while (hasDupes(numb = gen.nextInt((int) (9 * (Math.pow(10, digit - 1)))) + (int) Math.pow(10, digit - 1))) {
                 ;
             }
-        } else if (digit == 6 ) {
+        } else if (digit == 6) {
             while (hasDupes(numb = gen.nextInt((int) (9 * (Math.pow(10, digit - 1)))) + (int) Math.pow(10, digit - 1))) {
                 ;
             }
@@ -99,7 +97,6 @@ public class GenerateNumb {
         setNumbStr(numb + "");
         return numb;
     }
-
 
 
     public boolean hasDupes(int num) {
