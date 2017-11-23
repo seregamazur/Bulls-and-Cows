@@ -12,15 +12,9 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
 
+import static javax.swing.JOptionPane.showMessageDialog;
+
 public class WithComp extends JFrame {
-    private int gem;
-    private String finalStr;
-    public void setFinalStr(String finalStr) {
-        this.finalStr = finalStr;
-    }
-        public String getFinalStr() {
-        return finalStr;}
-//    final private Move move = new Move();
     final private ErrorType er = new ErrorType();
     final private GenerateNumb gen = new GenerateNumb();
     final private JScrollPane jScrollPane1 = new JScrollPane();
@@ -201,43 +195,66 @@ public class WithComp extends JFrame {
                     if (cond.getExceptedNumb().contains(gen.getNumbStr()) || (cond.getCowcount() == 0 && cond.getBullcount() == 0)) {
                         ;
                     } else {
-                        if( !cond.isGuessed() && cond.getCowcount() == cond.getSize()){
-                            gem = Integer.parseInt(this.gen.getNumbStr());
+                        if( !cond.isGuessed() && cond.getLuckyCount() == cond.getSize()){
                             model.insertRow(model.getRowCount(), new Object[]{cond.getGuesses(), gen.getNumbStr(), cond.getBullcount(), cond.getCowcount()});
                                 cond.setCowcount(0);
                             cond.setBullcount(0);
                             cond.setGuesses(cond.getGuesses()+1);
                             int[]digits = this.gen.getNumbStr().chars().map(c -> c-='0').toArray();
                             StringBuilder builder = new StringBuilder();
-                            for (int i : digits) {
-                                builder.append(i);
-                            }
-                            setFinalStr(builder.toString());
 
-                            while(!getFinalStr().equals(cond.getGuessStr())){nextPermutation(digits);
+                            while(!builder.toString().equals(cond.getGuessStr())){
+                                nextPermutation(digits);
                                 for (int i : digits) {
                                     builder.append(i);
                                 }
-                                setFinalStr(builder.toString());
+                                if (builder.toString().equals(cond.getGuessStr())){
+                                    cond.setBullcount(cond.getSize());
+                                    cond.setCowcount(0);
+                                    cond.setGuessed(true);
+                                    input.setEnabled(false);
+                                    jTextField1.setEnabled(false);
+                                    showMessageDialog(null, "Комп'ютер відгадав ваше число за " + cond.getGuesses() + " спроб!");
+                                    model.insertRow(model.getRowCount(), new Object[]{cond.getGuesses(), builder.toString(), cond.getBullcount(), cond.getCowcount()});
+                                    return;
+                                }else{
+                                builder.delete(0, builder.length());
+                                cond.setCowcount(0);cond.setBullcount(0);
+                                    for (int i : digits) {
+                                        builder.append(i);
+                                    }
+                                    String finalStr = builder.toString();
+                                    System.out.println(finalStr);
                             for (int i = 0; i < cond.getSize(); i++) {
-                                if (cond.getGuessStr().charAt(i) == Arrays.toString(digits).charAt(i)) {
+                                if (cond.getGuessStr().charAt(i) == finalStr.charAt(i)) {
                                     cond.setBullcount(cond.getBullcount()+1);
-                                } else if (cond.getGuessStr().contains(Arrays.toString(digits).charAt(i) + "")) {
+                                } else if (cond.getGuessStr().contains(finalStr.charAt(i) + "")) {
                                     cond.setCowcount(cond.getCowcount()+1);
+                                }builder.delete(0,builder.length());
+                            }
+
+                                for (int i : digits) {
+                                    builder.append(i);
                                 }
+                                model.insertRow(model.getRowCount(), new Object[]{cond.getGuesses(), builder.toString(), cond.getBullcount(), cond.getCowcount()});
+                                cond.setGuesses(cond.getGuesses()+1);
+
+                                builder.delete(0, builder.length());
                             }}
-                                model.insertRow(model.getRowCount(), new Object[]{cond.getGuesses()+1, getFinalStr(), cond.getBullcount(), cond.getCowcount()});
+                            cond.setCowcount(0);
+                            cond.setBullcount(0);
+                            cond.setGuesses(cond.getGuesses()+1);
                         } else{
                         model.insertRow(model.getRowCount(), new Object[]{cond.getGuesses(), gen.getNumbStr(), cond.getBullcount(), cond.getCowcount()});
                         cond.setCowcount(0);
                         cond.setBullcount(0);
                     }
                 }
-            }}
+            }
         if(cond.isGuessed()){
             input.setEnabled(false);
             jTextField1.setEnabled(false);}
-    }}
+    }}}
 
     private void newGameActionPerformed(ActionEvent e) {
         cond.setGuesses(0);

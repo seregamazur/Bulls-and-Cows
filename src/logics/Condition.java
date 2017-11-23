@@ -138,7 +138,6 @@ public class Condition {
             }
             else {
                 myList.add(Integer.parseInt(go.getNumbStr()));
-                //System.out.println(myList);
             }
 
              if (bullcount == size) {
