@@ -215,6 +215,8 @@ public class WithComp extends JFrame {
                                     input.setEnabled(false);
                                     jTextField1.setEnabled(false);
                                     showMessageDialog(null, "Комп'ютер відгадав ваше число за " + cond.getGuesses() + " спроб!");
+                                    cond.getMyList().clear();
+                                    cond.getExceptedNumb().clear();
                                     model.insertRow(model.getRowCount(), new Object[]{cond.getGuesses(), builder.toString(), cond.getBullcount(), cond.getCowcount()});
                                     return;
                                 } else {
@@ -225,7 +227,6 @@ public class WithComp extends JFrame {
                                         builder.append(i);
                                     }
                                     String finalStr = builder.toString();
-                                    System.out.println(finalStr);
                                     for (int i = 0; i < cond.getSize(); i++) {
                                         if (cond.getGuessStr().charAt(i) == finalStr.charAt(i)) {
                                             cond.setBullcount(cond.getBullcount() + 1);
@@ -273,6 +274,8 @@ public class WithComp extends JFrame {
         input.setEnabled(true);
         cond.setGuessStr(null);
         cond.setGuessed(false);
+        cond.setCowcount(0);
+        cond.setBullcount(0);
     }
 
 

@@ -5,10 +5,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
+import java.io.*;
 import java.util.Properties;
 
 public class Settings extends JDialog {
@@ -30,9 +27,12 @@ public class Settings extends JDialog {
     final private JButton save = new JButton();
 
     public Settings() {
-        screen();
         initComponents();
         startFrame();
+        readUserSettings();
+        screen();
+
+
     }
 
     private void initComponents() {
@@ -56,6 +56,7 @@ public class Settings extends JDialog {
     }
 
     private void screen() {
+
         final int sizeWidth;
         final int sizeHeight;
         final int locationX;
@@ -63,7 +64,6 @@ public class Settings extends JDialog {
         setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
         setTitle("Налаштування");
         setResizable(true);
-        setVisible(true);
         try {
             setIconImage(ImageIO.read(new File("res/bicho1.png")));
         } catch (IOException exc) {
@@ -75,6 +75,9 @@ public class Settings extends JDialog {
         locationX = (screenSize.width - sizeWidth) / 2;
         locationY = (screenSize.height - sizeHeight) / 2;
         setBounds(locationX, locationY, sizeWidth, sizeHeight);
+        setModalityType(ModalityType.APPLICATION_MODAL);
+        setVisible(true);
+
 
 
     }
@@ -159,5 +162,21 @@ public class Settings extends JDialog {
             io.printStackTrace();
         }
 
+    }
+    private void readUserSettings() {
+        Properties props = new Properties();
+        InputStream input;
+
+        try {
+            File f = new File("settings.ini");
+            input = new FileInputStream(f);
+
+            props.load(input);
+            getTimer().setSelected(Boolean.valueOf(props.getProperty("TimerSet")));
+            getjComboBox1().setSelectedItem(props.getProperty("DigitsCount"));
+            input.close();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
     }
 }

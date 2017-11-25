@@ -18,6 +18,10 @@ public class Condition {
     }
 
 
+    public void setExceptedNumb(Set<Integer> exceptedNumb) {
+        this.exceptedNumb = exceptedNumb;
+    }
+
     private Set<Integer> exceptedNumb = new HashSet<>();
 
     public void setSize(int size) {

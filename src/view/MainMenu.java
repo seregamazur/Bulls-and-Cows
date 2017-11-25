@@ -92,7 +92,9 @@ public class MainMenu extends JFrame {
     }
 
     private void settingsActionPerformed(java.awt.event.ActionEvent e) {
-        readUserSettings();
+      face.start2();
+
+
 
 
     }
@@ -162,23 +164,6 @@ public class MainMenu extends JFrame {
         }
     }
 
-    private void readUserSettings() {
-        Settings UserSettings = new Settings();
 
-        Properties props = new Properties();
-        InputStream input;
-
-        try {
-            File f = new File("settings.ini");
-            input = new FileInputStream(f);
-
-            props.load(input);
-            UserSettings.getTimer().setSelected(Boolean.valueOf(props.getProperty("TimerSet")));
-            UserSettings.getjComboBox1().setSelectedItem(props.getProperty("DigitsCount"));
-            input.close();
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
-    }
 
 }
