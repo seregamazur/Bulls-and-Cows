@@ -14,17 +14,17 @@ public class Settings extends JDialog {
     }
 
     private JComboBox jComboBox1 = new JComboBox<>();
-    final private JLabel settingsLabel = new JLabel();
-    final private JLabel numbCountLabel = new JLabel();
-    final private JLabel timerLabel = new JLabel();
+    private final JLabel settingsLabel = new JLabel();
+    private final JLabel numbCountLabel = new JLabel();
+    private final JLabel timerLabel = new JLabel();
 
     public JCheckBox getTimer() {
         return timer;
     }
 
-    final private JCheckBox timer = new JCheckBox();
-    final private JButton exit = new JButton();
-    final private JButton save = new JButton();
+    private final JCheckBox timer = new JCheckBox();
+    private final JButton exit = new JButton();
+    private final JButton save = new JButton();
 
     public Settings() {
         initComponents();
@@ -154,7 +154,7 @@ public class Settings extends JDialog {
             Properties props = new Properties();
             props.setProperty(numbCount, getjComboBox1().getSelectedItem().toString());
             props.setProperty(timerBool, Boolean.toString(timer.isSelected()));
-            File f = new File("settings.ini");
+            File f = new File("settings.properties");
             OutputStream out = new FileOutputStream(f);
             props.store(out, null);
             out.close();
@@ -168,7 +168,7 @@ public class Settings extends JDialog {
         InputStream input;
 
         try {
-            File f = new File("settings.ini");
+            File f = new File("settings.properties");
             input = new FileInputStream(f);
 
             props.load(input);

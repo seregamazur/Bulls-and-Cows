@@ -16,12 +16,12 @@ import java.util.Properties;
 
 public class MainMenu extends JFrame {
     Face face = new Face();
-    final private JButton players = new JButton();
-    final private JButton exit = new JButton();
-    final private JButton againstcomp = new JButton();
-    final private JButton withcomp = new JButton();
-    final private JButton settings = new JButton();
-    final private JLabel label = new JLabel();
+    private final JButton players = new JButton();
+    private final JButton exit = new JButton();
+    private final JButton againstcomp = new JButton();
+    private final JButton withcomp = new JButton();
+    private final JButton settings = new JButton();
+    private final JLabel label = new JLabel();
 
     public MainMenu() {
         initComponents();

@@ -15,18 +15,18 @@ import java.io.File;
 import java.io.IOException;
 
 public class AgainstComp extends JFrame {
-    final private GenerateNumb gen = new GenerateNumb();
-    final private ErrorType er = new ErrorType();
-    final private Condition cond = new Condition();
-    final private JButton input = new JButton();
-    final private JButton backMenu = new JButton();
-    final private JButton capitulate = new JButton();
-    final private JButton newGame = new JButton();
-    final private JLabel numbCountLabel = new JLabel();
-    final private JLabel timerLabel = new JLabel();
-    final private JLabel settingsLabel = new JLabel();
-    final private JScrollPane jScrollPane1 = new JScrollPane();
-    final private Font font = new Font("Tahoma", 0, 14);
+    private final GenerateNumb gen = new GenerateNumb();
+    private final ErrorType er = new ErrorType();
+    private final Condition cond = new Condition();
+    private final JButton input = new JButton();
+    private final JButton backMenu = new JButton();
+    private final JButton capitulate = new JButton();
+    private final JButton newGame = new JButton();
+    private final JLabel numbCountLabel = new JLabel();
+    private final JLabel timerLabel = new JLabel();
+    private final JLabel settingsLabel = new JLabel();
+    private final JScrollPane jScrollPane1 = new JScrollPane();
+    private final Font font = new Font("Tahoma", 0, 14);
     private DefaultTableModel model;
     private JTextField jTextField1 = new JTextField();
 

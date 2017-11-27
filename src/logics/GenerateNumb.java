@@ -31,7 +31,7 @@ public class GenerateNumb {
         Properties props = new Properties();
         InputStream input = null;
         try {
-            File f = new File("settings.ini");
+            File f = new File("settings.properties");
             input = new FileInputStream(f);
             props.load(input);
             input.close();
@@ -66,7 +66,7 @@ public class GenerateNumb {
         Properties props = new Properties();
         InputStream input = null;
         try {
-            File f = new File("settings.ini");
+            File f = new File("settings.properties");
             input = new FileInputStream(f);
             props.load(input);
         } catch (IOException ex) {
