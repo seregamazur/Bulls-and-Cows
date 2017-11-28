@@ -180,17 +180,18 @@ public class WithComp extends JFrame {
     }
 
     private void inputActionPerformed(ActionEvent e) {
-        gen.read(cond);
+        gen.read();
+        cond.setSize(gen.getDigit());
         if (jTextField1.getText().isEmpty()) {
-            er.Error1();
+            er.emptyType();
         } else {
             cond.setGuessStr(jTextField1.getText());
 
             if (Integer.valueOf(cond.getGuessStr().length()) != cond.getSize() || gen.hasDupes(Integer.valueOf(cond.getGuessStr()))) {
-                er.Error(cond);
+                er.incType(cond);
             } else {
                 while (!cond.isGuessed()) {
-                    gen.getNumb(cond);
+                    gen.getNumber();
                     cond.comp(gen);
                     if (cond.getExceptedNumb().contains(gen.getNumbStr()) || (cond.getCowcount() == 0 && cond.getBullcount() == 0)) {
                         ;

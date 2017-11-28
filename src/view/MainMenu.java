@@ -3,16 +3,12 @@ package view;
 import logics.Face;
 
 import javax.imageio.ImageIO;
-import javax.jws.soap.SOAPBinding;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.util.Properties;
 
 public class MainMenu extends JFrame {
     Face face = new Face();
@@ -88,20 +84,18 @@ public class MainMenu extends JFrame {
 
     private void againstcompActionPerformed(java.awt.event.ActionEvent e) {
         dispose();
-        face.start();
+        face.startAgainst();
     }
 
     private void settingsActionPerformed(java.awt.event.ActionEvent e) {
-      face.start2();
-
-
+        face.startSettings();
 
 
     }
 
     private void withcompActionPerformed(java.awt.event.ActionEvent e) {
         dispose();
-        face.start1();
+        face.startWith();
 
     }
 
@@ -163,7 +157,6 @@ public class MainMenu extends JFrame {
             java.util.logging.Logger.getLogger(MainMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
     }
-
 
 
 }

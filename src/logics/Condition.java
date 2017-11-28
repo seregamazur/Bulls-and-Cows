@@ -9,6 +9,14 @@ import java.util.Set;
 import static javax.swing.JOptionPane.showMessageDialog;
 
 public class Condition {
+    private String guessStr;
+    private int bullcount;
+    private int cowcount;
+    private int guesses;
+    private int size;
+    private int luckyCount = 0;
+    private boolean guessed = false;
+
     public int getSize() {
         return size;
     }
@@ -17,30 +25,18 @@ public class Condition {
         return exceptedNumb;
     }
 
-
-    public void setExceptedNumb(Set<Integer> exceptedNumb) {
-        this.exceptedNumb = exceptedNumb;
-    }
-
     private Set<Integer> exceptedNumb = new HashSet<>();
 
     public void setSize(int size) {
         this.size = size;
     }
 
-    private int size;
-
     public int getLuckyCount() {
         return luckyCount;
     }
 
-
     public ArrayList<Integer> getMyList() {
         return myList;
-    }
-
-    public void setMyList(ArrayList<Integer> myList) {
-        this.myList = myList;
     }
 
     private ArrayList<Integer> myList = new ArrayList<>();
@@ -48,8 +44,6 @@ public class Condition {
     public void setLuckyCount(int luckyCount) {
         this.luckyCount = luckyCount;
     }
-
-    private int luckyCount = 0;
 
     public String getGuessStr() {
         return guessStr;
@@ -83,11 +77,6 @@ public class Condition {
         this.guesses = guesses;
     }
 
-    private String guessStr;
-    private int bullcount;
-    private int cowcount;
-    private int guesses;
-
     public boolean isGuessed() {
         return guessed;
     }
@@ -96,7 +85,6 @@ public class Condition {
         this.guessed = guessed;
     }
 
-    private boolean guessed = false;
 
     public void cond(GenerateNumb go) {
         if (exceptedNumb.contains(guessStr)) guesses--;

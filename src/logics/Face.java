@@ -6,14 +6,13 @@ import view.Settings;
 import view.WithComp;
 
 public class Face {
-    public void start() {
+    public void startAgainst() {
         new AgainstComp();
     }
-    public void start2(){
+    public void startSettings(){
         new Settings();
     }
-
-    public void start1() {
+    public void startWith() {
         new WithComp();
     }
 

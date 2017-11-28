@@ -10,8 +10,10 @@ import java.util.Random;
 
 public class GenerateNumb {
 
-
+    private String NumbStr;
+    private Random gen = new Random();
     private int numb;
+    private int digit;
 
     public String getNumbStr() {
         return NumbStr;
@@ -21,48 +23,25 @@ public class GenerateNumb {
         NumbStr = numbStr;
     }
 
-    private String NumbStr;
-    private Random gen = new Random();
+    public int getDigit() {
+        return digit;
+    }
+
+    public void setDigit(int digit) {
+        this.digit = digit;
+    }
 
 
-    private int digit;
-
-    public int getNumber(Condition cond) {
-        Properties props = new Properties();
-        InputStream input = null;
-        try {
-            File f = new File("settings.properties");
-            input = new FileInputStream(f);
-            props.load(input);
-            input.close();
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
-        digit = Integer.parseInt(props.getProperty("DigitsCount"));
-        cond.setSize(digit);
-
-        if (digit == 3) {
-            while (hasDupes(numb = gen.nextInt((int) (9 * (Math.pow(10, digit - 1)))) + (int) Math.pow(10, digit - 1))) {
-                ;
-            }
-        } else if (digit == 4) {
-            while (hasDupes(numb = gen.nextInt((int) (9 * (Math.pow(10, digit - 1)))) + (int) Math.pow(10, digit - 1))) {
-                ;
-            }
-        } else if (digit == 5) {
-            while (hasDupes(numb = gen.nextInt((int) (9 * (Math.pow(10, digit - 1)))) + (int) Math.pow(10, digit - 1))) {
-                ;
-            }
-        } else if (digit == 6) {
+    public void getNumber() {
+        if (digit == 3 || digit == 4 || digit == 5 || digit == 6) {
             while (hasDupes(numb = gen.nextInt((int) (9 * (Math.pow(10, digit - 1)))) + (int) Math.pow(10, digit - 1))) {
                 ;
             }
         }
         setNumbStr(numb + "");
-        return numb;
     }
 
-    public void read(Condition cond) {
+    public void read() {
         Properties props = new Properties();
         InputStream input = null;
         try {
@@ -72,32 +51,8 @@ public class GenerateNumb {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
-        digit = Integer.parseInt(props.getProperty("DigitsCount"));
-        cond.setSize(digit);
+        setDigit(Integer.parseInt(props.getProperty("DigitsCount")));
     }
-
-    public int getNumb(Condition cond) {
-        if (digit == 3) {
-            while (hasDupes(numb = gen.nextInt((int) (9 * (Math.pow(10, digit - 1)))) + (int) Math.pow(10, digit - 1))) {
-                ;
-            }
-        } else if (digit == 4) {
-            while (hasDupes(numb = gen.nextInt((int) (9 * (Math.pow(10, digit - 1)))) + (int) Math.pow(10, digit - 1))) {
-                ;
-            }
-        } else if (digit == 5) {
-            while (hasDupes(numb = gen.nextInt((int) (9 * (Math.pow(10, digit - 1)))) + (int) Math.pow(10, digit - 1))) {
-                ;
-            }
-        } else if (digit == 6) {
-            while (hasDupes(numb = gen.nextInt((int) (9 * (Math.pow(10, digit - 1)))) + (int) Math.pow(10, digit - 1))) {
-                ;
-            }
-        }
-        setNumbStr(numb + "");
-        return numb;
-    }
-
 
     public boolean hasDupes(int num) {
         for (boolean[] digs = new boolean[10]; num > 0; num /= 10) {

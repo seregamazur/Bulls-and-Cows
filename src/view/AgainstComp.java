@@ -71,9 +71,10 @@ public class AgainstComp extends JFrame {
         JTable jTable1 = new JTable(model);
         jScrollPane1.setViewportView(jTable1);
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
-        centerRenderer.setHorizontalAlignment( JLabel.CENTER );
-        for(int i = 0;i<4;i++){
-            jTable1.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);}
+        centerRenderer.setHorizontalAlignment(JLabel.CENTER);
+        for (int i = 0; i < 4; i++) {
+            jTable1.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
+        }
         Icon cowIcon = new ImageIcon("res/korovka.png");
         Icon bullIcon = new ImageIcon("res/bichochok.png");
         Border headerBorder = UIManager.getBorder("TableHeader.cellBorder");
@@ -152,7 +153,7 @@ public class AgainstComp extends JFrame {
         for (int i = rowCount - 1; i >= 0; i--) {
             model.removeRow(i);
         }
-        gen.getNumber(cond);
+        gen.getNumber();
     }
 
     private void startFrame() {
@@ -193,22 +194,26 @@ public class AgainstComp extends JFrame {
         );
 
         pack();
+        gen.read();
+        cond.setSize(gen.getDigit());
         endGame();
     }
 
     private void inputActionPerformed(ActionEvent e) {
+        gen.read();
+        cond.setSize(gen.getDigit());
         if (jTextField1.getText().isEmpty()) {
-            er.Error1();
+            er.emptyType();
         } else {
             if (cond.getExceptedNumb().contains(Integer.parseInt(jTextField1.getText()))) {
-                er.Error2();
+                er.sameType();
             } else {
                 cond.setGuessStr(jTextField1.getText());
             }
         }
 
         if (Integer.valueOf(cond.getGuessStr().length()) != cond.getSize() || gen.hasDupes(Integer.valueOf(cond.getGuessStr()))) {
-            er.Error(cond);
+            er.incType(cond);
         } else {
             if (cond.getExceptedNumb().contains(Integer.parseInt(cond.getGuessStr()))) {
                 ;
@@ -222,10 +227,11 @@ public class AgainstComp extends JFrame {
                 jTextField1.setText(null);
             }
         }
-        if(cond.isGuessed()){
+        if (cond.isGuessed()) {
             input.setEnabled(false);
             jTextField1.setEnabled(false);
-            capitulate.setEnabled(false);}
+            capitulate.setEnabled(false);
+        }
     }
 
     private void newGameActionPerformed(ActionEvent e) {
@@ -238,7 +244,7 @@ public class AgainstComp extends JFrame {
     }
 
     private void capitulateActionPerformed(ActionEvent e) {
-        er.GiveUp(gen);
+        er.giveUp(gen);
         endGame();
     }
 
