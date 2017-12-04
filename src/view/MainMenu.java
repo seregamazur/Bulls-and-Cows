@@ -89,14 +89,11 @@ public class MainMenu extends JFrame {
 
     private void settingsActionPerformed(java.awt.event.ActionEvent e) {
         face.startSettings();
-
-
     }
 
     private void withcompActionPerformed(java.awt.event.ActionEvent e) {
         dispose();
         face.startWith();
-
     }
 
 
@@ -157,6 +154,5 @@ public class MainMenu extends JFrame {
             java.util.logging.Logger.getLogger(MainMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
     }
-
 
 }

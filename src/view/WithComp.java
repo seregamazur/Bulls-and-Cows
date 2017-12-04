@@ -195,60 +195,6 @@ public class WithComp extends JFrame {
                     cond.comp(gen);
                     if (cond.getExceptedNumb().contains(gen.getNumbStr()) || (cond.getCowcount() == 0 && cond.getBullcount() == 0)) {
                         ;
-                    } else {
-                        if (!cond.isGuessed() && cond.getLuckyCount() == cond.getSize()) {
-                            model.insertRow(model.getRowCount(), new Object[]{cond.getGuesses(), gen.getNumbStr(), cond.getBullcount(), cond.getCowcount()});
-                            cond.setCowcount(0);
-                            cond.setBullcount(0);
-                            cond.setGuesses(cond.getGuesses() + 1);
-                            int[] digits = this.gen.getNumbStr().chars().map(c -> c -= '0').toArray();
-                            StringBuilder builder = new StringBuilder();
-
-                            while (!builder.toString().equals(cond.getGuessStr())) {
-                                Move.nextPermutation(digits);
-                                for (int i : digits) {
-                                    builder.append(i);
-                                }
-                                if (builder.toString().equals(cond.getGuessStr())) {
-                                    cond.setBullcount(cond.getSize());
-                                    cond.setCowcount(0);
-                                    cond.setGuessed(true);
-                                    input.setEnabled(false);
-                                    jTextField1.setEnabled(false);
-                                    showMessageDialog(null, "Комп'ютер відгадав ваше число за " + cond.getGuesses() + " спроб!");
-                                    cond.getMyList().clear();
-                                    cond.getExceptedNumb().clear();
-                                    model.insertRow(model.getRowCount(), new Object[]{cond.getGuesses(), builder.toString(), cond.getBullcount(), cond.getCowcount()});
-                                    return;
-                                } else {
-                                    builder.delete(0, builder.length());
-                                    cond.setCowcount(0);
-                                    cond.setBullcount(0);
-                                    for (int i : digits) {
-                                        builder.append(i);
-                                    }
-                                    String finalStr = builder.toString();
-                                    for (int i = 0; i < cond.getSize(); i++) {
-                                        if (cond.getGuessStr().charAt(i) == finalStr.charAt(i)) {
-                                            cond.setBullcount(cond.getBullcount() + 1);
-                                        } else if (cond.getGuessStr().contains(finalStr.charAt(i) + "")) {
-                                            cond.setCowcount(cond.getCowcount() + 1);
-                                        }
-                                        builder.delete(0, builder.length());
-                                    }
-
-                                    for (int i : digits) {
-                                        builder.append(i);
-                                    }
-                                    model.insertRow(model.getRowCount(), new Object[]{cond.getGuesses(), builder.toString(), cond.getBullcount(), cond.getCowcount()});
-                                    cond.setGuesses(cond.getGuesses() + 1);
-
-                                    builder.delete(0, builder.length());
-                                }
-                            }
-                            cond.setCowcount(0);
-                            cond.setBullcount(0);
-                            cond.setGuesses(cond.getGuesses() + 1);
                         } else {
                             model.insertRow(model.getRowCount(), new Object[]{cond.getGuesses(), gen.getNumbStr(), cond.getBullcount(), cond.getCowcount()});
                             cond.setCowcount(0);
@@ -262,7 +208,7 @@ public class WithComp extends JFrame {
                 }
             }
         }
-    }
+
 
     private void newGameActionPerformed(ActionEvent e) {
         cond.setGuesses(0);

@@ -104,11 +104,10 @@ public class AgainstComp extends JFrame {
         numbCountLabel.setText("Кількість цифр у числі");
         timerLabel.setText("Таймер");
         settingsLabel.setText("Налаштування");
-
-
-        jTextField1.setFont(new Font("Tahoma", 0, 14));
         input.setText("Ввід");
         input.setToolTipText("Якщо впевнені");
+        jTextField1.setFont(new Font("Tahoma", 0, 14));
+
         KeyListener listener = new KeyAdapter() {
             public void keyTyped(KeyEvent e) {
                 char c = e.getKeyChar();
@@ -211,7 +210,6 @@ public class AgainstComp extends JFrame {
                 cond.setGuessStr(jTextField1.getText());
             }
         }
-
         if (Integer.valueOf(cond.getGuessStr().length()) != cond.getSize() || gen.hasDupes(Integer.valueOf(cond.getGuessStr()))) {
             er.incType(cond);
         } else {
@@ -219,11 +217,9 @@ public class AgainstComp extends JFrame {
                 ;
             } else {
                 cond.cond(gen);
-
                 model.insertRow(model.getRowCount(), new Object[]{cond.getGuesses(), cond.getGuessStr(), cond.getBullcount(), cond.getCowcount()});
                 cond.setCowcount(0);
                 cond.setBullcount(0);
-
                 jTextField1.setText(null);
             }
         }
