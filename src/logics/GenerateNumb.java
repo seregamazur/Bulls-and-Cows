@@ -57,7 +57,6 @@ public class GenerateNumb {
                     arrayList.add(getNumbStr());
                 boolean flag1 = Move.getSum(getNumbStr(), cond.getGuessStr()) >= cond.getLuckyCount();
                 if(Move.getSum(getNumbStr(), cond.getGuessStr()) == 0){getNumber(cond);}else{
-                    System.out.println(Move.getSum(getNumbStr(), cond.getGuessStr()));
                 if (flag1 ) {
                     myList.add(Integer.parseInt(getNumbStr()));
 

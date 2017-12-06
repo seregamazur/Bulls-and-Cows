@@ -131,7 +131,7 @@ public class Condition {
             }
 
             if (guessed) {
-                go.getMyList().clear();
+                go.getArrayList().clear();
                 exceptedNumb.clear();
                 showMessageDialog(null, "Комп'ютер відгадав ваше число за " + guesses + " спроб!");
 

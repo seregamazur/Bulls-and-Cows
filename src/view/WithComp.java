@@ -190,20 +190,26 @@ public class WithComp extends JFrame {
             if (Integer.valueOf(cond.getGuessStr().length()) != cond.getSize() || (!gen.hasDupes(Integer.valueOf(cond.getGuessStr())))) {
                 er.incType(cond);
             } else {
+
+                int i = 0;
                 while (!cond.isGuessed()) {
                     gen.getNumber(cond);
                     cond.comp(gen);
                     if (cond.getExceptedNumb().contains(gen.getNumbStr()) || (cond.getCowcount() == 0 && cond.getBullcount() == 0)) {
                         ;
                         } else {
-                            model.insertRow(model.getRowCount(), new Object[]{cond.getGuesses(), gen.getMyList().indexOf(gen.getMyList().size()), cond.getBullcount(), cond.getCowcount()});
+                            model.insertRow(model.getRowCount(), new Object[]{cond.getGuesses(), gen.getMyList().get(gen.getMyList().size() - 1), cond.getBullcount(), cond.getCowcount()});
                             cond.setCowcount(0);
                             cond.setBullcount(0);
                         }
-                    }
+                    i++;
+                    System.out.println(cond.isGuessed() + " = " + i);
+                    System.out.println("size: " + gen.getMyList().size());
+                }
                 }
                 if (cond.isGuessed()) {
                     input.setEnabled(false);
+                    gen.getMyList().clear();
                     jTextField1.setEnabled(false);
                 }
             }
