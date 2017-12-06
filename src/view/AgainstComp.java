@@ -152,7 +152,7 @@ public class AgainstComp extends JFrame {
         for (int i = rowCount - 1; i >= 0; i--) {
             model.removeRow(i);
         }
-        gen.getNumber();
+        gen.getNumber(cond);
     }
 
     private void startFrame() {

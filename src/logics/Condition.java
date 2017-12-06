@@ -35,11 +35,7 @@ public class Condition {
         return luckyCount;
     }
 
-    public ArrayList<Integer> getMyList() {
-        return myList;
-    }
 
-    private ArrayList<Integer> myList = new ArrayList<>();
 
     public void setLuckyCount(int luckyCount) {
         this.luckyCount = luckyCount;
@@ -128,8 +124,6 @@ public class Condition {
             if (luckyCount == 0) {
                 guesses--;
                 exceptedNumb.add(Integer.parseInt(go.getNumbStr()));
-            } else {
-                myList.add(Integer.parseInt(go.getNumbStr()));
             }
 
             if (bullcount == size) {
@@ -137,7 +131,7 @@ public class Condition {
             }
 
             if (guessed) {
-                myList.clear();
+                go.getMyList().clear();
                 exceptedNumb.clear();
                 showMessageDialog(null, "Комп'ютер відгадав ваше число за " + guesses + " спроб!");
 

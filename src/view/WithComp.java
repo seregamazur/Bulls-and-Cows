@@ -187,16 +187,16 @@ public class WithComp extends JFrame {
         } else {
             cond.setGuessStr(jTextField1.getText());
 
-            if (Integer.valueOf(cond.getGuessStr().length()) != cond.getSize() || gen.hasDupes(Integer.valueOf(cond.getGuessStr()))) {
+            if (Integer.valueOf(cond.getGuessStr().length()) != cond.getSize() || (!gen.hasDupes(Integer.valueOf(cond.getGuessStr())))) {
                 er.incType(cond);
             } else {
                 while (!cond.isGuessed()) {
-                    gen.getNumber();
+                    gen.getNumber(cond);
                     cond.comp(gen);
                     if (cond.getExceptedNumb().contains(gen.getNumbStr()) || (cond.getCowcount() == 0 && cond.getBullcount() == 0)) {
                         ;
                         } else {
-                            model.insertRow(model.getRowCount(), new Object[]{cond.getGuesses(), gen.getNumbStr(), cond.getBullcount(), cond.getCowcount()});
+                            model.insertRow(model.getRowCount(), new Object[]{cond.getGuesses(), gen.getMyList().indexOf(gen.getMyList().size()), cond.getBullcount(), cond.getCowcount()});
                             cond.setCowcount(0);
                             cond.setBullcount(0);
                         }
