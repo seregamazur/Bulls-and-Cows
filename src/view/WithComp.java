@@ -11,9 +11,8 @@ import java.awt.event.*;
 import java.io.File;
 import java.io.IOException;
 
-import static javax.swing.JOptionPane.showMessageDialog;
-
 public class WithComp extends JFrame {
+    private final WithCompGen genc = new WithCompGen();
     private final ErrorType er = new ErrorType();
     private final GenerateNumb gen = new GenerateNumb();
     private final JScrollPane jScrollPane1 = new JScrollPane();
@@ -180,40 +179,30 @@ public class WithComp extends JFrame {
     }
 
     private void inputActionPerformed(ActionEvent e) {
-        gen.read();
-        cond.setSize(gen.getDigit());
-        if (jTextField1.getText().isEmpty()) {
-            er.emptyType();
+        genc.read();//read the right count of the generating digits
+        cond.setSize(genc.getDigit());//make this count as variable
+        if (jTextField1.getText().isEmpty()) {//start check type of the inputted numb
+            er.emptyType();//if field is empty
         } else {
-            cond.setGuessStr(jTextField1.getText());
-
-            if (Integer.valueOf(cond.getGuessStr().length()) != cond.getSize() || (!gen.hasDupes(Integer.valueOf(cond.getGuessStr())))) {
-                er.incType(cond);
+            cond.setGuessStr(jTextField1.getText());//set data from the field to variable
+            if (Integer.valueOf(cond.getGuessStr().length()) != cond.getSize() || (gen.hasDupes(Integer.valueOf(cond.getGuessStr())))) {
+                er.incType(cond);//if inputted data included dupes or incorrect length
             } else {
-
-                int i = 0;
-                while (!cond.isGuessed()) {
-                    gen.getNumber(cond);
-                    cond.comp(gen);
-                    if (cond.getExceptedNumb().contains(gen.getNumbStr()) || (cond.getCowcount() == 0 && cond.getBullcount() == 0)) {
-                        ;
-                        } else {
-                            model.insertRow(model.getRowCount(), new Object[]{cond.getGuesses(), gen.getMyList().get(gen.getMyList().size() - 1), cond.getBullcount(), cond.getCowcount()});
-                            cond.setCowcount(0);
-                            cond.setBullcount(0);
-                        }
-                    i++;
-                    System.out.println(cond.isGuessed() + " = " + i);
-                    System.out.println("size: " + gen.getMyList().size());
-                }
-                }
-                if (cond.isGuessed()) {
-                    input.setEnabled(false);
-                    gen.getMyList().clear();
-                    jTextField1.setEnabled(false);
+                while (!cond.isGuessed()) {//start generate&input into the table
+                    genc.getNumber(cond);//generation
+                    cond.comp(genc);//bulls and cows sum
+                    model.insertRow(model.getRowCount(), new Object[]{cond.getGuesses(), genc.getMyList().get(genc.getMyList().size() - 1), cond.getBullcount(), cond.getCowcount()});
+                    cond.setCowcount(0);
+                    cond.setBullcount(0);
                 }
             }
         }
+        if (cond.isGuessed()) {//the end of the game
+            input.setEnabled(false);
+            genc.getMyList().clear();
+            jTextField1.setEnabled(false);
+        }
+    }
 
 
     private void newGameActionPerformed(ActionEvent e) {

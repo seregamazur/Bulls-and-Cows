@@ -11,4 +11,5 @@ public class Controll {
 
     public static void menu() {
         EventQueue.invokeLater(() -> new MainMenu());
-}}
+    }
+}

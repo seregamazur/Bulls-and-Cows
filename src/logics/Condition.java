@@ -1,7 +1,6 @@
 package logics;
 
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.InputMismatchException;
 import java.util.Set;
@@ -34,7 +33,6 @@ public class Condition {
     public int getLuckyCount() {
         return luckyCount;
     }
-
 
 
     public void setLuckyCount(int luckyCount) {
@@ -108,22 +106,22 @@ public class Condition {
         }
     }
 
-    public void comp(GenerateNumb go) {
+    public void comp(WithCompGen genc) {
         try {
             guesses++;
             guessed = false;
             for (int i = 0; i < size; i++) {
-                if (guessStr.charAt(i) == go.getNumbStr().charAt(i)) {
+                if (guessStr.charAt(i) == genc.getCompNumb().charAt(i)) {
                     bullcount++;
-                } else if (go.getNumbStr().contains(guessStr.charAt(i) + "")) {
+                } else if (genc.getCompNumb().contains(guessStr.charAt(i) + "")) {
                     cowcount++;
                 }
             }
-            exceptedNumb.add(Integer.parseInt(go.getNumbStr()));
+            exceptedNumb.add(Integer.parseInt(genc.getCompNumb()));
             setLuckyCount(bullcount + cowcount);
             if (luckyCount == 0) {
                 guesses--;
-                exceptedNumb.add(Integer.parseInt(go.getNumbStr()));
+                exceptedNumb.add(Integer.parseInt(genc.getCompNumb()));
             }
 
             if (bullcount == size) {
@@ -131,7 +129,7 @@ public class Condition {
             }
 
             if (guessed) {
-                go.getArrayList().clear();
+                genc.getArrayList().clear();
                 exceptedNumb.clear();
                 showMessageDialog(null, "Комп'ютер відгадав ваше число за " + guesses + " спроб!");
 

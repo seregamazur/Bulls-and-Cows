@@ -79,7 +79,6 @@ public class Settings extends JDialog {
         setVisible(true);
 
 
-
     }
 
     private void exitActionPerformed(java.awt.event.ActionEvent e) {
@@ -163,6 +162,7 @@ public class Settings extends JDialog {
         }
 
     }
+
     private void readUserSettings() {
         Properties props = new Properties();
         InputStream input;

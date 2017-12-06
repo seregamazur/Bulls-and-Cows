@@ -9,9 +9,11 @@ public class Face {
     public void startAgainst() {
         new AgainstComp();
     }
-    public void startSettings(){
+
+    public void startSettings() {
         new Settings();
     }
+
     public void startWith() {
         new WithComp();
     }

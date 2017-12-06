@@ -152,7 +152,7 @@ public class AgainstComp extends JFrame {
         for (int i = rowCount - 1; i >= 0; i--) {
             model.removeRow(i);
         }
-        gen.getNumber(cond);
+        gen.getNumb();
     }
 
     private void startFrame() {
@@ -241,6 +241,7 @@ public class AgainstComp extends JFrame {
 
     private void capitulateActionPerformed(ActionEvent e) {
         er.giveUp(gen);
+        jTextField1.setText(null);
         endGame();
     }
 
