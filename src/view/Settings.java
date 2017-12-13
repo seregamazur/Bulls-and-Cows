@@ -9,20 +9,13 @@ import java.io.*;
 import java.util.Properties;
 
 public class Settings extends JDialog {
-    public JComboBox getjComboBox1() {
+    private JComboBox getjComboBox1() {
         return jComboBox1;
     }
 
     private JComboBox jComboBox1 = new JComboBox<>();
     private final JLabel settingsLabel = new JLabel();
     private final JLabel numbCountLabel = new JLabel();
-    private final JLabel timerLabel = new JLabel();
-
-    public JCheckBox getTimer() {
-        return timer;
-    }
-
-    private final JCheckBox timer = new JCheckBox();
     private final JButton exit = new JButton();
     private final JButton save = new JButton();
 
@@ -37,7 +30,6 @@ public class Settings extends JDialog {
 
     private void initComponents() {
         settingsLabel.setText("Налаштування");
-        timerLabel.setText("Використовувати таймер");
         exit.setText("Вихід");
         save.setText("Зберегти зміни");
         numbCountLabel.setText("Кількість цифр в числі");
@@ -109,9 +101,9 @@ public class Settings extends JDialog {
                                                                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                                                                 .addComponent(jComboBox1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                                                                         .addGroup(layout.createSequentialGroup()
-                                                                                .addComponent(timerLabel)
-                                                                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                                                                                .addComponent(timer)))
+                                                                                // .addComponent(timerLabel)
+                                                                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)))
+                                                                //.addComponent(timer)))
                                                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE))
                                                         .addGroup(layout.createSequentialGroup()
                                                                 .addComponent(save)
@@ -133,9 +125,9 @@ public class Settings extends JDialog {
                                         .addComponent(numbCountLabel)
                                         .addComponent(jComboBox1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                                        .addComponent(timer)
-                                        .addComponent(timerLabel))
+                                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING))
+                                //.addComponent(timer)
+                                // .addComponent(timerLabel))
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                                         .addComponent(save)
@@ -152,7 +144,6 @@ public class Settings extends JDialog {
             String timerBool = "TimerSet";
             Properties props = new Properties();
             props.setProperty(numbCount, getjComboBox1().getSelectedItem().toString());
-            props.setProperty(timerBool, Boolean.toString(timer.isSelected()));
             File f = new File("settings.properties");
             OutputStream out = new FileOutputStream(f);
             props.store(out, null);
@@ -166,13 +157,11 @@ public class Settings extends JDialog {
     private void readUserSettings() {
         Properties props = new Properties();
         InputStream input;
-
         try {
             File f = new File("settings.properties");
             input = new FileInputStream(f);
 
             props.load(input);
-            getTimer().setSelected(Boolean.valueOf(props.getProperty("TimerSet")));
             getjComboBox1().setSelectedItem(props.getProperty("DigitsCount"));
             input.close();
         } catch (IOException ex) {

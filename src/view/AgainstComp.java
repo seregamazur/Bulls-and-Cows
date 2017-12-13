@@ -1,9 +1,12 @@
 package view;
 
-import logics.Condition;
-import logics.Controll;
-import logics.ErrorType;
-import logics.GenerateNumb;
+import controller.Controll;
+import model.Guessing;
+import model.InputGetter;
+import utils.CheckNumber;
+import utils.ErrorType;
+import utils.GenerateNumber;
+import utils.JComponentTableCellRenderer;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -15,9 +18,9 @@ import java.io.File;
 import java.io.IOException;
 
 public class AgainstComp extends JFrame {
-    private final GenerateNumb gen = new GenerateNumb();
-    private final ErrorType er = new ErrorType();
-    private final Condition cond = new Condition();
+    private final Guessing guessing = new Guessing();
+    private InputGetter getter = new InputGetter();
+    private final GenerateNumber gen = new GenerateNumber();
     private final JButton input = new JButton();
     private final JButton backMenu = new JButton();
     private final JButton capitulate = new JButton();
@@ -147,12 +150,11 @@ public class AgainstComp extends JFrame {
     }
 
     private void endGame() {
-        cond.setGuesses(0);
         int rowCount = model.getRowCount();
         for (int i = rowCount - 1; i >= 0; i--) {
             model.removeRow(i);
         }
-        gen.getNumb();
+        gen.getNumber();
     }
 
     private void startFrame() {
@@ -194,36 +196,32 @@ public class AgainstComp extends JFrame {
 
         pack();
         gen.read();
-        cond.setSize(gen.getDigit());
         endGame();
     }
 
     private void inputActionPerformed(ActionEvent e) {
-        gen.read();
-        cond.setSize(gen.getDigit());
         if (jTextField1.getText().isEmpty()) {
-            er.emptyType();
+            ErrorType.emptyType();
         } else {
-            if (cond.getExceptedNumb().contains(Integer.parseInt(jTextField1.getText()))) {
-                er.sameType();
-            } else {
-                cond.setGuessStr(jTextField1.getText());
-            }
-        }
-        if (Integer.valueOf(cond.getGuessStr().length()) != cond.getSize() || gen.hasDupes(Integer.valueOf(cond.getGuessStr()))) {
-            er.incType(cond);
-        } else {
-            if (cond.getExceptedNumb().contains(Integer.parseInt(cond.getGuessStr()))) {
-                ;
-            } else {
-                cond.cond(gen);
-                model.insertRow(model.getRowCount(), new Object[]{cond.getGuesses(), cond.getGuessStr(), cond.getBullcount(), cond.getCowcount()});
-                cond.setCowcount(0);
-                cond.setBullcount(0);
+            if (guessing.getUsageNumbers().contains(Integer.parseInt(jTextField1.getText()))) {
+                ErrorType.sameType();
                 jTextField1.setText(null);
+                return;
+            } else {
+                getter.setInputNumb(Integer.parseInt(jTextField1.getText()));
             }
         }
-        if (cond.isGuessed()) {
+        if (Integer.valueOf(getter.getInputNumb()).toString().length() != gen.getDigits() || !CheckNumber.hasNoDupes(getter.getInputNumb())) {
+            ErrorType.incType(gen);
+        } else {
+            guessing.Check(gen, getter);
+            model.insertRow(model.getRowCount(), new Object[]{guessing.getGuesses(), guessing.getNumbers().getLast().getNumber(), guessing.getNumbers().getLast().getBullCount(), guessing.getNumbers().getLast().getCowCount()});
+            jTextField1.setText(null);
+
+        }
+
+        if (guessing.getGenerateStatus() == Guessing.GenerateStatus.FINISHED) {
+            JOptionPane.showMessageDialog(null, "Ви відгадали число за  " + guessing.getGuesses() + " спроб!");
             input.setEnabled(false);
             jTextField1.setEnabled(false);
             capitulate.setEnabled(false);
@@ -235,18 +233,18 @@ public class AgainstComp extends JFrame {
         jTextField1.setEnabled(true);
         input.setEnabled(true);
         capitulate.setEnabled(true);
-        cond.getExceptedNumb().clear();
+        guessing.getUsageNumbers().clear();
         endGame();
     }
 
     private void capitulateActionPerformed(ActionEvent e) {
-        er.giveUp(gen);
+        ErrorType.giveUp(gen);
         jTextField1.setText(null);
         endGame();
     }
 
     private void backMenuActionPerformed(ActionEvent e) {
-        cond.getExceptedNumb().clear();
+        guessing.getUsageNumbers().clear();
         setVisible(false);
         Controll.menu();
     }

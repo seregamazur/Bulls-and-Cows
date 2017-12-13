@@ -1,6 +1,12 @@
 package view;
 
-import logics.*;
+import controller.Controll;
+import model.ComputerGenerator;
+import model.InputGetter;
+import utils.CheckNumber;
+import utils.ErrorType;
+import utils.GenerateNumber;
+import utils.JComponentTableCellRenderer;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -11,10 +17,15 @@ import java.awt.event.*;
 import java.io.File;
 import java.io.IOException;
 
+import static model.ComputerGenerator.GenerateStatus.FINISHED;
+import static model.ComputerGenerator.GenerateStatus.GENERATING;
+
 public class WithComp extends JFrame {
-    private final WithCompGen genc = new WithCompGen();
+    private int end;
+    private InputGetter getter = new InputGetter();
+    private final ComputerGenerator computerGenerator = new ComputerGenerator();
     private final ErrorType er = new ErrorType();
-    private final GenerateNumb gen = new GenerateNumb();
+    private final GenerateNumber gen = new GenerateNumber();
     private final JScrollPane jScrollPane1 = new JScrollPane();
     private final JButton input = new JButton();
     private final JButton newGame = new JButton();
@@ -22,7 +33,6 @@ public class WithComp extends JFrame {
     private final JLabel numbCountLabel = new JLabel();
     private final JLabel timerLabel = new JLabel();
     private final JLabel settingsLabel = new JLabel();
-    private final Condition cond = new Condition();
     private final Font font = new Font("Tahoma", 0, 14);
     private JTextField jTextField1 = new JTextField();
     private DefaultTableModel model;
@@ -179,34 +189,38 @@ public class WithComp extends JFrame {
     }
 
     private void inputActionPerformed(ActionEvent e) {
-        genc.read();//read the right count of the generating digits
-        cond.setSize(genc.getDigit());//make this count as variable
+        gen.read();//read the right count of the generating digits
+        //make this count as variable
         if (jTextField1.getText().isEmpty()) {//start check type of the inputted numb
             er.emptyType();//if field is empty
         } else {
-            cond.setGuessStr(jTextField1.getText());//set data from the field to variable
-            if (Integer.valueOf(cond.getGuessStr().length()) != cond.getSize() || (gen.hasDupes(Integer.valueOf(cond.getGuessStr())))) {
-                er.incType(cond);//if inputted data included dupes or incorrect length
-            } else {
-                while (!cond.isGuessed()) {//start generate&input into the table
-                    genc.getNumber(cond);//generation
-                    cond.comp(genc);//bulls and cows sum
-                    model.insertRow(model.getRowCount(), new Object[]{cond.getGuesses(), genc.getMyList().get(genc.getMyList().size() - 1), cond.getBullcount(), cond.getCowcount()});
-                    cond.setCowcount(0);
-                    cond.setBullcount(0);
+            getter.setInputNumber(Integer.parseInt(jTextField1.getText()));//set data from the field to variable
+            if ( Integer.valueOf(getter.getInputNumber()).toString().length() != gen.getDigits() || (!CheckNumber.hasNoDupes(getter.getInputNumber()))) {
+                er.incType(gen);//if inputted data included dupes or incorrect length
+            } else { int i = 0;
+                while (computerGenerator.getGenerateStatus() != FINISHED) {//start generate&input into the table
+                    computerGenerator.generateAndCheck(gen);//generation
+                    model.insertRow(model.getRowCount(), new Object[]{i+1,
+                            computerGenerator.getMoves().getLast().getNumber(),
+                            computerGenerator.getMoves().getLast().getBullCount(),
+                            computerGenerator.getMoves().getLast().getCowCount()});
+                    i++;
                 }
+                end = i;
             }
         }
-        if (cond.isGuessed()) {//the end of the game
+        if (computerGenerator.getGenerateStatus() == FINISHED) {//the end of the game
+            JOptionPane.showMessageDialog(null, "Комп'ютер відгадав ваше число за " + end + " спроб!");
             input.setEnabled(false);
-            genc.getMyList().clear();
             jTextField1.setEnabled(false);
+            computerGenerator.getMoves().clear();
+            computerGenerator.getNumbers().clear();
+            computerGenerator.setGenerateStatus(GENERATING);
         }
     }
 
 
     private void newGameActionPerformed(ActionEvent e) {
-        cond.setGuesses(0);
         int rowCount = model.getRowCount();
         for (int i = rowCount - 1; i >= 0; i--) {
             model.removeRow(i);
@@ -214,10 +228,8 @@ public class WithComp extends JFrame {
         jTextField1.setText(null);
         jTextField1.setEnabled(true);
         input.setEnabled(true);
-        cond.setGuessStr(null);
-        cond.setGuessed(false);
-        cond.setCowcount(0);
-        cond.setBullcount(0);
+        computerGenerator.getMoves().clear();
+        computerGenerator.getNumbers().clear();
     }
 
 
