@@ -21,7 +21,6 @@ import static model.ComputerGenerator.GenerateStatus.FINISHED;
 import static model.ComputerGenerator.GenerateStatus.GENERATING;
 
 public class WithComp extends JFrame {
-    private int end;
     private InputGetter getter = new InputGetter();
     private final ComputerGenerator computerGenerator = new ComputerGenerator();
     private final ErrorType er = new ErrorType();
@@ -197,20 +196,20 @@ public class WithComp extends JFrame {
             getter.setInputNumber(Integer.parseInt(jTextField1.getText()));//set data from the field to variable
             if ( Integer.valueOf(getter.getInputNumber()).toString().length() != gen.getDigits() || (!CheckNumber.hasNoDupes(getter.getInputNumber()))) {
                 er.incType(gen);//if inputted data included dupes or incorrect length
-            } else { int i = 0;
+            } else {
                 while (computerGenerator.getGenerateStatus() != FINISHED) {//start generate&input into the table
                     computerGenerator.generateAndCheck(gen);//generation
-                    model.insertRow(model.getRowCount(), new Object[]{i+1,
+                    model.insertRow(model.getRowCount(), new Object[]{computerGenerator.getMoves().size(),
                             computerGenerator.getMoves().getLast().getNumber(),
                             computerGenerator.getMoves().getLast().getBullCount(),
                             computerGenerator.getMoves().getLast().getCowCount()});
-                    i++;
+
                 }
-                end = i;
+
             }
         }
         if (computerGenerator.getGenerateStatus() == FINISHED) {//the end of the game
-            JOptionPane.showMessageDialog(null, "Комп'ютер відгадав ваше число за " + end + " спроб!");
+            JOptionPane.showMessageDialog(null, "Комп'ютер відгадав ваше число за " + computerGenerator.getMoves().size() + " спроб!");
             input.setEnabled(false);
             jTextField1.setEnabled(false);
             computerGenerator.getMoves().clear();
