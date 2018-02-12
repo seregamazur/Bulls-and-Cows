@@ -57,7 +57,7 @@ public class Settings extends JDialog {
         setTitle("Налаштування");
         setResizable(true);
         try {
-            setIconImage(ImageIO.read(new File("res/bicho1.png")));
+            setIconImage(ImageIO.read(new File("src/res/icon.png")));
         } catch (IOException exc) {
             exc.printStackTrace();
         }

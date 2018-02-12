@@ -24,7 +24,7 @@ public class MainMenu extends JFrame {
     }
 
     public void initComponents() {
-        label.setIcon(new ImageIcon("res/21.png"));
+        label.setIcon(new ImageIcon("src/res/mainPicture.png"));
         exit.setText("Вихід");
         exit.addActionListener((ActionListener) new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
@@ -61,7 +61,7 @@ public class MainMenu extends JFrame {
         setResizable(false);
         setVisible(true);
         try {
-            setIconImage(ImageIO.read(new File("res/bicho1.png")));
+            setIconImage(ImageIO.read(new File("src/res/icon.png")));
         } catch (IOException exc) {
             exc.printStackTrace();
         }

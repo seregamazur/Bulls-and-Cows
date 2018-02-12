@@ -5,7 +5,7 @@ import model.Guessing;
 import model.InputGetter;
 import utils.CheckNumber;
 import utils.ErrorType;
-import utils.GenerateNumber;
+import utils.GeneratorNumber;
 import utils.JComponentTableCellRenderer;
 
 import javax.imageio.ImageIO;
@@ -20,7 +20,7 @@ import java.io.IOException;
 public class AgainstComp extends JFrame {
     private final Guessing guessing = new Guessing();
     private InputGetter getter = new InputGetter();
-    private final GenerateNumber gen = new GenerateNumber();
+    private final GeneratorNumber gen = new GeneratorNumber();
     private final JButton input = new JButton();
     private final JButton backMenu = new JButton();
     private final JButton capitulate = new JButton();
@@ -51,7 +51,7 @@ public class AgainstComp extends JFrame {
         setResizable(false);
         setVisible(true);
         try {
-            setIconImage(ImageIO.read(new File("res/bicho1.png")));
+            setIconImage(ImageIO.read(new File("src/res/icon.png")));
         } catch (IOException exc) {
             exc.printStackTrace();
         }
@@ -78,8 +78,8 @@ public class AgainstComp extends JFrame {
         for (int i = 0; i < 4; i++) {
             jTable1.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
         }
-        Icon cowIcon = new ImageIcon("res/korovka.png");
-        Icon bullIcon = new ImageIcon("res/bichochok.png");
+        Icon cowIcon = new ImageIcon("src/res/cowTable.png");
+        Icon bullIcon = new ImageIcon("src/res/bullTable.png");
         Border headerBorder = UIManager.getBorder("TableHeader.cellBorder");
         JLabel cowLabel = new JLabel(headers[3], cowIcon, JLabel.CENTER);
         cowLabel.setBorder(headerBorder);
@@ -245,7 +245,7 @@ public class AgainstComp extends JFrame {
 
     private void backMenuActionPerformed(ActionEvent e) {
         guessing.getUsageNumbers().clear();
-        setVisible(false);
+        dispose();
         Controll.menu();
     }
 

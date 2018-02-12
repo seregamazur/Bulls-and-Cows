@@ -1,6 +1,6 @@
 package model;
 
-import utils.GenerateNumber;
+import utils.GeneratorNumber;
 
 import java.util.Deque;
 import java.util.HashSet;
@@ -13,7 +13,7 @@ public class Guessing {
     private int guesses;
     private Guessing.GenerateStatus guessingStatus;
 
-    public void Check(GenerateNumber gen, InputGetter getter) {
+    public void Check(GeneratorNumber gen, InputGetter getter) {
         usageNumbers.add(getter.getInputNumb());
         Number numb = new Number(getter.getInputNumb(), gen.getGeneratedNumber());
         Numbers.add(numb);

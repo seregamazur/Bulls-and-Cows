@@ -7,7 +7,7 @@ import java.io.InputStream;
 import java.util.Properties;
 import java.util.Random;
 
-public class GenerateNumber {
+public class GeneratorNumber {
 
     private int generatedNumber;
     private int Digits;

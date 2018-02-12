@@ -6,7 +6,7 @@ import javax.swing.*;
 public class ErrorType {
     public static final JOptionPane error = new JOptionPane();
 
-    public static void incType(GenerateNumber gen) {
+    public static void incType(GeneratorNumber gen) {
         error.showMessageDialog(null, "Ви задали число неправильно формату.\nКількість цифр в числі правильного формату: " + gen.getDigits());
     }
 
@@ -18,7 +18,7 @@ public class ErrorType {
         error.showMessageDialog(null, "Ви вже вводили дане число");
     }
 
-    public static void giveUp(GenerateNumber go) {
+    public static void giveUp(GeneratorNumber go) {
         error.showMessageDialog(null, "Ви програли!\nПравильним числом було:" + go.getGeneratedNumber());
     }
 }

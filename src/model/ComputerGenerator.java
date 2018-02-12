@@ -1,6 +1,6 @@
 package model;
 
-import utils.GenerateNumber;
+import utils.GeneratorNumber;
 
 import java.util.Deque;
 import java.util.HashSet;
@@ -12,14 +12,14 @@ public class ComputerGenerator {
     private Set<Integer> numbers = new HashSet<>();
     private GenerateStatus generateStatus;
 
-    public void generateAndCheck(GenerateNumber gen) {
+    public void generateAndCheck(GeneratorNumber gen) {
         if (generateStatus == GenerateStatus.FINISHED) return;
         generateStatus = GenerateStatus.GENERATING;
         int number = gen.getNumber();
         continueGenerate(number, gen);
     }
 
-    private void continueGenerate(int number, GenerateNumber gen) {
+    private void continueGenerate(int number, GeneratorNumber gen) {
         boolean success;
         do {
             while (numbers.contains(number)) {
