@@ -1,6 +1,6 @@
-package view;
+package java.view;
 
-import controller.Face;
+import java.controller.Face;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -24,7 +24,7 @@ public class MainMenu extends JFrame {
     }
 
     public void initComponents() {
-        label.setIcon(new ImageIcon("src/res/mainPicture.png"));
+        label.setIcon(new ImageIcon("src/resources/mainPicture.png"));
         exit.setText("Вихід");
         exit.addActionListener((ActionListener) new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
@@ -121,7 +121,7 @@ public class MainMenu extends JFrame {
         setResizable(false);
         setVisible(true);
         try {
-            setIconImage(ImageIO.read(new File("src/res/icon.png")));
+            setIconImage(ImageIO.read(new File("src/resources/icon.png")));
         } catch (IOException exc) {
             exc.printStackTrace();
         }

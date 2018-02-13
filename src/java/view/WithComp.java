@@ -1,12 +1,12 @@
-package view;
+package java.view;
 
-import controller.Controll;
-import model.ComputerGenerator;
-import model.InputGetter;
-import utils.CheckNumber;
-import utils.ErrorType;
-import utils.GeneratorNumber;
-import utils.JComponentTableCellRenderer;
+import java.controller.Controll;
+import java.model.ComputerGenerator;
+import java.model.InputGetter;
+import java.utils.CheckNumber;
+import java.utils.ErrorType;
+import java.utils.GeneratorNumber;
+import java.utils.JComponentTableCellRenderer;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -17,8 +17,8 @@ import java.awt.event.*;
 import java.io.File;
 import java.io.IOException;
 
-import static model.ComputerGenerator.GenerateStatus.FINISHED;
-import static model.ComputerGenerator.GenerateStatus.GENERATING;
+import static java.model.ComputerGenerator.GenerateStatus.FINISHED;
+import static java.model.ComputerGenerator.GenerateStatus.GENERATING;
 
 public class WithComp extends JFrame {
     private final ScreenLocation size = new ScreenLocation();
@@ -60,8 +60,8 @@ public class WithComp extends JFrame {
         for (int i = 0; i < 4; i++) {
             jTable1.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
         }
-        Icon cowIcon = new ImageIcon("src/res/cowTable.png");
-        Icon bullIcon = new ImageIcon("src/res/bullTable.png");
+        Icon cowIcon = new ImageIcon("src/resources/cowTable.png");
+        Icon bullIcon = new ImageIcon("src/resources/bullTable.png");
         Border headerBorder = UIManager.getBorder("TableHeader.cellBorder");
         JLabel cowLabel = new JLabel(headers[3], cowIcon, JLabel.CENTER);
         cowLabel.setBorder(headerBorder);
@@ -162,7 +162,7 @@ public class WithComp extends JFrame {
         setResizable(false);
         setVisible(true);
         try {
-            setIconImage(ImageIO.read(new File("src/res/icon.png")));
+            setIconImage(ImageIO.read(new File("src/resources/icon.png")));
         } catch (IOException exc) {
             exc.printStackTrace();
         }

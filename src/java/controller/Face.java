@@ -1,9 +1,9 @@
-package controller;
+package java.controller;
 
 
-import view.AgainstComp;
-import view.Settings;
-import view.WithComp;
+import java.view.AgainstComp;
+import java.view.Settings;
+import java.view.WithComp;
 
 public class Face {
     public static void startAgainst() {

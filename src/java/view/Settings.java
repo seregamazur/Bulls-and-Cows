@@ -1,4 +1,4 @@
-package view;
+package java.view;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -54,7 +54,7 @@ public class Settings extends JDialog {
         setTitle("Налаштування");
         setResizable(true);
         try {
-            setIconImage(ImageIO.read(new File("src/res/icon.png")));
+            setIconImage(ImageIO.read(new File("src/resources/icon.png")));
         } catch (IOException exc) {
             exc.printStackTrace();
         }
