@@ -21,6 +21,7 @@ import static model.ComputerGenerator.GenerateStatus.FINISHED;
 import static model.ComputerGenerator.GenerateStatus.GENERATING;
 
 public class WithComp extends JFrame {
+    private final ScreenLocation size = new ScreenLocation();
     private InputGetter getter = new InputGetter();
     private final ComputerGenerator computerGenerator = new ComputerGenerator();
     private final ErrorType er = new ErrorType();
@@ -40,30 +41,8 @@ public class WithComp extends JFrame {
     public WithComp() {
         initComponents();
         table();
-        screen();
+        size.setWindowLocation(40,35);
         startFrame();
-    }
-
-    private void screen() {
-        final int sizeWidth;
-        final int sizeHeight;
-        final int locationX;
-        final int locationY;
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Загадати число");
-        setResizable(false);
-        setVisible(true);
-        try {
-            setIconImage(ImageIO.read(new File("src/res/icon.png")));
-        } catch (IOException exc) {
-            exc.printStackTrace();
-        }
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        sizeWidth = 500;
-        sizeHeight = 359;
-        locationX = (screenSize.width - sizeWidth) / 2;
-        locationY = (screenSize.height - sizeHeight) / 2;
-        setBounds(locationX, locationY, sizeWidth, sizeHeight);
     }
 
     private void table() {
@@ -178,7 +157,16 @@ public class WithComp extends JFrame {
                                 .addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 241, GroupLayout.PREFERRED_SIZE)
                                 .addContainerGap(16, Short.MAX_VALUE))
         );
-
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Загадати число");
+        setResizable(false);
+        setVisible(true);
+        try {
+            setIconImage(ImageIO.read(new File("src/res/icon.png")));
+        } catch (IOException exc) {
+            exc.printStackTrace();
+        }
+        setBounds(size.getLocationX(),size.getLocationY(),size.getWidth(),size.getHeight());
         pack();
     }
 

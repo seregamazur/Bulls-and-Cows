@@ -12,7 +12,7 @@ public class Settings extends JDialog {
     private JComboBox getjComboBox1() {
         return jComboBox1;
     }
-
+    private final ScreenLocation screen = new ScreenLocation();
     private JComboBox jComboBox1 = new JComboBox<>();
     private final JLabel settingsLabel = new JLabel();
     private final JLabel numbCountLabel = new JLabel();
@@ -48,11 +48,8 @@ public class Settings extends JDialog {
     }
 
     private void screen() {
+        screen.setWindowLocation(20,20);
 
-        final int sizeWidth;
-        final int sizeHeight;
-        final int locationX;
-        final int locationY;
         setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
         setTitle("Налаштування");
         setResizable(true);
@@ -62,11 +59,8 @@ public class Settings extends JDialog {
             exc.printStackTrace();
         }
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        sizeWidth = 280;
-        sizeHeight = 190;
-        locationX = (screenSize.width - sizeWidth) / 2;
-        locationY = (screenSize.height - sizeHeight) / 2;
-        setBounds(locationX, locationY, sizeWidth, sizeHeight);
+
+        setBounds(screen.getLocationX(),screen.getLocationY(),screen.getWidth(),screen.getHeight());
         setModalityType(ModalityType.APPLICATION_MODAL);
         setVisible(true);
 

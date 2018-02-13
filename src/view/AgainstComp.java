@@ -18,6 +18,7 @@ import java.io.File;
 import java.io.IOException;
 
 public class AgainstComp extends JFrame {
+    private final ScreenLocation size = new ScreenLocation();
     private final Guessing guessing = new Guessing();
     private InputGetter getter = new InputGetter();
     private final GeneratorNumber gen = new GeneratorNumber();
@@ -36,31 +37,9 @@ public class AgainstComp extends JFrame {
     public AgainstComp() {
         initComponents();
         table();
-        screen();
+        size.setWindowLocation(45,40);
         startFrame();
 
-    }
-
-    private void screen() {
-        final int sizeWidth;
-        final int sizeHeight;
-        final int locationX;
-        final int locationY;
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Загадати число");
-        setResizable(false);
-        setVisible(true);
-        try {
-            setIconImage(ImageIO.read(new File("src/res/icon.png")));
-        } catch (IOException exc) {
-            exc.printStackTrace();
-        }
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        sizeWidth = 450;
-        sizeHeight = 359;
-        locationX = (screenSize.width - sizeWidth) / 2;
-        locationY = (screenSize.height - sizeHeight) / 2;
-        setBounds(locationX, locationY, sizeWidth, sizeHeight);
     }
 
     private void table() {
@@ -193,7 +172,16 @@ public class AgainstComp extends JFrame {
                                 .addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 241, GroupLayout.PREFERRED_SIZE)
                                 .addContainerGap(26, Short.MAX_VALUE))
         );
-
+        setBounds(size.getLocationX(),size.getLocationY(),size.getWidth(),size.getHeight());
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Загадати число");
+        setResizable(false);
+        setVisible(true);
+        try {
+            setIconImage(ImageIO.read(new File("src/res/icon.png")));
+        } catch (IOException exc) {
+            exc.printStackTrace();
+        }
         pack();
         gen.read();
         endGame();

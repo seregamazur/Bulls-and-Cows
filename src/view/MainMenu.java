@@ -4,13 +4,13 @@ import controller.Face;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 
 public class MainMenu extends JFrame {
+    private final ScreenLocation size = new ScreenLocation();
     private final JButton exit = new JButton();
     private final JButton againstcomp = new JButton();
     private final JButton withcomp = new JButton();
@@ -19,7 +19,7 @@ public class MainMenu extends JFrame {
 
     public MainMenu() {
         initComponents();
-        screen();
+        size.setWindowLocation(50,45);
         startFrame();
     }
 
@@ -51,28 +51,6 @@ public class MainMenu extends JFrame {
         });
     }
 
-    private void screen() {
-        final int sizeWidth;
-        final int sizeHeight;
-        final int locationX;
-        final int locationY;
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Бики та корови");
-        setResizable(false);
-        setVisible(true);
-        try {
-            setIconImage(ImageIO.read(new File("src/res/icon.png")));
-        } catch (IOException exc) {
-            exc.printStackTrace();
-        }
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        sizeWidth = 541;
-        sizeHeight = 431;
-        locationX = (screenSize.width - sizeWidth) / 2;
-        locationY = (screenSize.height - sizeHeight) / 2;
-        setBounds(locationX, locationY, sizeWidth, sizeHeight);
-
-    }
 
     private void exitActionPerformed(java.awt.event.ActionEvent e) {
         System.exit(0);
@@ -138,7 +116,16 @@ public class MainMenu extends JFrame {
                                 .addComponent(exit, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(23, 23, 23))
         );
-
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Бики та корови");
+        setResizable(false);
+        setVisible(true);
+        try {
+            setIconImage(ImageIO.read(new File("src/res/icon.png")));
+        } catch (IOException exc) {
+            exc.printStackTrace();
+        }
+        setBounds(size.getLocationX(),size.getLocationY(),size.getWidth(),size.getHeight());
         pack();
         try {
             for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
