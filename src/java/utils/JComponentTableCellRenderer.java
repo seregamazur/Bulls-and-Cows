@@ -1,4 +1,4 @@
-package java.utils;
+package utils;
 
 import javax.swing.*;
 import javax.swing.table.TableCellRenderer;

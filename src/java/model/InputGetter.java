@@ -1,4 +1,4 @@
-package java.model;
+package model;
 
 public class InputGetter {
     public static void setInputNumber(int inputNumber) {

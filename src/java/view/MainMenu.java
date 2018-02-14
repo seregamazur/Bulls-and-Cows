@@ -1,6 +1,6 @@
-package java.view;
+package view;
 
-import java.controller.Face;
+import controller.Face;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;

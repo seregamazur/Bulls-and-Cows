@@ -1,12 +1,12 @@
-package java.view;
+package view;
 
-import java.controller.Controll;
-import java.model.ComputerGenerator;
-import java.model.InputGetter;
-import java.utils.CheckNumber;
-import java.utils.ErrorType;
-import java.utils.GeneratorNumber;
-import java.utils.JComponentTableCellRenderer;
+import controller.Controll;
+import model.ComputerGenerator;
+import model.InputGetter;
+import utils.CheckNumber;
+import utils.ErrorType;
+import utils.GeneratorNumber;
+import utils.JComponentTableCellRenderer;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -17,8 +17,8 @@ import java.awt.event.*;
 import java.io.File;
 import java.io.IOException;
 
-import static java.model.ComputerGenerator.GenerateStatus.FINISHED;
-import static java.model.ComputerGenerator.GenerateStatus.GENERATING;
+import static model.ComputerGenerator.GenerateStatus.FINISHED;
+import static model.ComputerGenerator.GenerateStatus.GENERATING;
 
 public class WithComp extends JFrame {
     private final ScreenLocation size = new ScreenLocation();

@@ -1,6 +1,6 @@
-package java.model;
+package model;
 
-import java.utils.Counters;
+import utils.Counters;
 
 public class Number {
     private final int number;

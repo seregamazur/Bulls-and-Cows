@@ -1,12 +1,12 @@
-package java.view;
+package view;
 
-import java.controller.Controll;
-import java.model.Guessing;
-import java.model.InputGetter;
-import java.utils.CheckNumber;
-import java.utils.ErrorType;
-import java.utils.GeneratorNumber;
-import java.utils.JComponentTableCellRenderer;
+import controller.Controll;
+import model.Guessing;
+import model.InputGetter;
+import utils.CheckNumber;
+import utils.ErrorType;
+import utils.GeneratorNumber;
+import utils.JComponentTableCellRenderer;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;

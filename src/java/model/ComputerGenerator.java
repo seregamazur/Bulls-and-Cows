@@ -1,6 +1,6 @@
-package java.model;
+package model;
 
-import java.utils.GeneratorNumber;
+import utils.GeneratorNumber;
 
 import java.util.Deque;
 import java.util.HashSet;
