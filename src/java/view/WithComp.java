@@ -3,7 +3,7 @@ package view;
 import controller.Controll;
 import model.ComputerGenerator;
 import model.InputGetter;
-import utils.CheckNumber;
+import utils.CheckerNumber;
 import utils.ErrorType;
 import utils.GeneratorNumber;
 import utils.JComponentTableCellRenderer;
@@ -182,7 +182,7 @@ public class WithComp extends JFrame {
             er.emptyType();//if field is empty
         } else {
             getter.setInputNumber(Integer.parseInt(jTextField1.getText()));//set data from the field to variable
-            if ( Integer.valueOf(getter.getInputNumber()).toString().length() != gen.getDigits() || (!CheckNumber.hasNoDupes(getter.getInputNumber()))) {
+            if ( Integer.valueOf(getter.getInputNumber()).toString().length() != gen.getDigits() || (!CheckerNumber.hasNoDupes(getter.getInputNumber()))) {
                 er.incType(gen);//if inputted data included dupes or incorrect length
             } else {
                 while (computerGenerator.getGenerateStatus() != FINISHED) {//start generate&input into the table

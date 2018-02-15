@@ -3,7 +3,7 @@ package view;
 import controller.Controll;
 import model.Guessing;
 import model.InputGetter;
-import utils.CheckNumber;
+import utils.CheckerNumber;
 import utils.ErrorType;
 import utils.GeneratorNumber;
 import utils.JComponentTableCellRenderer;
@@ -199,7 +199,7 @@ public class AgainstComp extends JFrame {
                 getter.setInputNumb(Integer.parseInt(jTextField1.getText()));
             }
         }
-        if (Integer.valueOf(getter.getInputNumb()).toString().length() != gen.getDigits() || !CheckNumber.hasNoDupes(getter.getInputNumb())) {
+        if (Integer.valueOf(getter.getInputNumb()).toString().length() != gen.getDigits() || !CheckerNumber.hasNoDupes(getter.getInputNumb())) {
             ErrorType.incType(gen);
         } else {
             guessing.Check(gen, getter);

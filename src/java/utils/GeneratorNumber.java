@@ -15,7 +15,7 @@ public class GeneratorNumber {
     public int getNumber() {
         int digit = Digits;
         if (digit == 3 || digit == 4 || digit == 5 || digit == 6) {
-            while (!CheckNumber.hasNoDupes(generatedNumber = new Random().nextInt((int) (9 * (Math.pow(10, digit - 1)))) + (int) Math.pow(10, digit - 1))) {
+            while (!CheckerNumber.hasNoDupes(generatedNumber = new Random().nextInt((int) (9 * (Math.pow(10, digit - 1)))) + (int) Math.pow(10, digit - 1))) {
                 ;
             }
         }
