@@ -17,4 +17,12 @@ public class TestSetOfNumbers {
     public void setSize(){
         assertEquals(1,generator.getNumbers().size());
     }
+    @Test
+    public void addNumtoSet(){
+        generator.getNumbers().add(6);
+    }
+    @Test
+    public void getSize(){
+        assertEquals(1,generator.getNumbers().size());
+    }
 }
