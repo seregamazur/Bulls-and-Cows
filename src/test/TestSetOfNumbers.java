@@ -6,8 +6,7 @@ import model.ComputerGenerator;
 public class TestSetOfNumbers {
     model.ComputerGenerator generator = new ComputerGenerator();
     @Before
-    public void addToSet(){
-        generator.getNumbers().add(5);
+    public void addToSet(){ generator.getNumbers().add(5);
     }
     @Test
     public void setNotEmpty(){
