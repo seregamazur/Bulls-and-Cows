@@ -58,8 +58,6 @@ public class Settings extends JDialog {
         } catch (IOException exc) {
             exc.printStackTrace();
         }
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-
         setBounds(screen.getLocationX(),screen.getLocationY(),screen.getWidth(),screen.getHeight());
         setModalityType(ModalityType.APPLICATION_MODAL);
         setVisible(true);
@@ -135,7 +133,7 @@ public class Settings extends JDialog {
     private void writeUserSettings() {
         try {
             String numbCount = "DigitsCount";
-            String timerBool = "TimerSet";
+            //String timerBool = "TimerSet";
             Properties props = new Properties();
             props.setProperty(numbCount, getjComboBox1().getSelectedItem().toString());
             File f = new File("settings.properties");

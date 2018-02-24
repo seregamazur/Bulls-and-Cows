@@ -1,11 +1,13 @@
 package model;
 
 public class InputGetter {
+    private int inputNumb;
+    private static int inputNumber;
+
     public static void setInputNumber(int inputNumber) {
         InputGetter.inputNumber = inputNumber;
     }
 
-    private static int inputNumber;
 
     public int getInputNumb() {
         return inputNumb;
@@ -15,7 +17,6 @@ public class InputGetter {
         this.inputNumb = inputNumb;
     }
 
-    private int inputNumb;
 
     public static int getInputNumber() {
         return inputNumber;
