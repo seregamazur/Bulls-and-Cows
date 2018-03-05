@@ -1,5 +1,1 @@
 language:java
-sudo:required
-gradle assemble
-gradle check
-./gradlew check
