@@ -28,7 +28,7 @@ buildscript {
 }
 
 jar {
-    baseName = 'gs-rest-service'
+    baseName = 'tools'
     version = '0.1.0'
 }
 
