@@ -4,7 +4,7 @@ import utils.CheckerNumber;
 
 
 
-public class TestCheckerNumber {
+public class CheckerNumberTest {
 
     @Test
     public void rightType(){

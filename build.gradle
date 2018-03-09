@@ -1,6 +1,7 @@
 apply plugin: 'idea'
 apply plugin: 'application'
 apply plugin: 'java'
+apply plugin: 'jacoco'
 
 mainClassName = "src.java.app.Application"
 
@@ -42,3 +43,12 @@ dependencies {
 task wrapper(type: Wrapper) {
     gradleVersion = '4.5'
 }
+
+jacocoTestReport {
+    reports {
+        xml.enabled true
+        html.enabled false
+    }
+}
+
+check.dependsOn jacocoTestReport

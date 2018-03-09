@@ -3,7 +3,7 @@ import static org.junit.Assert.*;
 import model.ComputerGenerator;
 
 
-public class TestSetOfNumbers {
+public class SetOfNumbersTest {
     model.ComputerGenerator generator = new ComputerGenerator();
     @Before
     public void addToSet(){ generator.getNumbers().add(5);
