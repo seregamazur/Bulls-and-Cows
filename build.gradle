@@ -44,22 +44,6 @@ task wrapper(type: Wrapper) {
     gradleVersion = '4.5'
 }
 
-task javaCodeCoverage(type: JacocoReport, dependsOn: 'testDevDebugUnitTest') {
-
-    reports {
-        xml.enabled = false
-        html.enabled = true
-        html.destination "$project.buildDir/outputs/jacoco/"
-    }
-
-    def classFileTree = fileTree(
-            dir: "${buildDir}/intermediates/classes/dev/",
-    )
-
-    classDirectories = files([classFileTree])
-    sourceDirectories = files("${project.projectDir}/src/java")
-    executionData = files("${buildDir}/jacoco/testDevDebugUnitTest.exec")
-}
 jacocoTestReport {
     reports {
         xml.enabled true
@@ -68,11 +52,4 @@ jacocoTestReport {
 }
 check.dependsOn jacocoTestReport
 
-task integrationTest(type: Test) {jacoco {
-    append = true
-    destinationFile = file("$buildDir/jacoco/jacocoTest.exec")
-    classDumpFile = file("$buildDir/jacoco/classpathdumps")
-}
- testClassesDir = sourceSets.integrationTest.output.classesDir
-classpath = sourceSets.integrationTest.runtimeClasspath}
 
