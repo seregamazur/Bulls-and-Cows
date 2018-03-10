@@ -7,8 +7,8 @@ os:
   - linux
 script:
   - ./gradlew
+  - coverage xml -i
 
 
 after_success:
-  - codecov
   - bash <(curl -s https://codecov.io/bash)
