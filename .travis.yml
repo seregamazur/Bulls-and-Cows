@@ -7,7 +7,6 @@ os:
   - linux
 script:
   - ./gradlew
-  - coverage xml -i
 
 
 after_success:

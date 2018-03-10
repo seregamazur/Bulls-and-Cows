@@ -32,6 +32,9 @@ jar {
     version = '0.1.0'
 }
 
+test {
+ finalizedBy jacocoTestReport
+ }
 repositories {
     jcenter()
 }
