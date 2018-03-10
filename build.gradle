@@ -32,9 +32,6 @@ jar {
     version = '0.1.0'
 }
 
-test {
- finalizedBy jacocoTestReport
- }
 repositories {
     jcenter()
 }
@@ -53,5 +50,4 @@ jacocoTestReport {
         html.enabled false
     }
 }
-
 check.dependsOn jacocoTestReport
