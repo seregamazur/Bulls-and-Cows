@@ -1,1 +1,1 @@
-https://codecov.io/gh/seregamazur/Bulls-and-Cows/branch/master/graph/badge.svg
+https://img.shields.io/codecov/c/github/seregamazur/Bulls-and-Cows/master.svg
