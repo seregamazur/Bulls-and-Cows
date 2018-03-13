@@ -1,6 +1,6 @@
 package view;
 
-import controller.Controll;
+import controller.Controller;
 import model.Guessing;
 import model.InputGetter;
 import utils.CheckerNumber;
@@ -234,7 +234,7 @@ public class AgainstComp extends JFrame {
     private void backMenuActionPerformed(ActionEvent e) {
         guessing.getUsageNumbers().clear();
         dispose();
-        Controll.menu();
+        Controller.menu();
     }
 
 }

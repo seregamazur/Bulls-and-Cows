@@ -1,6 +1,6 @@
 package view;
 
-import controller.Controll;
+import controller.Controller;
 import model.ComputerGenerator;
 import model.InputGetter;
 import utils.CheckerNumber;
@@ -172,7 +172,7 @@ public class WithComp extends JFrame {
 
     private void backMenuActionPerformed(ActionEvent e) {
         dispose();
-        Controll.menu();
+        Controller.menu();
     }
 
     private void inputActionPerformed(ActionEvent e) {

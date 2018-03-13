@@ -7,8 +7,12 @@ import utils.CheckerNumber;
 public class CheckerNumberTest {
 
     @Test
-    public void rightType(){
+    public void notRightType(){
         assertFalse(CheckerNumber.hasNoDupes(4444));
+    }
+    @Test
+    public void rightType(){
+        assertTrue(CheckerNumber.hasNoDupes(1234));
     }
 
 

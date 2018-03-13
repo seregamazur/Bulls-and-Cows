@@ -4,7 +4,7 @@ import view.MainMenu;
 
 import java.awt.*;
 
-public class Controll {
+public class Controller {
     public static void main(String[] args) {
         menu();
     }
