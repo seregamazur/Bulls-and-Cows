@@ -1,3 +1,5 @@
+package model;
+
 import org.junit.*;
 import model.InputGetter;
 public class InputGetterTest {
