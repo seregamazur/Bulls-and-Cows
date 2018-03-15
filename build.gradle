@@ -3,7 +3,7 @@ apply plugin: 'application'
 apply plugin: 'java'
 apply plugin: 'jacoco'
 
-def BLUE="\e[0;34m"
+def BLUE="\u001B[34m"
 mainClassName = "src.java.app.Application"
 
 sourceSets {
