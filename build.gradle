@@ -39,6 +39,11 @@ repositories {
 dependencies {
     testCompile("junit:junit:4.12")
 }
+test {
+    afterTest { desc, result -> 
+        logger.quiet "Executing test ${desc.name} [${desc.className}] with result: ${result.resultType}"
+    }
+}
 
 task wrapper(type: Wrapper) {
     gradleVersion = '4.5'
