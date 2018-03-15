@@ -3,6 +3,7 @@ apply plugin: 'application'
 apply plugin: 'java'
 apply plugin: 'jacoco'
 
+def GREEN="\033[32;1m"
 mainClassName = "src.java.app.Application"
 
 sourceSets {
@@ -41,7 +42,7 @@ dependencies {
 }
 test {
     afterTest { desc, result -> 
-        logger.quiet "Executing test ${desc.name} [${desc.className}] with result: ${result.resultType}"
+        logger.quiet "${GREEN}Executing test ${desc.name} [${desc.className}] with result: ${result.resultType}"
     }
 }
 
