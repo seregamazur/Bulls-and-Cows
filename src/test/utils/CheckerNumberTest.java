@@ -9,7 +9,7 @@ import utils.CheckerNumber;
 public class CheckerNumberTest {
     @Test
     public void notRightType(){
-        assertTrue(CheckerNumber.hasNoDupes(4444));
+        assertFalse(CheckerNumber.hasNoDupes(4444));
     }
     @Test
     public void rightType(){
