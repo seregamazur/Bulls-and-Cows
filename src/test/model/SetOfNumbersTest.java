@@ -2,7 +2,6 @@ package model;
 
 import org.junit.*;
 import static org.junit.Assert.*;
-import model.ComputerGenerator;
 
 
 public class  SetOfNumbersTest {
