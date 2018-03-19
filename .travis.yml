@@ -6,12 +6,12 @@ after_success:
   - bash <(curl -s https://codecov.io/bash) 
 
 before_deploy:
-      - git tag "v4.0.1"
+      - git tag "v4.0.4"
 deploy:
   provider: releases
   user: "seregamazur"
   password: "123456789lena"
-  file: "BullsAndCows.jar"
+  file: "BullsAndCows-4.0.jar"
   skip_cleanup: true
   on:
     tags: true
