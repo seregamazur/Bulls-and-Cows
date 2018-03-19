@@ -28,7 +28,7 @@ buildscript {
 }
 
 jar {
-    baseName = 'tools'
+    baseName = 'BullsAndCows'
     version = '0.1.0'
 }
 

@@ -1,5 +1,18 @@
 language: java
 
+before_deploy:
+      - git config --local user.name "seregamazur"
+      - git config --local user.email "serhiy.mazur0@gmail.com"
+      - git tag "$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)"
+
+deploy:
+  provider: releases
+  api_key: "GITHUB OAUTH TOKEN"
+  file: "FILE TO UPLOAD"
+  skip_cleanup: true
+  on:
+    tags: true
+
 jdk:
   - oraclejdk8
 
