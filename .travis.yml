@@ -13,16 +13,3 @@ script:
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
-
-before_deploy:
-      - git config --local user.name "seregamazur"
-      - git config --local user.email "serhiy.mazur0@gmail.com"
-      - git tag "$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)"
-
-deploy:
-  provider: releases
-  api_key: "GITHUB OAUTH TOKEN"
-  file: "BullsAndCows.jar"
-  skip_cleanup: true
-  on:
-    tags: true
