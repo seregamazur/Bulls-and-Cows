@@ -1,11 +1,6 @@
 language: java
 
-sudo: false
-
-env:
-  global:
-    - secure:     "YsoRu8WhGPGBIITdjhp7l20dbbn9hyFQiIV86m8gZPHVJ8eJWXlwFawyNQ6QjXjMsXVJypn5Dj4uXQhn+fEQg4YHNLpRWCzyppl0lXqzFQUo7pSR7N+RfJMAx0jQpFxW56/ch+cGxub6urcG2HPB/i7ESEav78jImBvjL0mBZXsFGYv9s2fFk2mZhXDVkbPX+ncxNXXgkMsDTT9Q8sIYbFvUHc2IcseTophCWn733j57h8oW7GlLYwYASWiLg5RAJ2L9u+0ModEAiocU1pu4ShnyTbMJ3vs6npKwiQuoq+ZtgukJw1Bmx3fmfhPGku6M2CqwAsAAqoXSeGP1iTI6rKfvPsNzYk4DPsyW8Oa0xGkFQdfvaYpaKoEwajVYDb1u+kKqMEWWYDE4UnRJ4qVKlL6iHkdoJPU1D9TFE+ZfR53achBuAo5NOTVnXdTOw3s/rWrg3Mg/G618Wj5CyTGSrRguuB0FV5TsWzAqD3cQqVVTaLGrZM9YwfXEpfXrYGOLQOQ9+ES1pnk3r5cWbsXAbvYSk6Xr5eCyYzKGc4ENwDB/A/Rgf++dMKrgvDqcllcfxtG1HuUAeKyJXvS4tjd0Cu9j2e2eKXqd5DBNHor680t+FSNVTuVN3yubsx31HOfFWsVzKPlsULcbdYGTH+1Zsy6abCFH35AVh6zV2skpfV0="  
-
+sudo: false 
 
 after_success:
   - bash <(curl -s https://codecov.io/bash) 
