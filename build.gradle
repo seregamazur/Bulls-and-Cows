@@ -129,7 +129,7 @@ class VersionIncrementor {
             ymlFile.writable = true
         }
         ymlFile.write(replacedVersion)
-        println(ymlFile.text.toString())
+        println(ymlFile.text.toString()) 
     }
 
 
