@@ -65,12 +65,14 @@ check.dependsOn jacocoTestReport
 
 task incrementVersion {
     def filePath = "${projectDir}/version.properties"
-    new VersionIncrementor(filePath).increment()
+    def ymlPath = "${projectDir}/.travis.yml"
+    new VersionIncrementor(filePath, ymlPath).increment()
 }
 
 def getVersion() {
     def filePath = "${projectDir}/version.properties"
-    File fileVersion = new File(filePath)
+    def ymlPath = "${projectDir}/.travis.yml"
+    File fileVersion = new File(filePath, ymlPath)
     def versionWithoutDescription = fileVersion.text.replace("VERSION_CODE=", "")
     def arrayOfSubversion = versionWithoutDescription.split("\\.");
     println(arrayOfSubversion)
@@ -84,25 +86,33 @@ def getVersion() {
 class VersionIncrementor {
 
     File fileVersion
+    File ymlFile
 
-    VersionIncrementor(String path) {
+    VersionIncrementor(String path, String ymlPath) {
         this.fileVersion = new File(path)
+        this.ymlFile = new File(ymlPath)
     }
 
     def increment() {
-        // todo
         def versionWithoutDescription = fileVersion.text.replace("VERSION_CODE=", "")
         def arrayOfSubversion = versionWithoutDescription.split("\\.");
         def firstNumber = arrayOfSubversion[0].toInteger()
         def middleNumber = arrayOfSubversion[1].toInteger()
         def lastNumber = arrayOfSubversion[2].toInteger()
+
+        def ymlFileText = ymlFile.text.toString()
+        def prevVersionDesc =
+                "build/libs/BullsAndCows-" + firstNumber+ "." + middleNumber + "." + lastNumber + ".jar"
+        println(ymlFileText)
+
+        println(ymlFile.text.toString())
+
         def incrementLastNumber = (lastNumber + 1)
         if (incrementLastNumber == 10) {
             incrementLastNumber = 0
             middleNumber += 1
         }
         if (middleNumber == 10) {
-            lastNumber = 0
             middleNumber = 0
             firstNumber += 1
         }
@@ -110,6 +120,16 @@ class VersionIncrementor {
             fileVersion.writable = true
         }
         fileVersion.write("VERSION_CODE=" + firstNumber+ "." + middleNumber + "." + incrementLastNumber)
+
+        def nextVersionDesc =
+                "build/libs/BullsAndCows-" + firstNumber+ "." + middleNumber + "." + incrementLastNumber + ".jar"
+        def replacedVersion = ymlFileText
+                .replace(prevVersionDesc, nextVersionDesc)
+        if (!fileVersion.canWrite()) {
+            ymlFile.writable = true
+        }
+        ymlFile.write(replacedVersion)
+        println(ymlFile.text.toString())
     }
 
 
