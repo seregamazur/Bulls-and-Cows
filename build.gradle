@@ -22,7 +22,7 @@ targetCompatibility = 1.8
 
 jar {
     baseName = 'BullsAndCows'
-    def filePath = '/home/serhiy/GIT/Bulls-and-Cows/version.properties'
+    def filePath = "${projectDir}/version.properties"
     File fileVersion = new File(filePath)
     def versionWithoutDescription = fileVersion.text.replace("VERSION_CODE=", "")
     def arrayOfSubversion = versionWithoutDescription.split("\\.");
@@ -64,12 +64,12 @@ jacocoTestReport {
 check.dependsOn jacocoTestReport
 
 task incrementVersion {
-    def filePath = '/home/serhiy/GIT/Bulls-and-Cows/version.properties'
+    def filePath = "${projectDir}/version.properties"
     new VersionIncrementor(filePath).increment()
 }
 
 def getVersion() {
-    def filePath = '/home/serhiy/GIT/Bulls-and-Cows/version.properties'
+    def filePath = "${projectDir}/version.properties"
     File fileVersion = new File(filePath)
     def versionWithoutDescription = fileVersion.text.replace("VERSION_CODE=", "")
     def arrayOfSubversion = versionWithoutDescription.split("\\.");
@@ -93,7 +93,6 @@ class VersionIncrementor {
         // todo
         def versionWithoutDescription = fileVersion.text.replace("VERSION_CODE=", "")
         def arrayOfSubversion = versionWithoutDescription.split("\\.");
-        println(arrayOfSubversion)
         def firstNumber = arrayOfSubversion[0].toInteger()
         def middleNumber = arrayOfSubversion[1].toInteger()
         def lastNumber = arrayOfSubversion[2].toInteger()
@@ -107,8 +106,6 @@ class VersionIncrementor {
             middleNumber = 0
             firstNumber += 1
         }
-        println(incrementLastNumber)
-        println(firstNumber + "." + middleNumber + "." + lastNumber)
         if (!fileVersion.canWrite()) {
             fileVersion.writable = true
         }
