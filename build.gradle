@@ -3,8 +3,7 @@ apply plugin: 'application'
 apply plugin: 'java'
 apply plugin: 'jacoco'
 
-
-def BLUE="\u001B[34m"
+def BLUE = "\u001B[34m"
 mainClassName = "src.java.app.Application"
 
 sourceSets {
@@ -23,7 +22,14 @@ targetCompatibility = 1.8
 
 jar {
     baseName = 'BullsAndCows'
-    version = '4.0.5'
+    def filePath = '/home/serhiy/GIT/Bulls-and-Cows/version.properties'
+    File fileVersion = new File(filePath)
+    def versionWithoutDescription = fileVersion.text.replace("VERSION_CODE=", "")
+    def arrayOfSubversion = versionWithoutDescription.split("\\.");
+    def firstNumber = arrayOfSubversion[0]
+    def middleNumber = arrayOfSubversion[1]
+    def lastNumber = arrayOfSubversion[2]
+    version = firstNumber + "." + middleNumber + "." + lastNumber
 }
 
 repositories {
@@ -34,7 +40,7 @@ dependencies {
     testCompile("junit:junit:4.12")
 }
 test {
-    afterTest { desc, result -> 
+    afterTest { desc, result ->
         logger.quiet "Executing test ${desc.name} [${desc.className}] with result: ${BLUE} ${result.resultType}"
     }
 }
@@ -48,11 +54,66 @@ jacoco {
 }
 
 jacocoTestReport {
-   reports {
-   xml.enabled true
-   csv.enabled false
-   html.enabled true
-   html.destination "${buildDir}/jacocoHtml"
- }
+    reports {
+        xml.enabled true
+        csv.enabled false
+        html.enabled true
+        html.destination "${buildDir}/jacocoHtml"
+    }
 }
 check.dependsOn jacocoTestReport
+
+task incrementVersion {
+    def filePath = '/home/serhiy/GIT/Bulls-and-Cows/version.properties'
+    new VersionIncrementor(filePath).increment()
+}
+
+def getVersion() {
+    def filePath = '/home/serhiy/GIT/Bulls-and-Cows/version.properties'
+    File fileVersion = new File(filePath)
+    def versionWithoutDescription = fileVersion.text.replace("VERSION_CODE=", "")
+    def arrayOfSubversion = versionWithoutDescription.split("\\.");
+    println(arrayOfSubversion)
+    def firstNumber = arrayOfSubversion[0]
+    def middleNumber = arrayOfSubversion[1]
+    def lastNumber = arrayOfSubversion[2]
+    println(firstNumber + "." + middleNumber + "." + lastNumber)
+    return (firstNumber + "." + middleNumber + "." + lastNumber)
+}
+
+class VersionIncrementor {
+
+    File fileVersion
+
+    VersionIncrementor(String path) {
+        this.fileVersion = new File(path)
+    }
+
+    def increment() {
+        // todo
+        def versionWithoutDescription = fileVersion.text.replace("VERSION_CODE=", "")
+        def arrayOfSubversion = versionWithoutDescription.split("\\.");
+        println(arrayOfSubversion)
+        def firstNumber = arrayOfSubversion[0].toInteger()
+        def middleNumber = arrayOfSubversion[1].toInteger()
+        def lastNumber = arrayOfSubversion[2].toInteger()
+        def incrementLastNumber = (lastNumber + 1)
+        if (incrementLastNumber == 10) {
+            incrementLastNumber = 0
+            middleNumber += 1
+        }
+        if (middleNumber == 10) {
+            lastNumber = 0
+            middleNumber = 0
+            firstNumber += 1
+        }
+        println(incrementLastNumber)
+        println(firstNumber + "." + middleNumber + "." + lastNumber)
+        if (!fileVersion.canWrite()) {
+            fileVersion.writable = true
+        }
+        fileVersion.write("VERSION_CODE=" + firstNumber+ "." + middleNumber + "." + incrementLastNumber)
+    }
+
+
+}
