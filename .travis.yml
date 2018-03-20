@@ -10,7 +10,7 @@ deploy:
   provider: releases
   api_key:
    secure: "fg7KBZZZBmncn1oRwwT79UOPamOwk4KjPWehLrERZd4VHwFBjht3kq5hQ1pp1OEtHtCI/QZJ4CRpoI5c5xzYKRc42qfPcKCXiuiuOeRf0XRy5A9iAFAi5uc+WJS778uLxj+3OaCBHYgiCdZ4ddnAwu8VlNnbsU3XJMJ2CvAOAr3SUm96N5M/fy1pBkkTgYBtmcEd6QHfesnKnsHUtbqXqZZQZh62YN/2ATMyvr67Ulu5Cq5P3ZvZxlBeb89CgYInwn3KnuwygDmQZKJM7Hi3Sf9ITwXqJ0LvCV7eaplYICeX6LdFGYwgtwk3pHd9tmthHQ22+2DxUmWCQXI5kTS9+0sNR3+Rrg7n73cti2NaQLu5ZOwv+KmHlO9+3MxDJk9MBjNMfZq5/dd5vHfHLMTwftiordhiN7lnZ+/3b8CT0odulJ0sGh5CqcfkmmHcyukUm7pUKBxH1HbisjwTYQk8rd2hs0Uooaobr3759GxiR26Bk4OzXvSNW4wCM3INQIJAgbH9UbpPN7ubtxm93mWYBgM2cik8otXr4aZmLsjqNffo/qih576LtfsiWWv+hxtAup4cKU777Z3m0v25Tws14pm4QSKE1X6A4H3ax8DxSRMAk5/4TRSMr8GG3eSKNhE5ohhK4deJUSeN8q6zK/6+xkzcOrjwuFffkv1VjKho1sE="
-  file: 'build/libs/BullsAndCows-4.1.6.jar'
+  file: 'build/libs/BullsAndCows-4.1.7.jar'
   skip_cleanup: true
   on:
      all_branches: true
