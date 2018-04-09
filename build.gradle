@@ -1,7 +1,10 @@
-apply plugin: 'idea'
-apply plugin: 'application'
-apply plugin: 'java'
-apply plugin: 'jacoco'
+plugins {
+  id "org.sonarqube" version "2.6.2"
+  id "idea"
+  id "application"
+  id "java"
+  id "jacoco"
+}
 
 def BLUE = "\u001B[34m"
 mainClassName = "src.java.app.Application"
@@ -63,11 +66,21 @@ jacocoTestReport {
 }
 check.dependsOn jacocoTestReport
 
+
 task incrementVersion {
     def filePath = "${projectDir}/version.properties"
     def ymlPath = "${projectDir}/.travis.yml"
     new VersionIncrementor(filePath, ymlPath).increment()
 }
+/*
+pitest{
+    testSourceSets = [sourceSets.test]
+    mainSourceSets = [sourceSets.main]
+    targetClasses = ['src/test']
+    jvmArgs = ['-Xmx1024m']
+     //useful with bigger projects on Windows 
+    fileExtensionsToFilter += ['xml']
+}*/
 
 def getVersion() {
     def filePath = "${projectDir}/version.properties"

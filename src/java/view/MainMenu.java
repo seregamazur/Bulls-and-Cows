@@ -122,9 +122,7 @@ public class MainMenu extends JFrame {
         setVisible(true);
         try {
             setIconImage(ImageIO.read(new File("src/resources/icon.png")));
-        } catch (IOException exc) {
-            exc.printStackTrace();
-        }
+        } catch (IOException exc) {java.util.logging.Logger.getLogger(MainMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, exc); }
         setBounds(size.getLocationX(),size.getLocationY(),size.getWidth(),size.getHeight());
         pack();
         try {

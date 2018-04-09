@@ -33,7 +33,7 @@ public class WithComp extends JFrame {
     private final JLabel numbCountLabel = new JLabel();
     private final JLabel timerLabel = new JLabel();
     private final JLabel settingsLabel = new JLabel();
-    private final Font font = new Font("Tahoma", 0, 14);
+    private final Font tahomaFont = new Font("Tahoma", 0, 14);
     private JTextField jTextField1 = new JTextField();
     private DefaultTableModel model;
 
@@ -81,12 +81,12 @@ public class WithComp extends JFrame {
         numbCountLabel.setText("Кількість цифр у числі");
         timerLabel.setText("Таймер");
         settingsLabel.setText("Налаштування");
-        backMenu.setFont(font);
-        input.setFont(font);
-        newGame.setFont(font);
-        timerLabel.setFont(font);
-        numbCountLabel.setFont(font);
-        settingsLabel.setFont(font);
+        backMenu.setFont(tahomaFont);
+        input.setFont(tahomaFont);
+        newGame.setFont(tahomaFont);
+        timerLabel.setFont(tahomaFont);
+        numbCountLabel.setFont(tahomaFont);
+        settingsLabel.setFont(tahomaFont);
         backMenu.addActionListener((ActionListener) new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 backMenuActionPerformed(evt);
@@ -164,7 +164,7 @@ public class WithComp extends JFrame {
         try {
             setIconImage(ImageIO.read(new File("src/resources/icon.png")));
         } catch (IOException exc) {
-            exc.printStackTrace();
+            java.util.logging.Logger.getLogger(WithComp.class.getName()).log(java.util.logging.Level.SEVERE, null, exc);
         }
         setBounds(size.getLocationX(),size.getLocationY(),size.getWidth(),size.getHeight());
         pack();

@@ -39,8 +39,12 @@ public class Number {
     @Override
     public boolean equals(Object o) {
         final Number obj = (Number) o;
+        if (obj == null){
+            return false;}
+            else if(this.getClass() != obj.getClass()){
+            return false;}else{
         return this.getNumber() == obj.getNumber();
-    }
+    }}
 
     public boolean compare(Number numb) {
         return bullCount == numb.getBullCount() && cowCount == numb.getCowCount();

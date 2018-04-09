@@ -30,7 +30,7 @@ public class AgainstComp extends JFrame {
     private final JLabel timerLabel = new JLabel();
     private final JLabel settingsLabel = new JLabel();
     private final JScrollPane jScrollPane1 = new JScrollPane();
-    private final Font font = new Font("Tahoma", 0, 14);
+    private final Font tahomaFont= new Font("Tahoma", 0, 14);
     private DefaultTableModel model;
     private JTextField jTextField1 = new JTextField();
 
@@ -76,13 +76,13 @@ public class AgainstComp extends JFrame {
 
     private void initComponents() {
         backMenu.setText("Повернутись до меню");
-        timerLabel.setFont(font);
-        numbCountLabel.setFont(font);
-        timerLabel.setFont(font);
-        settingsLabel.setFont(font);
-        input.setFont(font);
-        newGame.setFont(font);
-        capitulate.setFont(font);
+        timerLabel.setFont(tahomaFont);
+        numbCountLabel.setFont(tahomaFont);
+        timerLabel.setFont(tahomaFont);
+        settingsLabel.setFont(tahomaFont);
+        input.setFont(tahomaFont);
+        newGame.setFont(tahomaFont);
+        capitulate.setFont(tahomaFont);
         numbCountLabel.setText("Кількість цифр у числі");
         timerLabel.setText("Таймер");
         settingsLabel.setText("Налаштування");
@@ -179,9 +179,7 @@ public class AgainstComp extends JFrame {
         setVisible(true);
         try {
             setIconImage(ImageIO.read(new File("src/resources/icon.png")));
-        } catch (IOException exc) {
-            exc.printStackTrace();
-        }
+        } catch (IOException exc) {java.util.logging.Logger.getLogger(AgainstComp.class.getName()).log(java.util.logging.Level.SEVERE, null, exc);}
         pack();
         gen.read();
         endGame();

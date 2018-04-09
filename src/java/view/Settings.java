@@ -56,7 +56,7 @@ public class Settings extends JDialog {
         try {
             setIconImage(ImageIO.read(new File("src/resources/icon.png")));
         } catch (IOException exc) {
-            exc.printStackTrace();
+            java.util.logging.Logger.getLogger(Settings.class.getName()).log(java.util.logging.Level.SEVERE, null, exc);
         }
         setBounds(screen.getLocationX(),screen.getLocationY(),screen.getWidth(),screen.getHeight());
         setModalityType(ModalityType.APPLICATION_MODAL);
@@ -141,7 +141,7 @@ public class Settings extends JDialog {
             props.store(out, null);
             out.close();
         } catch (Exception io) {
-            io.printStackTrace();
+            java.util.logging.Logger.getLogger(Settings.class.getName()).log(java.util.logging.Level.SEVERE, null, io);
         }
 
     }
@@ -157,7 +157,7 @@ public class Settings extends JDialog {
             getjComboBox1().setSelectedItem(props.getProperty("DigitsCount"));
             input.close();
         } catch (IOException ex) {
-            ex.printStackTrace();
+            java.util.logging.Logger.getLogger(Settings.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
     }
 }

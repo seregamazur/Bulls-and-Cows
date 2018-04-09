@@ -10,37 +10,35 @@ import java.util.Random;
 public class GeneratorNumber {
 
     private int generatedNumber;
-    private int Digits;
+    private int digits;
 
     public int getNumber() {
-        int digit = Digits;
+        int digit = digits;
         if (digit == 3 || digit == 4 || digit == 5 || digit == 6) {
             while (!CheckerNumber.hasNoDupes(generatedNumber = new Random().nextInt((int) (9 * (Math.pow(10, digit - 1)))) + (int) Math.pow(10, digit - 1))) {
-                ;
             }
         }
         return generatedNumber;
     }
 
     public void read() {
+
         Properties props = new Properties();
         InputStream input = null;
         try {
             File f = new File("settings.properties");
             input = new FileInputStream(f);
             props.load(input);
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
+        } catch (IOException ex) { java.util.logging.Logger.getLogger(GeneratorNumber.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);}
         setDigits(Integer.parseInt(props.getProperty("DigitsCount")));
     }
 
-    public void setDigits(int getDigits) {
-        this.Digits = getDigits;
+    public void setDigits(int getdigits) {
+        this.digits = getdigits;
     }
 
     public int getDigits() {
-        return Digits;
+        return digits;
     }
 
     public int getGeneratedNumber() {
