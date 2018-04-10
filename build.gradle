@@ -1,100 +1,111 @@
+buildscript {
+        repositories {
+        mavenCentral()
+        //Needed only for SNAPSHOT versions
+        //maven { url 'https://oss.sonatype.org/content/repositories/snapshots/' }
+        }
+        dependencies {
+        classpath 'info.solidsoft.gradle.pitest:gradle-pitest-plugin:1.3.0'
+        }}
 plugins {
-  id "org.sonarqube" version "2.6.2"
-  id "idea"
-  id "application"
-  id "java"
-  id "jacoco"
-}
+        id "org.sonarqube" version "2.6.2"
+        id "idea"
+        id "info.solidsoft.pitest" version "1.3.0"
+        id "application"
+        id "java"
+        id "jacoco"
+        }
 
-def BLUE = "\u001B[34m"
-mainClassName = "src.java.app.Application"
+        def BLUE = "\u001B[34m"
+        mainClassName = "src.java.app.Application"
 
-sourceSets {
-    main {
+        sourceSets {
+        main {
         java.srcDir("src/java")
         resources.srcDir("src/resources")
-    }
-    test {
+        }
+        test {
         java.srcDir("src/test")
-    }
-}
+        }
+        }
+        
 
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
+        sourceCompatibility = 1.8
+        targetCompatibility = 1.8
 
 
-jar {
-    baseName = 'BullsAndCows'
-    def filePath = "${projectDir}/version.properties"
-    File fileVersion = new File(filePath)
-    def versionWithoutDescription = fileVersion.text.replace("VERSION_CODE=", "")
-    def arrayOfSubversion = versionWithoutDescription.split("\\.");
-    def firstNumber = arrayOfSubversion[0]
-    def middleNumber = arrayOfSubversion[1]
-    def lastNumber = arrayOfSubversion[2]
-    version = firstNumber + "." + middleNumber + "." + lastNumber
-}
+        jar {
+        baseName = 'BullsAndCows'
+        def filePath = "${projectDir}/version.properties"
+        File fileVersion = new File(filePath)
+        def versionWithoutDescription = fileVersion.text.replace("VERSION_CODE=", "")
+        def arrayOfSubversion = versionWithoutDescription.split("\\.");
+        def firstNumber = arrayOfSubversion[0]
+        def middleNumber = arrayOfSubversion[1]
+        def lastNumber = arrayOfSubversion[2]
+        version = firstNumber + "." + middleNumber + "." + lastNumber
+        }
 
-repositories {
-    jcenter()
-}
+        repositories {
+        jcenter()
+        }
 
-dependencies {
-    testCompile("junit:junit:4.12")
-}
-test {
-    afterTest { desc, result ->
+        dependencies {
+        testCompile("junit:junit:4.12")
+        }
+        test {
+        afterTest { desc, result ->
         logger.quiet "Executing test ${desc.name} [${desc.className}] with result: ${BLUE} ${result.resultType}"
-    }
-}
+        }
+        }
 
-task wrapper(type: Wrapper) {
-    gradleVersion = '4.5'
-}
+        task wrapper(type: Wrapper) {
+        gradleVersion = '4.5'
+        }
 
-jacoco {
-    toolVersion = "0.7.4+"
-}
+        jacoco {
+        toolVersion = "0.7.4+"
+        }
 
-jacocoTestReport {
-    reports {
+        jacocoTestReport {
+        reports {
         xml.enabled true
         csv.enabled false
         html.enabled true
         html.destination "${buildDir}/jacocoHtml"
-    }
-}
-check.dependsOn jacocoTestReport
+        }
+        }
+        check.dependsOn jacocoTestReport
 
 
-task incrementVersion {
-    def filePath = "${projectDir}/version.properties"
-    def ymlPath = "${projectDir}/.travis.yml"
-    new VersionIncrementor(filePath, ymlPath).increment()
-}
-/*
-pitest{
-    testSourceSets = [sourceSets.test]
-    mainSourceSets = [sourceSets.main]
-    targetClasses = ['src/test']
-    jvmArgs = ['-Xmx1024m']
-     //useful with bigger projects on Windows 
-    fileExtensionsToFilter += ['xml']
-}*/
+        task incrementVersion {
+        def filePath = "${projectDir}/version.properties"
+        def ymlPath = "${projectDir}/.travis.yml"
+        new VersionIncrementor(filePath, ymlPath).increment()
+        }
 
-def getVersion() {
-    def filePath = "${projectDir}/version.properties"
-    def ymlPath = "${projectDir}/.travis.yml"
-    File fileVersion = new File(filePath, ymlPath)
-    def versionWithoutDescription = fileVersion.text.replace("VERSION_CODE=", "")
-    def arrayOfSubversion = versionWithoutDescription.split("\\.");
-    println(arrayOfSubversion)
-    def firstNumber = arrayOfSubversion[0]
-    def middleNumber = arrayOfSubversion[1]
-    def lastNumber = arrayOfSubversion[2]
-    println(firstNumber + "." + middleNumber + "." + lastNumber)
-    return (firstNumber + "." + middleNumber + "." + lastNumber)
-}
+        pitest{
+        testSourceSets = [sourceSets.test]
+        mainSourceSets = [sourceSets.main]
+        targetClasses = ['model*','utils*','controller*','view*']
+        jvmArgs = ['-Xmx1024m']
+        //useful with bigger projects on Windows 
+        fileExtensionsToFilter += ['xml']
+        }
+
+        def getVersion() {
+        def filePath = "${projectDir}/version.properties"
+        def ymlPath = "${projectDir}/.travis.yml"
+        File fileVersion = new File(filePath, ymlPath)
+        def versionWithoutDescription = fileVersion.text.replace("VERSION_CODE=", "")
+        def arrayOfSubversion = versionWithoutDescription.split("\\.");
+        println(arrayOfSubversion)
+        def firstNumber = arrayOfSubversion[0]
+        def middleNumber = arrayOfSubversion[1]
+        def lastNumber = arrayOfSubversion[2]
+        println(firstNumber + "." + middleNumber + "." + lastNumber)
+        return (firstNumber + "." + middleNumber + "." + lastNumber)
+        }
 
 class VersionIncrementor {
 
@@ -142,8 +153,8 @@ class VersionIncrementor {
             ymlFile.writable = true
         }
         ymlFile.write(replacedVersion)
-        println(ymlFile.text.toString()) 
-    }
+        println(ymlFile.text.toString())
+    }}
 
 
-}
+
