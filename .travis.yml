@@ -4,8 +4,6 @@ sudo: false
 
 after_success:
   - bash <(curl -s https://codecov.io/bash) 
-  - bash ./gradlew sonarqube \-Dsonar.organization=seregamazur-github \-Dsonar.host.url=https://sonarcloud.io \-Dsonar.login=56c21cb21e640950822a095c60c292d01789ef30
-  - bash ./gradlew pitest
 
 
 
