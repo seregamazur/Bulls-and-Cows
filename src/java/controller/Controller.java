@@ -12,4 +12,5 @@ public class Controller {
     public static void menu() {
         EventQueue.invokeLater(MainMenu::new);
     }
+
 }

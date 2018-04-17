@@ -2,7 +2,7 @@ package model;
 
 import org.junit.*;
 public class InputGetterTest {
-   static  InputGetter inputGetter = new InputGetter();
+   private static  InputGetter inputGetter = new InputGetter();
     @Test
     public void setInputNumb(){
         inputGetter.setInputNumb(1234);
