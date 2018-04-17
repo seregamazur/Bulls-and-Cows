@@ -1,6 +1,9 @@
 package model;
 
-public class InputGetter {
+import java.io.Serializable;
+
+public class InputGetter implements Serializable{
+    private static final long serialVersionUID = 5405172041950251804L;
     private int inputNumb;
     private static int inputNumber;
 

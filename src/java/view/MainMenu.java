@@ -1,15 +1,13 @@
 package view;
 
-import controller.Face;
+import controller.*;
 
-import javax.imageio.ImageIO;
+import javax.imageio.*;
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 
-public class MainMenu extends JFrame {
+public class MainMenu extends JFrame implements Serializable {
+    private static final long serialVersionUID = 2405172041950251804L;
     private final ScreenLocation size = new ScreenLocation();
     private final JButton exit = new JButton();
     private final JButton againstcomp = new JButton();
@@ -19,54 +17,38 @@ public class MainMenu extends JFrame {
 
     public MainMenu() {
         initComponents();
-        size.setWindowLocation(50,45);
+        size.setWindowLocation(50, 45);
         startFrame();
     }
 
-    public void initComponents() {
+    private void initComponents() {
         label.setIcon(new ImageIcon("src/resources/mainPicture.png"));
         exit.setText("Вихід");
-        exit.addActionListener((ActionListener) new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                exitActionPerformed(evt);
-            }
-        });
+        exit.addActionListener(evt -> exitActionPerformed());
         againstcomp.setText("Відгадати число");
         withcomp.setText("Загадати число");
         settings.setText("Налаштування");
-        againstcomp.addActionListener((ActionListener) new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                againstcompActionPerformed(evt);
-            }
-        });
-        settings.addActionListener((ActionListener) new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                settingsActionPerformed(evt);
-            }
-        });
-        withcomp.addActionListener((ActionListener) new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                withcompActionPerformed(evt);
-            }
-        });
+        againstcomp.addActionListener(evt -> againstcompActionPerformed());
+        settings.addActionListener(evt -> settingsActionPerformed());
+        withcomp.addActionListener(evt -> withcompActionPerformed());
     }
 
 
-    private void exitActionPerformed(java.awt.event.ActionEvent e) {
+    private void exitActionPerformed() {
         System.exit(0);
 
     }
 
-    private void againstcompActionPerformed(java.awt.event.ActionEvent e) {
+    private void againstcompActionPerformed() {
         dispose();
         Face.startAgainst();
     }
 
-    private void settingsActionPerformed(java.awt.event.ActionEvent e) {
+    private void settingsActionPerformed() {
         Face.startSettings();
     }
 
-    private void withcompActionPerformed(java.awt.event.ActionEvent e) {
+    private void withcompActionPerformed() {
         dispose();
         Face.startWith();
     }
@@ -122,8 +104,10 @@ public class MainMenu extends JFrame {
         setVisible(true);
         try {
             setIconImage(ImageIO.read(new File("src/resources/icon.png")));
-        } catch (IOException exc) {java.util.logging.Logger.getLogger(MainMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, exc); }
-        setBounds(size.getLocationX(),size.getLocationY(),size.getWidth(),size.getHeight());
+        } catch (IOException exc) {
+            java.util.logging.Logger.getLogger(MainMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, exc);
+        }
+        setBounds(size.getLocationX(), size.getLocationY(), size.getWidth(), size.getHeight());
         pack();
         try {
             for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {

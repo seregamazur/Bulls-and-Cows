@@ -1,23 +1,18 @@
 package view;
 
-import controller.Controller;
-import model.Guessing;
-import model.InputGetter;
-import utils.CheckerNumber;
-import utils.ErrorType;
-import utils.GeneratorNumber;
-import utils.JComponentTableCellRenderer;
-
+import controller.*;
+import model.*;
+import utils.*;
 import javax.imageio.ImageIO;
 import javax.swing.*;
-import javax.swing.border.Border;
+import javax.swing.border.*;
 import javax.swing.table.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 
-public class AgainstComp extends JFrame {
+public class AgainstComp extends JFrame implements Serializable {
+    private static final long serialVersionUID = 2405172041950251805L;
     private final ScreenLocation size = new ScreenLocation();
     private final Guessing guessing = new Guessing();
     private InputGetter getter = new InputGetter();
@@ -30,22 +25,23 @@ public class AgainstComp extends JFrame {
     private final JLabel timerLabel = new JLabel();
     private final JLabel settingsLabel = new JLabel();
     private final JScrollPane jScrollPane1 = new JScrollPane();
-    private final Font tahomaFont= new Font("Tahoma", 0, 14);
+    private final Font tahomaFont = new Font("Tahoma", Font.PLAIN, 14);
     private DefaultTableModel model;
     private JTextField jTextField1 = new JTextField();
 
     public AgainstComp() {
         initComponents();
         table();
-        size.setWindowLocation(45,40);
+        size.setWindowLocation(45, 40);
         startFrame();
 
     }
 
     private void table() {
-        String headers[] = {"Cпроба", "Число", "", ""};
-        final Object rows[][] = {};
+        String[] headers = {"Cпроба", "Число", "", ""};
+        final Object[][] rows = {};
         model = new DefaultTableModel(rows, headers) {
+            @Override
             public boolean isCellEditable(int row, int headers) {
                 return false;
             }
@@ -88,9 +84,10 @@ public class AgainstComp extends JFrame {
         settingsLabel.setText("Налаштування");
         input.setText("Ввід");
         input.setToolTipText("Якщо впевнені");
-        jTextField1.setFont(new Font("Tahoma", 0, 14));
+        jTextField1.setFont(tahomaFont);
 
         KeyListener listener = new KeyAdapter() {
+            @Override
             public void keyTyped(KeyEvent e) {
                 char c = e.getKeyChar();
                 if (((c < '0') || (c > '9')) && (c != KeyEvent.VK_BACK_SPACE)) {
@@ -101,28 +98,12 @@ public class AgainstComp extends JFrame {
         jTextField1.addKeyListener(listener);
 
 
-        input.addActionListener((ActionListener) new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                inputActionPerformed(evt);
-            }
-        });
+        input.addActionListener(evt -> inputActionPerformed());
         capitulate.setText("Здаюсь");
-        capitulate.addActionListener((ActionListener) new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                capitulateActionPerformed(evt);
-            }
-        });
+        capitulate.addActionListener(evt -> capitulateActionPerformed());
         newGame.setText("Нова гра");
-        newGame.addActionListener((ActionListener) new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                newGameActionPerformed(evt);
-            }
-        });
-        backMenu.addActionListener((ActionListener) new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                backMenuActionPerformed(evt);
-            }
-        });
+        newGame.addActionListener(evt -> newGameActionPerformed());
+        backMenu.addActionListener(evt -> backMenuActionPerformed());
         backMenu.setPreferredSize(new Dimension(180, 30));
         jScrollPane1.setVerticalScrollBarPolicy(
                 JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
@@ -172,20 +153,22 @@ public class AgainstComp extends JFrame {
                                 .addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 241, GroupLayout.PREFERRED_SIZE)
                                 .addContainerGap(26, Short.MAX_VALUE))
         );
-        setBounds(size.getLocationX(),size.getLocationY(),size.getWidth(),size.getHeight());
+        setBounds(size.getLocationX(), size.getLocationY(), size.getWidth(), size.getHeight());
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setTitle("Загадати число");
         setResizable(false);
         setVisible(true);
         try {
             setIconImage(ImageIO.read(new File("src/resources/icon.png")));
-        } catch (IOException exc) {java.util.logging.Logger.getLogger(AgainstComp.class.getName()).log(java.util.logging.Level.SEVERE, null, exc);}
+        } catch (IOException exc) {
+            java.util.logging.Logger.getLogger(AgainstComp.class.getName()).log(java.util.logging.Level.SEVERE, null, exc);
+        }
         pack();
         gen.read();
         endGame();
     }
 
-    private void inputActionPerformed(ActionEvent e) {
+    private void inputActionPerformed() {
         if (jTextField1.getText().isEmpty()) {
             ErrorType.emptyType();
         } else {
@@ -197,11 +180,11 @@ public class AgainstComp extends JFrame {
                 getter.setInputNumb(Integer.parseInt(jTextField1.getText()));
             }
         }
-        if (Integer.valueOf(getter.getInputNumb()).toString().length() != gen.getDigits() || !CheckerNumber.hasNoDupes(getter.getInputNumb())) {
+        if (Integer.toString(getter.getInputNumb()).length() != gen.getDigits() || !CheckerNumber.hasNoDupes(getter.getInputNumb())) {
             ErrorType.incType(gen);
         } else {
-            guessing.Check(gen, getter);
-            model.insertRow(model.getRowCount(), new Object[]{guessing.getGuesses(), guessing.getNumbers().getLast().getNumber(), guessing.getNumbers().getLast().getBullCount(), guessing.getNumbers().getLast().getCowCount()});
+            guessing.check(gen, getter);
+            model.insertRow(model.getRowCount(), new Object[]{guessing.getGuesses(), guessing.getNumbers().getLast().getDigit(), guessing.getNumbers().getLast().getBullCount(), guessing.getNumbers().getLast().getCowCount()});
             jTextField1.setText(null);
 
         }
@@ -214,7 +197,7 @@ public class AgainstComp extends JFrame {
         }
     }
 
-    private void newGameActionPerformed(ActionEvent e) {
+    private void newGameActionPerformed() {
         jTextField1.setText(null);
         jTextField1.setEnabled(true);
         input.setEnabled(true);
@@ -223,13 +206,13 @@ public class AgainstComp extends JFrame {
         endGame();
     }
 
-    private void capitulateActionPerformed(ActionEvent e) {
+    private void capitulateActionPerformed() {
         ErrorType.giveUp(gen);
         jTextField1.setText(null);
         endGame();
     }
 
-    private void backMenuActionPerformed(ActionEvent e) {
+    private void backMenuActionPerformed() {
         guessing.getUsageNumbers().clear();
         dispose();
         Controller.menu();

@@ -10,6 +10,6 @@ public class Controller {
     }
 
     public static void menu() {
-        EventQueue.invokeLater(() -> new MainMenu());
+        EventQueue.invokeLater(MainMenu::new);
     }
 }

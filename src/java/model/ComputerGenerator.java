@@ -2,12 +2,14 @@ package model;
 
 import utils.GeneratorNumber;
 
+import java.io.Serializable;
 import java.util.Deque;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Set;
 
-public class ComputerGenerator {
+public class ComputerGenerator implements Serializable {
+    private static final long serialVersionUID = 3405172041950251804L;
     private Deque<Number> moves = new LinkedList<>();
     private Set<Integer> numbers = new HashSet<>();
     private GenerateStatus generateStatus;
@@ -28,7 +30,7 @@ public class ComputerGenerator {
             numbers.add(number);
             success = true;
             for (Number move : moves) {
-                Number numb = new Number(number, move.getNumber());
+                Number numb = new Number(number, move.getDigit());
                 if (!numb.compare(move)) {
                     success = false;
                     break;

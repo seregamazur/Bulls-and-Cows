@@ -1,6 +1,9 @@
 package utils;
 
 public class Counters {
+    private Counters() {
+        throw new IllegalStateException("Counters class");
+    }
 
     public static int[] getCowsAndBullsFromNumber(int number, int inputNumber) {
         final String num = number + "";

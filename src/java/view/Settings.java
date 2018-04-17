@@ -1,23 +1,21 @@
 package view;
 
-import javax.imageio.ImageIO;
+import javax.imageio.*;
 import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.*;
-import java.util.Properties;
+import java.util.*;
 
-public class Settings extends JDialog {
-    private JComboBox getjComboBox1() {
-        return jComboBox1;
-    }
+public class Settings extends JDialog implements Serializable {
+    private static final long serialVersionUID = 2405172041950251803L;
     private final ScreenLocation screen = new ScreenLocation();
     private JComboBox jComboBox1 = new JComboBox<>();
     private final JLabel settingsLabel = new JLabel();
     private final JLabel numbCountLabel = new JLabel();
     private final JButton exit = new JButton();
     private final JButton save = new JButton();
+    private JComboBox getjComboBox1() {
+        return jComboBox1;
+    }
 
     public Settings() {
         initComponents();
@@ -35,20 +33,12 @@ public class Settings extends JDialog {
         numbCountLabel.setText("Кількість цифр в числі");
         jComboBox1.setModel(new DefaultComboBoxModel<>(new String[]{"3", "4", "5", "6"}));
         jComboBox1.setSelectedItem("4");
-        exit.addActionListener((ActionListener) new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                exitActionPerformed(evt);
-            }
-        });
-        save.addActionListener((ActionListener) new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                saveActionPerformed(evt);
-            }
-        });
+        exit.addActionListener(evt -> exitActionPerformed());
+        save.addActionListener(evt -> saveActionPerformed());
     }
 
     private void screen() {
-        screen.setWindowLocation(20,20);
+        screen.setWindowLocation(20, 20);
 
         setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
         setTitle("Налаштування");
@@ -58,19 +48,19 @@ public class Settings extends JDialog {
         } catch (IOException exc) {
             java.util.logging.Logger.getLogger(Settings.class.getName()).log(java.util.logging.Level.SEVERE, null, exc);
         }
-        setBounds(screen.getLocationX(),screen.getLocationY(),screen.getWidth(),screen.getHeight());
+        setBounds(screen.getLocationX(), screen.getLocationY(), screen.getWidth(), screen.getHeight());
         setModalityType(ModalityType.APPLICATION_MODAL);
         setVisible(true);
 
 
     }
 
-    private void exitActionPerformed(java.awt.event.ActionEvent e) {
+    private void exitActionPerformed() {
         setVisible(false);
 
     }
 
-    private void saveActionPerformed(java.awt.event.ActionEvent e) {
+    private void saveActionPerformed() {
         writeUserSettings();
         setVisible(false);
 
@@ -133,9 +123,8 @@ public class Settings extends JDialog {
     private void writeUserSettings() {
         try {
             String numbCount = "DigitsCount";
-            //String timerBool = "TimerSet";
             Properties props = new Properties();
-            props.setProperty(numbCount, getjComboBox1().getSelectedItem().toString());
+            props.setProperty(numbCount, Objects.requireNonNull(getjComboBox1().getSelectedItem()).toString());
             File f = new File("settings.properties");
             OutputStream out = new FileOutputStream(f);
             props.store(out, null);

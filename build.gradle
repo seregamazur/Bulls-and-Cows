@@ -76,8 +76,7 @@ plugins {
         }
 
 	
-	 task sonar(type:Exec) {commandLine "./gradlew sonarqube   -Dsonar.host.url=http://localhost:9000   -Dsonar.login=724dc80ecf22dc24bc9cdf0c38c497a70c8df043
-"  }	
+	 task sonar(type:Exec) {commandLine "./gradlew sonarqube   -Dsonar.host.url=http://localhost:9000   -Dsonar.login=724dc80ecf22dc24bc9cdf0c38c497a70c8df043"  }	
 
         pitest{
         testSourceSets = [sourceSets.test]

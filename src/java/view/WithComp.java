@@ -1,30 +1,23 @@
 package view;
 
-import controller.Controller;
-import model.ComputerGenerator;
-import model.InputGetter;
-import utils.CheckerNumber;
-import utils.ErrorType;
-import utils.GeneratorNumber;
-import utils.JComponentTableCellRenderer;
-
+import controller.*;
+import model.*;
+import utils.*;
 import javax.imageio.ImageIO;
 import javax.swing.*;
-import javax.swing.border.Border;
+import javax.swing.border.*;
 import javax.swing.table.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 
 import static model.ComputerGenerator.GenerateStatus.FINISHED;
 import static model.ComputerGenerator.GenerateStatus.GENERATING;
 
-public class WithComp extends JFrame {
+public class WithComp extends JFrame implements Serializable {
+    private static final long serialVersionUID = 2405172041950251802L;
     private final ScreenLocation size = new ScreenLocation();
-    private InputGetter getter = new InputGetter();
     private final ComputerGenerator computerGenerator = new ComputerGenerator();
-    private final ErrorType er = new ErrorType();
     private final GeneratorNumber gen = new GeneratorNumber();
     private final JScrollPane jScrollPane1 = new JScrollPane();
     private final JButton input = new JButton();
@@ -33,7 +26,7 @@ public class WithComp extends JFrame {
     private final JLabel numbCountLabel = new JLabel();
     private final JLabel timerLabel = new JLabel();
     private final JLabel settingsLabel = new JLabel();
-    private final Font tahomaFont = new Font("Tahoma", 0, 14);
+    private final Font tahomaFont = new Font("Tahoma", Font.PLAIN, 14);
     private JTextField jTextField1 = new JTextField();
     private DefaultTableModel model;
 
@@ -41,14 +34,15 @@ public class WithComp extends JFrame {
     public WithComp() {
         initComponents();
         table();
-        size.setWindowLocation(40,35);
+        size.setWindowLocation(40, 35);
         startFrame();
     }
 
     private void table() {
-        String headers[] = {"Cпроба", "Число", "", ""};
-        final Object rows[][] = {};
+        String[] headers = {"Cпроба", "Число", "", ""};
+        final Object[][] rows = {};
         model = new DefaultTableModel(rows, headers) {
+            @Override
             public boolean isCellEditable(int row, int headers) {
                 return false;
             }
@@ -87,22 +81,12 @@ public class WithComp extends JFrame {
         timerLabel.setFont(tahomaFont);
         numbCountLabel.setFont(tahomaFont);
         settingsLabel.setFont(tahomaFont);
-        backMenu.addActionListener((ActionListener) new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                backMenuActionPerformed(evt);
-            }
-        });
-        input.addActionListener((ActionListener) new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                inputActionPerformed(evt);
-            }
-        });
-        newGame.addActionListener((ActionListener) new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                newGameActionPerformed(evt);
-            }
-        });
+        jTextField1.setFont(tahomaFont);
+        backMenu.addActionListener(evt -> backMenuActionPerformed());
+        input.addActionListener(evt -> inputActionPerformed());
+        newGame.addActionListener(evt -> newGameActionPerformed());
         KeyListener listener = new KeyAdapter() {
+            @Override
             public void keyTyped(KeyEvent e) {
                 char c = e.getKeyChar();
                 if (((c < '0') || (c > '9')) && (c != KeyEvent.VK_BACK_SPACE)) {
@@ -166,29 +150,29 @@ public class WithComp extends JFrame {
         } catch (IOException exc) {
             java.util.logging.Logger.getLogger(WithComp.class.getName()).log(java.util.logging.Level.SEVERE, null, exc);
         }
-        setBounds(size.getLocationX(),size.getLocationY(),size.getWidth(),size.getHeight());
+        setBounds(size.getLocationX(), size.getLocationY(), size.getWidth(), size.getHeight());
         pack();
     }
 
-    private void backMenuActionPerformed(ActionEvent e) {
+    private void backMenuActionPerformed() {
         dispose();
         Controller.menu();
     }
 
-    private void inputActionPerformed(ActionEvent e) {
+    private void inputActionPerformed() {
         gen.read();//read the right count of the generating digits
         //make this count as variable
         if (jTextField1.getText().isEmpty()) {//start check type of the inputted numb
-            er.emptyType();//if field is empty
+            ErrorType.emptyType();//if field is empty
         } else {
-            getter.setInputNumber(Integer.parseInt(jTextField1.getText()));//set data from the field to variable
-            if ( Integer.valueOf(getter.getInputNumber()).toString().length() != gen.getDigits() || (!CheckerNumber.hasNoDupes(getter.getInputNumber()))) {
-                er.incType(gen);//if inputted data included dupes or incorrect length
+            InputGetter.setInputNumber(Integer.parseInt(jTextField1.getText()));//set data from the field to variable
+            if (Integer.toString(InputGetter.getInputNumber()).length() != gen.getDigits() || (!CheckerNumber.hasNoDupes(InputGetter.getInputNumber()))) {
+                ErrorType.incType(gen);//if inputted data included dupes or incorrect length
             } else {
                 while (computerGenerator.getGenerateStatus() != FINISHED) {//start generate&input into the table
                     computerGenerator.generateAndCheck(gen);//generation
                     model.insertRow(model.getRowCount(), new Object[]{computerGenerator.getMoves().size(),
-                            computerGenerator.getMoves().getLast().getNumber(),
+                            computerGenerator.getMoves().getLast().getDigit(),
                             computerGenerator.getMoves().getLast().getBullCount(),
                             computerGenerator.getMoves().getLast().getCowCount()});
 
@@ -207,7 +191,7 @@ public class WithComp extends JFrame {
     }
 
 
-    private void newGameActionPerformed(ActionEvent e) {
+    private void newGameActionPerformed() {
         int rowCount = model.getRowCount();
         for (int i = rowCount - 1; i >= 0; i--) {
             model.removeRow(i);

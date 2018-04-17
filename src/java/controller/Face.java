@@ -6,6 +6,9 @@ import view.Settings;
 import view.WithComp;
 
 public class Face {
+    private Face() {
+        throw new IllegalStateException("Face class");
+    }
     public static void startAgainst() {
         new AgainstComp();
     }

@@ -2,21 +2,24 @@ package model;
 
 import utils.Counters;
 
-public class Number {
-    private final int number;
+import java.io.Serializable;
+
+public class Number implements Serializable{
+    private static final long serialVersionUID = 7405172041950251804L;
+    private final int digit;
     private final int bullCount;
     private final int cowCount;
 
 
-    public Number(final int number, final int inputNumber) {
-        this.number = number;
+    protected Number(final int number, final int inputNumber) {
+        this.digit = number;
         int[] bullsAndCows = Counters.getCowsAndBullsFromNumber(number, inputNumber);
         this.bullCount = bullsAndCows[0];
         this.cowCount = bullsAndCows[1];
     }
 
-    public int getNumber() {
-        return number;
+    public int getDigit() {
+        return digit;
     }
 
     public int getBullCount() {
@@ -30,7 +33,7 @@ public class Number {
     @Override
     public String toString() {
         return "Number{" +
-                "number=" + number +
+                "number=" + digit +
                 ", bullCount=" + bullCount +
                 ", cowCount=" + cowCount +
                 '}';
@@ -38,13 +41,17 @@ public class Number {
 
     @Override
     public boolean equals(Object o) {
+        if (o == null) throw new IllegalArgumentException("Null is equals function");
+        if (this.getClass() != o.getClass())
+            return false;
         final Number obj = (Number) o;
-        if (obj == null){
-            return false;}
-            else if(this.getClass() != obj.getClass()){
-            return false;}else{
-        return this.getNumber() == obj.getNumber();
-    }}
+        return this.getClass() == obj.getClass() && this.getDigit() == obj.getDigit();
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
 
     public boolean compare(Number numb) {
         return bullCount == numb.getBullCount() && cowCount == numb.getCowCount();
