@@ -11,7 +11,7 @@ public class GuessingTest {
     InputGetter getter = new InputGetter();
     @Test
     public void testCheck() {
-        gen.read();
+        gen.setDigits(5);
         gen.getNumber();
         getter.setInputNumb(gen.getGeneratedNumber());
         guessing.check(gen, getter);
