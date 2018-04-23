@@ -11,13 +11,13 @@ public class GeneratorNumberTest {
     @Test
     public void testRead() {
         gen.read();
-        Logger.getLogger(GeneratorNumber.class.getName()).log(Level.ALL, "");
-
     }
 
     @Test
     public void testGenerate() {
         gen.getNumber();
     }
+
+
 }
 

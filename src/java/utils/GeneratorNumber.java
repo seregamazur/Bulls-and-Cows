@@ -21,17 +21,13 @@ public class GeneratorNumber implements Serializable {
     }
 
     public void read() {
-
         Properties props = new Properties();
         InputStream input = null;
         try {
             File f = new File("settings.properties");
             input = new FileInputStream(f);
             props.load(input);
-            input.close();
-        } catch (IOException ex) {
-            java.util.logging.Logger.getLogger(GeneratorNumber.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
+        } catch (IOException ex) { java.util.logging.Logger.getLogger(GeneratorNumber.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);}
         setDigits(Integer.parseInt(props.getProperty("DigitsCount")));
     }
 

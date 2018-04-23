@@ -13,7 +13,7 @@ public class ComputerGeneratorTest {
     @Test
     public void testGenerateAndCheck() {
         InputGetter.setInputNumber(12345);
-        gen.read();
+        gen.setDigits(5);
         generator.setGenerateStatus(ComputerGenerator.GenerateStatus.GENERATING);
         while (generator.getGenerateStatus() != ComputerGenerator.GenerateStatus.FINISHED) {
             generator.generateAndCheck(gen);
