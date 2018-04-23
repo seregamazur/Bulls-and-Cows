@@ -1,6 +1,5 @@
 package model;
 
-import org.junit.Before;
 import org.junit.Test;
 import utils.GeneratorNumber;
 
@@ -10,16 +9,11 @@ public class GuessingTest {
     private Guessing guessing = new Guessing();
     GeneratorNumber gen = new GeneratorNumber();
     InputGetter getter = new InputGetter();
-
-    @Before
-    public void beforeCheck() {
+    @Test
+    public void testCheck() {
         gen.read();
         gen.getNumber();
         getter.setInputNumb(gen.getGeneratedNumber());
-    }
-
-    @Test
-    public void testCheck() {
         guessing.check(gen, getter);
         assertEquals(Guessing.GenerateStatus.FINISHED, guessing.getGenerateStatus());
         assertEquals(1, guessing.getNumbers().size());

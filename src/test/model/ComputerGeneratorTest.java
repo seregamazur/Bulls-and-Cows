@@ -1,6 +1,5 @@
 package model;
 
-import org.junit.Before;
 import org.junit.Test;
 import utils.GeneratorNumber;
 
@@ -11,13 +10,9 @@ public class ComputerGeneratorTest {
     private model.ComputerGenerator generator = new ComputerGenerator();
     private utils.GeneratorNumber gen = new GeneratorNumber();
 
-    @Before
-    public void setRightNumber() {
-        InputGetter.setInputNumber(12345);
-    }
-
     @Test
     public void testGenerateAndCheck() {
+        InputGetter.setInputNumber(12345);
         gen.read();
         generator.setGenerateStatus(ComputerGenerator.GenerateStatus.GENERATING);
         while (generator.getGenerateStatus() != ComputerGenerator.GenerateStatus.FINISHED) {
