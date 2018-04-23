@@ -4,7 +4,6 @@ import javax.imageio.*;
 import javax.swing.*;
 import java.io.*;
 import java.util.*;
-
 public class Settings extends JDialog implements Serializable {
     private static final long serialVersionUID = 2405172041950251803L;
     private final ScreenLocation screen = new ScreenLocation();

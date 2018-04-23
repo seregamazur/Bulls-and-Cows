@@ -28,6 +28,7 @@ public class GeneratorNumber implements Serializable {
             File f = new File("settings.properties");
             input = new FileInputStream(f);
             props.load(input);
+            input.close();
         } catch (IOException ex) {
             java.util.logging.Logger.getLogger(GeneratorNumber.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }

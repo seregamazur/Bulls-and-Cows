@@ -170,10 +170,11 @@ public class AgainstComp extends JFrame implements Serializable {
 
     private void inputActionPerformed() {
         if (jTextField1.getText().isEmpty()) {
-            ErrorType.emptyType();
+            JOptionPane.showMessageDialog(null, "Вами не було введено число.");
         } else {
             if (guessing.getUsageNumbers().contains(Integer.parseInt(jTextField1.getText()))) {
-                ErrorType.sameType();
+                JOptionPane.showMessageDialog(null,
+                        "Ви вже вводили дане число");
                 jTextField1.setText(null);
                 return;
             } else {
@@ -181,7 +182,8 @@ public class AgainstComp extends JFrame implements Serializable {
             }
         }
         if (Integer.toString(getter.getInputNumb()).length() != gen.getDigits() || !CheckerNumber.hasNoDupes(getter.getInputNumb())) {
-            ErrorType.incType(gen);
+            JOptionPane.showMessageDialog(null,
+                    "Ви задали число неправильно формату.\nКількість цифр в числі правильного формату: " + gen.getDigits());
         } else {
             guessing.check(gen, getter);
             model.insertRow(model.getRowCount(), new Object[]{guessing.getGuesses(), guessing.getNumbers().getLast().getDigit(), guessing.getNumbers().getLast().getBullCount(), guessing.getNumbers().getLast().getCowCount()});
@@ -207,7 +209,8 @@ public class AgainstComp extends JFrame implements Serializable {
     }
 
     private void capitulateActionPerformed() {
-        ErrorType.giveUp(gen);
+        JOptionPane.showMessageDialog(null,
+                "Ви програли!\nПравильним числом було:" + gen.getGeneratedNumber());
         jTextField1.setText(null);
         endGame();
     }

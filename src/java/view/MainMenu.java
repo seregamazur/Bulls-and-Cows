@@ -5,7 +5,6 @@ import controller.*;
 import javax.imageio.*;
 import javax.swing.*;
 import java.io.*;
-
 public class MainMenu extends JFrame implements Serializable {
     private static final long serialVersionUID = 2405172041950251804L;
     private final ScreenLocation size = new ScreenLocation();

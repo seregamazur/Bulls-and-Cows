@@ -163,11 +163,15 @@ public class WithComp extends JFrame implements Serializable {
         gen.read();//read the right count of the generating digits
         //make this count as variable
         if (jTextField1.getText().isEmpty()) {//start check type of the inputted numb
-            ErrorType.emptyType();//if field is empty
+            JOptionPane.showMessageDialog(null,
+                    "Вами не було введено число.");
+//if field is empty
         } else {
             InputGetter.setInputNumber(Integer.parseInt(jTextField1.getText()));//set data from the field to variable
             if (Integer.toString(InputGetter.getInputNumber()).length() != gen.getDigits() || (!CheckerNumber.hasNoDupes(InputGetter.getInputNumber()))) {
-                ErrorType.incType(gen);//if inputted data included dupes or incorrect length
+                JOptionPane.showMessageDialog(null,
+                        "Ви задали число неправильно формату.\nКількість цифр в числі правильного формату: " + gen.getDigits());
+//if inputted data included dupes or incorrect length
             } else {
                 while (computerGenerator.getGenerateStatus() != FINISHED) {//start generate&input into the table
                     computerGenerator.generateAndCheck(gen);//generation

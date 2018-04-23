@@ -1,7 +1,7 @@
 package utils;
 
 public class Counters {
-    private Counters() {
+   private Counters() {
         throw new IllegalStateException("Counters class");
     }
 
