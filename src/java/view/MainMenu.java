@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import javax.swing.*;
@@ -34,6 +35,7 @@ public class MainMenu extends Application implements Serializable {
             primaryStage.setScene(new Scene(root, 600, 420));
             primaryStage.centerOnScreen();
             primaryStage.setTitle("Бики та корови");
+            primaryStage.getIcons().add(new Image("file:resources/images/icon.png"));
             primaryStage.show();
         }
 

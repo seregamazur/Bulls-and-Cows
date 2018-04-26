@@ -1,12 +1,23 @@
 package view;
 
-import javax.imageio.*;
-import javax.swing.*;
+import controller.ControllerButton;
+import javafx.application.Application;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.ChoiceDialog;
+import javafx.scene.image.Image;
+import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
+
+import java.awt.*;
 import java.io.*;
+import java.net.URL;
 import java.util.*;
-public class Settings extends JDialog implements Serializable {
+public class Settings  implements Serializable {
     private static final long serialVersionUID = 2405172041950251803L;
-    private final ScreenLocation screen = new ScreenLocation();
+   /* private final ScreenLocation screen = new ScreenLocation();
     private JComboBox jComboBox1 = new JComboBox<>();
     private final JLabel settingsLabel = new JLabel();
     private final JLabel numbCountLabel = new JLabel();
@@ -24,8 +35,27 @@ public class Settings extends JDialog implements Serializable {
 
 
     }
+*/
+   public void initSettings(){
+       try {
+           final ControllerButton contr = new ControllerButton();
+           Pane rootLayout;
+           Stage primaryStage = new Stage();
+           URL url = new File("src/resources/fxml/Settings.fxml").toURL();
 
-    private void initComponents() {
+           rootLayout = FXMLLoader.load(url);
+
+           Scene scene = new Scene(rootLayout);
+           primaryStage.setScene(scene);
+
+           contr.readUserSettings();
+           primaryStage.show();
+       } catch (IOException e) {
+           e.printStackTrace();
+       }
+}}
+
+/*    private void initComponents() {
         settingsLabel.setText("Налаштування");
         exit.setText("Вихід");
         save.setText("Зберегти зміни");
@@ -148,4 +178,4 @@ public class Settings extends JDialog implements Serializable {
             java.util.logging.Logger.getLogger(Settings.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
     }
-}
+}*/
