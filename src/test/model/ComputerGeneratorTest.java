@@ -18,6 +18,7 @@ public class ComputerGeneratorTest {
         while (generator.getGenerateStatus() != ComputerGenerator.GenerateStatus.FINISHED) {
             generator.generateAndCheck(gen);
         }
+        generator.getNumbers();
         assertEquals(12345, generator.getMoves().getLast().getDigit());
     }
 

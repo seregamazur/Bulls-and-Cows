@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="420.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ControllerButton">
+    <ImageView fitHeight="230.0" fitWidth="570.0" layoutX="69.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+        <Image url="@/images/mainPicture.png" />
+    </ImageView>
+    <Button fx:id="withcompbutton" layoutX="237.0" layoutY="259.0" mnemonicParsing="false" onAction="#withCompStart" text="Загадати число" />
+    <Button fx:id="againstcompbutton" layoutX="234.0" layoutY="296.0" mnemonicParsing="false" onAction="#againstCompStart" text="Вiдгадати число" />
+    <Button fx:id="settingsbutton" layoutX="240.0" layoutY="335.0" mnemonicParsing="false" onAction="#settingsStart" text="Налаштування" />
+    <Button fx:id="closeButton" layoutX="269.0" layoutY="373.0" mnemonicParsing="false" onAction="#closeButton" text="Вихiд" />
+</Pane>

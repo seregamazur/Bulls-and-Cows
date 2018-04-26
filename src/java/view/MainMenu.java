@@ -1,11 +1,18 @@
 package view;
 
-import controller.*;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.stage.Stage;
 
-import javax.imageio.*;
 import javax.swing.*;
 import java.io.*;
-public class MainMenu extends JFrame implements Serializable {
+import java.net.URL;
+import java.util.Objects;
+
+public class MainMenu extends Application implements Serializable {
     private static final long serialVersionUID = 2405172041950251804L;
     private final ScreenLocation size = new ScreenLocation();
     private final JButton exit = new JButton();
@@ -14,12 +21,27 @@ public class MainMenu extends JFrame implements Serializable {
     private final JButton settings = new JButton();
     private final JLabel label = new JLabel();
 
-    public MainMenu() {
+   /* public MainMenu() {
         initComponents();
         size.setWindowLocation(50, 45);
         startFrame();
-    }
+    }*/
 
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+        URL url = new File("src/resources/fxml/MainMenu.fxml").toURL();
+        Parent root = FXMLLoader.load(url);
+            primaryStage.setScene(new Scene(root, 600, 420));
+            primaryStage.centerOnScreen();
+            primaryStage.setTitle("Бики та корови");
+            primaryStage.show();
+        }
+
+        public static void main(String[] args) {
+            launch( args);
+        }
+
+/*
     private void initComponents() {
         label.setIcon(new ImageIcon("src/resources/mainPicture.png"));
         exit.setText("Вихід");
@@ -118,6 +140,6 @@ public class MainMenu extends JFrame implements Serializable {
         } catch (ClassNotFoundException | UnsupportedLookAndFeelException | InstantiationException | IllegalAccessException ex) {
             java.util.logging.Logger.getLogger(MainMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-    }
+    }*/
 
 }
