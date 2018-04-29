@@ -14,12 +14,12 @@ public class GuessingTest {
         gen.setDigits(5);
         gen.getNumber();
         getter.setInputNumb(gen.getGeneratedNumber());
-        guessing.check(gen, getter);
+        guessing.check(gen);
         assertEquals(Guessing.GenerateStatus.FINISHED, guessing.getGenerateStatus());
         assertEquals(1, guessing.getNumbers().size());
         assertEquals(1, guessing.getUsageNumbers().size());
         assertEquals(1, guessing.getGuesses());
-        assertEquals(gen.getGeneratedNumber(), getter.getInputNumb());
+        assertEquals(gen.getGeneratedNumber(), InputGetter.getInputNumb());
     }
 }
 

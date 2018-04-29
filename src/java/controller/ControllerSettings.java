@@ -1,16 +1,13 @@
 package controller;
 
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
 import javafx.stage.Stage;
 import view.Settings;
 
 import java.io.*;
-import java.net.URL;
 import java.util.Objects;
 import java.util.Properties;
-import java.util.ResourceBundle;
 
 public class ControllerSettings {
 

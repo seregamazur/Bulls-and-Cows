@@ -1,7 +1,7 @@
 package utils;
 
-public class CheckerNumber {
-    CheckerNumber() {
+public  class CheckerNumber {
+    private CheckerNumber() {
         throw new IllegalStateException("CheckerNumber class");
     }
 

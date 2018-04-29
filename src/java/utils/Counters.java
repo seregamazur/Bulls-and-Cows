@@ -1,6 +1,6 @@
 package utils;
 
-public class Counters {
+public  class Counters {
    private Counters() {
         throw new IllegalStateException("Counters class");
     }

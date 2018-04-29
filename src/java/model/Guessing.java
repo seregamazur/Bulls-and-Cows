@@ -15,9 +15,9 @@ public class Guessing implements Serializable{
     private int guesses;
     private Guessing.GenerateStatus guessingStatus;
 
-    public void check(GeneratorNumber gen, model.InputGetter getter) {
-        usageNumbers.add(getter.getInputNumb());
-        Number numb = new Number(getter.getInputNumb(), gen.getGeneratedNumber());
+    public void check(GeneratorNumber gen) {
+        usageNumbers.add(InputGetter.getInputNumb());
+        Number numb = new Number(InputGetter.getInputNumb(), gen.getGeneratedNumber());
         numbers.add(numb);
         guesses++;
         if (numb.getBullCount() == gen.getDigits()) guessingStatus = GenerateStatus.FINISHED;

@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class InputGetter implements Serializable{
     private static final long serialVersionUID = 5405172041950251804L;
-    private int inputNumb;
+    private static int inputNumb;
     private static int inputNumber;
 
     public static void setInputNumber(int inputNumber) {
@@ -12,12 +12,12 @@ public class InputGetter implements Serializable{
     }
 
 
-    public int getInputNumb() {
+    public static int getInputNumb() {
         return inputNumb;
     }
 
-    public void setInputNumb(int inputNumb) {
-        this.inputNumb = inputNumb;
+    public static void setInputNumb(int inputNumb) {
+        InputGetter.inputNumb = inputNumb;
     }
 
 
