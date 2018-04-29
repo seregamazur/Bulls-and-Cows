@@ -1,19 +1,54 @@
 package view;
 
-import controller.*;
-import model.*;
-import utils.*;
-import javax.imageio.ImageIO;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
+
 import javax.swing.*;
-import javax.swing.border.*;
-import javax.swing.table.*;
-import java.awt.*;
-import java.awt.event.*;
-import java.io.*;
+import java.io.File;
+import java.io.IOException;
+import java.io.Serializable;
+import java.net.URL;
 
 public class AgainstComp extends JFrame implements Serializable {
     private static final long serialVersionUID = 2405172041950251805L;
-    private final ScreenLocation size = new ScreenLocation();
+
+    public void initAgainstComp() {
+        try {
+            Pane rootLayout;
+            Stage primaryStage = new Stage();
+            URL url = new File("src/resources/fxml/AgainstComp.fxml").toURI().toURL();
+            rootLayout = FXMLLoader.load(url);
+            Scene scene = new Scene(rootLayout);
+            primaryStage.setScene(scene);
+            primaryStage.setTitle("Вiдгадати число");
+            primaryStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /*private final ScreenLocation size = new ScreenLocation();
     private final Guessing guessing = new Guessing();
     private InputGetter getter = new InputGetter();
     private final GeneratorNumber gen = new GeneratorNumber();
@@ -220,5 +255,5 @@ public class AgainstComp extends JFrame implements Serializable {
         dispose();
         Controller.menu();
     }
+    */
 
-}

@@ -1,25 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.String?>
-<?import javafx.collections.FXCollections?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="187.0" prefWidth="347.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ControllerButton" >
-    <ChoiceBox fx:id="choicebox" layoutX="227.0" layoutY="81.0" prefWidth="80.0">
-    <items>
-        <FXCollections fx:factory="observableArrayList">
-            <String fx:value="3" />
-            <String fx:value="4" />
-            <String fx:value="5" />
-            <String fx:value="6" />
-        </FXCollections>
-    </items>
-    </ChoiceBox>
-    <Button fx:id="savebutton" layoutX="117.0" layoutY="138.0" mnemonicParsing="false" onAction="#writeUserSettings" text="Зберегти" />
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="187.0" prefWidth="347.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ControllerSettings">
     <Button fx:id="cancelbutton" layoutX="222.0" layoutY="138.0" mnemonicParsing="false" onAction="#cancelSave" text="Скасувати" />
    <Label fx:id="settingslabel" alignment="CENTER" contentDisplay="CENTER" layoutX="123.0" layoutY="24.0" text="Налаштування">
       <font>

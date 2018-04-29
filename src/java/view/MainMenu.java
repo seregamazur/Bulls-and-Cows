@@ -27,7 +27,6 @@ public class MainMenu extends Application implements Serializable {
         size.setWindowLocation(50, 45);
         startFrame();
     }*/
-
     @Override
     public void start(Stage primaryStage) throws Exception {
         URL url = new File("src/resources/fxml/MainMenu.fxml").toURL();

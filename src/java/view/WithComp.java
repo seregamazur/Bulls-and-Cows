@@ -1,6 +1,16 @@
 package view;
 
 import controller.*;
+import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.SingleSelectionModel;
+import javafx.scene.layout.Pane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import model.*;
 import utils.*;
 import javax.imageio.ImageIO;
@@ -10,13 +20,14 @@ import javax.swing.table.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
+import java.net.URL;
 
 import static model.ComputerGenerator.GenerateStatus.FINISHED;
 import static model.ComputerGenerator.GenerateStatus.GENERATING;
 
-public class WithComp extends JFrame implements Serializable {
+public class WithComp implements Serializable {
     private static final long serialVersionUID = 2405172041950251802L;
-    private final ScreenLocation size = new ScreenLocation();
+   /* private final ScreenLocation size = new ScreenLocation();
     private final ComputerGenerator computerGenerator = new ComputerGenerator();
     private final GeneratorNumber gen = new GeneratorNumber();
     private final JScrollPane jScrollPane1 = new JScrollPane();
@@ -157,8 +168,24 @@ public class WithComp extends JFrame implements Serializable {
     private void backMenuActionPerformed() {
         dispose();
         Controller.menu();
-    }
+    }*/
+   public void initWithComp(){
+       try {
+           Pane rootLayout;
+           Stage primaryStage = new Stage();
+           URL url = new File("src/resources/fxml/WithComp.fxml").toURI().toURL();
+           rootLayout = FXMLLoader.load(url);
+           Scene scene = new Scene(rootLayout);
+           primaryStage.setScene(scene);
+           primaryStage.setTitle("Загадати число");
 
+           primaryStage.show();
+       } catch (IOException e) {
+           e.printStackTrace();
+       }
+   }}
+
+   /*
     private void inputActionPerformed() {
         gen.read();//read the right count of the generating digits
         //make this count as variable
@@ -207,5 +234,5 @@ public class WithComp extends JFrame implements Serializable {
         computerGenerator.getNumbers().clear();
     }
 
+*/
 
-}
