@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.Pane?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="365.0" prefWidth="535.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ControllerAgainstComp">
+    <TableView fx:id="table" editable="true" layoutY="61.0" prefHeight="304.0" prefWidth="535.0">
+        <columns>
+            <TableColumn fx:id="guesscolumn" prefWidth="70" text="Спроба" />
+            <TableColumn fx:id="numbercolumn" prefWidth="100" text="Число" />
+            <TableColumn fx:id="bullcolumn" prefWidth="182.5" text="Бики" />
+            <TableColumn fx:id="cowcolumn" prefWidth="182.5" text="Корови" />
+        </columns>
+    </TableView>
+    <Button fx:id="backbutton" cancelButton="true" layoutX="14.0" layoutY="26.0" mnemonicParsing="false" onAction="#backMenu" text="Повернутись до меню" />
+    <TextField fx:id="textfield" layoutX="190.0" layoutY="26.0" prefHeight="26.0" prefWidth="113.0" promptText="Ваше число..." />
+    <Button fx:id="inputbutton" defaultButton="true" layoutX="313.0" layoutY="26.0" mnemonicParsing="false" onAction="#input" text="Ввiд" />
+    <Button fx:id="newgamebutton" layoutX="446.0" layoutY="26.0" mnemonicParsing="false" onAction="#newGame" prefHeight="26.0" prefWidth="81.0" text="Нова гра" />
+   <Button fx:id="capitulatebutton" layoutX="369.0" layoutY="26.0" mnemonicParsing="false" text="Здаюсь" onAction="#capitulate"/>
+</Pane>
