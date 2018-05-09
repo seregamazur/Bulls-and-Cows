@@ -60,32 +60,38 @@ public class ControllerWithComp {
                     "Вами не було введено число.");
         } else {
             InputGetter.setInputNumber(Integer.parseInt(textfield.getText()));
-            if (Integer.toString(InputGetter.getInputNumber()).length() != gen.getDigits() || (!CheckerNumber.hasNoDupes(InputGetter.getInputNumber()))) {
-                JOptionPane.showMessageDialog(null,
-                        "Ви задали число неправильно формату.\nКількість цифр в числі правильного формату: " + gen.getDigits());
-            } else {
-                while (computerGenerator.getGenerateStatus() != FINISHED) {
-                    computerGenerator.generateAndCheck(gen);
-                    data.add(new Number(computerGenerator.getMoves().getLast().getDigit(), InputGetter.getInputNumber()));
+        }
+        if (Integer.toString(InputGetter.getInputNumber()).length() != gen.getDigits()
+                || (!CheckerNumber.hasNoDupes(InputGetter.getInputNumber()))) {
+            JOptionPane.showMessageDialog(null,
+                    "Ви задали число неправильно формату.\nКількість цифр в числі правильного формату: " + gen.getDigits());
+        } else {
+            while (computerGenerator.getGenerateStatus() != FINISHED) {
+                computerGenerator.generateAndCheck(gen);
+                if ((computerGenerator.getMoves().getLast().getBullCount() == 0) &&
+                        (computerGenerator.getMoves().getLast().getCowCount() == 0)) {/*missing turn*/} else {
+                    data.add(new Number(computerGenerator.getMoves().getLast().getDigit(),
+                            InputGetter.getInputNumber()));
                 }
-                table.setItems(data);
             }
-            if (computerGenerator.getGenerateStatus() == FINISHED) {
-                guesscolumn.setCellValueFactory(p -> new ReadOnlyObjectWrapper<>(table.getItems().
-                        indexOf(p.getValue()) + 1 + ""));
-                numbercolumn.setCellValueFactory(
-                        new PropertyValueFactory<>("ourDigit"));
-                bullcolumn.setCellValueFactory(
-                        new PropertyValueFactory<>("ourBulls"));
-                cowcolumn.setCellValueFactory(
-                        new PropertyValueFactory<>("ourCows"));
-                JOptionPane.showMessageDialog(null, "Комп'ютер відгадав ваше число за " + computerGenerator.getMoves().size() + " спроб!");
-                startbutton.setDisable(true);
-                textfield.setDisable(true);
-                computerGenerator.getMoves().clear();
-                computerGenerator.getNumbers().clear();
-                computerGenerator.setGenerateStatus(GENERATING);
-            }
+            table.setItems(data);
+        }
+
+        if (computerGenerator.getGenerateStatus() == FINISHED) {
+            guesscolumn.setCellValueFactory(p -> new ReadOnlyObjectWrapper<>(table.getItems().
+                    indexOf(p.getValue()) + 1 + ""));
+            numbercolumn.setCellValueFactory(
+                    new PropertyValueFactory<>("ourDigit"));
+            bullcolumn.setCellValueFactory(
+                    new PropertyValueFactory<>("ourBulls"));
+            cowcolumn.setCellValueFactory(
+                    new PropertyValueFactory<>("ourCows"));
+            JOptionPane.showMessageDialog(null, "Комп'ютер відгадав ваше число за " + computerGenerator.getMoves().size() + " спроб!");
+            startbutton.setDisable(true);
+            textfield.setDisable(true);
+            computerGenerator.getMoves().clear();
+            computerGenerator.getNumbers().clear();
+            computerGenerator.setGenerateStatus(GENERATING);
         }
     }
 

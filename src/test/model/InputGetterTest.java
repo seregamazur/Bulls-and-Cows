@@ -13,8 +13,7 @@ public class InputGetterTest {
 
     @Test
     public void testSetGetNumb() {
-        InputGetter inputGetter = new InputGetter();
-        inputGetter.setInputNumb(12345);
+        InputGetter.setInputNumb(12345);
         assertEquals(12345, InputGetter.getInputNumb());
     }
 }

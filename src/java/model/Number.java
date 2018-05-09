@@ -74,29 +74,6 @@ public class Number implements Serializable{
         return cowCount;
     }
 
-    @Override
-    public String toString() {
-        return "Number{" +
-                "number=" + digit +
-                ", bullCount=" + bullCount +
-                ", cowCount=" + cowCount +
-                '}';
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (o == null) throw new IllegalArgumentException("Null is equals function");
-        if (this.getClass() != o.getClass())
-            return false;
-        final Number obj = (Number) o;
-        return this.getClass() == obj.getClass() && this.getDigit() == obj.getDigit();
-    }
-
-    @Override
-    public int hashCode() {
-        return super.hashCode();
-    }
-
     public boolean compare(Number numb) {
         return bullCount == numb.getBullCount() && cowCount == numb.getCowCount();
     }
