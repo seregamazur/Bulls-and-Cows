@@ -2,10 +2,11 @@ package model;
 
 import java.io.Serializable;
 
-public class InputGetter implements Serializable{
-    private InputGetter() {
+public class InputGetter implements Serializable {
+    InputGetter() {
         throw new IllegalStateException("InputGetter class");
     }
+
     private static final long serialVersionUID = 5405172041950251804L;
     private static int inputNumb;
     private static int inputNumber;

@@ -11,8 +11,9 @@ public class GeneratorNumberTest {
 
     @Test
     public void testGenerate() {
-        gen.setDigits(5);
-        gen.getNumber();
+        for(int i = 0;i<10;i++){
+        gen.setDigits(i);
+        gen.getNumber();}
     }
     @Test
     public void testRead(){

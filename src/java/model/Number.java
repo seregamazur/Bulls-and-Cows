@@ -5,22 +5,18 @@ import utils.Counters;
 
 import java.io.Serializable;
 
-public class Number implements Serializable{
-    private static final long serialVersionUID = 7405172041950251804L;
+public class Number implements Serializable {
+    private static final long serialVersionUID = 3505172041950251804L;
     private final int digit;
     private final int bullCount;
     private final int cowCount;
-    private final SimpleIntegerProperty ourDigit;
-    private final SimpleIntegerProperty ourBulls;
-    private final SimpleIntegerProperty ourCows;
+    private final transient SimpleIntegerProperty ourDigit;
+    private final transient SimpleIntegerProperty ourBulls;
+    private final transient SimpleIntegerProperty ourCows;
 
 
     public int getOurDigit() {
         return ourDigit.get();
-    }
-
-    public SimpleIntegerProperty ourDigitProperty() {
-        return ourDigit;
     }
 
     public void setOurDigit(int ourDigit) {
@@ -31,9 +27,6 @@ public class Number implements Serializable{
         return ourBulls.get();
     }
 
-    public SimpleIntegerProperty ourBullsProperty() {
-        return ourBulls;
-    }
 
     public void setOurBulls(int ourBulls) {
         this.ourBulls.set(ourBulls);
@@ -43,9 +36,6 @@ public class Number implements Serializable{
         return ourCows.get();
     }
 
-    public SimpleIntegerProperty ourCowsProperty() {
-        return ourCows;
-    }
 
     public void setOurCows(int ourCows) {
         this.ourCows.set(ourCows);

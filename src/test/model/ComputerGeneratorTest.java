@@ -4,6 +4,7 @@ import org.junit.Test;
 import utils.GeneratorNumber;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 
 
 public class ComputerGeneratorTest {
@@ -14,11 +15,12 @@ public class ComputerGeneratorTest {
     public void testGenerateAndCheck() {
         InputGetter.setInputNumber(12345);
         gen.setDigits(5);
-        generator.setGenerateStatus(ComputerGenerator.GenerateStatus.GENERATING);
+
         while (generator.getGenerateStatus() != ComputerGenerator.GenerateStatus.FINISHED) {
             generator.generateAndCheck(gen);
         }
         generator.getNumbers();
+
         assertEquals(12345, generator.getMoves().getLast().getDigit());
     }
 

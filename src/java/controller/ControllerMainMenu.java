@@ -2,10 +2,8 @@ package controller;
 
 import javafx.fxml.FXML;
 import javafx.stage.Stage;
-import view.AgainstComp;
 import view.Mode;
 import view.Settings;
-import view.WithComp;
 
 public class ControllerMainMenu {
 
@@ -13,9 +11,7 @@ public class ControllerMainMenu {
     private void withCompStart() {
         closeButton();
         closeButton();
-        Mode modeWith = new Mode("WithComp");
-//        WithComp withComp = new WithComp();
-//        withComp.initWithComp();
+        new Mode("WithComp");
     }
 
     @FXML
@@ -30,9 +26,8 @@ public class ControllerMainMenu {
     @FXML
     private void againstCompStart() {
         closeButton();
-        Mode modeAgainst = new Mode("AgainstComp");
-//        AgainstComp againstComp = new AgainstComp();
-//        againstComp.initAgainstComp();
+        new Mode("AgainstComp");
+
     }
 
     @FXML

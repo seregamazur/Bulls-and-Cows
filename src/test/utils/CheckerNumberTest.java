@@ -1,18 +1,24 @@
 package utils;
 
 import org.junit.Test;
-import static org.junit.Assert.*;
-import utils.CheckerNumber;
+
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 
+public class CheckerNumberTest {
+    @Test(expected = IllegalStateException.class)
+    public void testIllegalStateException() {
+        new CheckerNumber();
+    }
 
-public class CheckerNumberTest{
     @Test
-    public void notRightType(){
+    public void notRightType() {
         assertFalse(CheckerNumber.hasNoDupes(4444));
     }
+
     @Test
-    public void rightType(){
+    public void rightType() {
         assertTrue(CheckerNumber.hasNoDupes(1234));
     }
 
