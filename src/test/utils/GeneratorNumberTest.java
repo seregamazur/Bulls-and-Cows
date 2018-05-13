@@ -15,10 +15,7 @@ public class GeneratorNumberTest {
         gen.setDigits(i);
         gen.getNumber();}
     }
-    @Test
-    public void testRead(){
-        gen.read();
-    }
+  
 
 }
 

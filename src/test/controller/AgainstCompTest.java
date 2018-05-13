@@ -35,7 +35,8 @@ public class AgainstCompTest extends ApplicationTest {
     @Test
     public void testNewGameClick () {
         clickOn("#newgamebutton");
-    }  @Test
+    }
+    @Test
     public void testCapitulateClick ()  {
         press(KeyCode.SPACE);
         clickOn("#capitulatebutton");
@@ -63,7 +64,7 @@ public class AgainstCompTest extends ApplicationTest {
     public void testStringFieldInput () {
         clickOn("#textfield");
             write("Hello");
-        press(KeyCode.ENTER);
+        clickOn("#inputbutton");
         press(KeyCode.SPACE);
 
 

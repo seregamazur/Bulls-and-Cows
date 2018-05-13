@@ -1,6 +1,6 @@
 <dependency>
     <groupId>org.testfx</groupId>
     <artifactId>openjfx-monocle</artifactId>
-    <version>8u76-b04</version> <!-- jdk-9+181 for Java 9 -->
+    <version>8u76-b04</version> 
     <scope>test</scope>
 </dependency>
