@@ -33,16 +33,35 @@ public class WithCompTest extends ApplicationTest {
     }
     @Test
     public void testTextFieldInput () {
-        clickOn("#textfield");
-        write("1234");
-        press(KeyCode.ENTER);
+            clickOn("#textfield");
+            write("1234");
         clickOn("#startbutton");
+        press(KeyCode.SPACE);
 
-
-    } @Test
+    }
+    @Test
+    public void testLargeNumberFieldInput () {
+       clickOn("#textfield");
+            write("123456789");
+        clickOn("#startbutton");
+        press(KeyCode.SPACE);
+    }
+    @Test
+    public void testEmptyFieldInput () {
+        clickOn("#startbutton");
+       press(KeyCode.SPACE);
+        }
+    @Test
     public void testNewGameClick () {
         clickOn("#newgamebutton");
 
+    }
+    @Test
+    public void testStringFieldInput () {
+        clickOn("#textfield");
+            write("Hello");
+    clickOn("#startbutton");
+      press(KeyCode.SPACE);
     }
 
 

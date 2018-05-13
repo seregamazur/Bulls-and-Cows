@@ -5,9 +5,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import model.Guessing;
@@ -17,7 +15,6 @@ import utils.CheckerNumber;
 import utils.GeneratorNumber;
 import view.MainMenu;
 
-import javax.swing.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -63,11 +60,12 @@ public class ControllerAgainstComp implements Initializable {
     @FXML
     private void input() {
         if (textfield.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Вами не було введено число.");
+            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Вами не було введено число.", ButtonType.OK);
+            alert.showAndWait();
         } else {
             if (guessing.getUsageNumbers().contains(Integer.parseInt(textfield.getText()))) {
-                JOptionPane.showMessageDialog(null,
-                        "Ви вже вводили дане число");
+                Alert alert = new Alert(Alert.AlertType.INFORMATION, "Ви вже вводили дане число.", ButtonType.OK);
+                alert.showAndWait();
                 textfield.setText("");
                 return;
             } else {
@@ -75,8 +73,8 @@ public class ControllerAgainstComp implements Initializable {
             }
         }
         if (Integer.toString(InputGetter.getInputNumb()).length() != gen.getDigits() || !CheckerNumber.hasNoDupes(InputGetter.getInputNumb())) {
-            JOptionPane.showMessageDialog(null,
-                    "Ви задали число неправильно формату.\nКількість цифр в числі правильного формату: " + gen.getDigits());
+            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Ви задали число неправильно формату.\nКількість цифр в числі правильного формату: " + gen.getDigits(), ButtonType.OK);
+            alert.showAndWait();
         } else {
             guessing.check(gen);
             data.add(new Number(InputGetter.getInputNumb(), gen.getGeneratedNumber()));
@@ -94,7 +92,8 @@ public class ControllerAgainstComp implements Initializable {
         }
 
         if (guessing.getGenerateStatus() == Guessing.GenerateStatus.FINISHED) {
-            JOptionPane.showMessageDialog(null, "Ви відгадали число за  " + table.getItems().size() + " спроб!");
+            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Ви відгадали число за  " + table.getItems().size() + " спроб!", ButtonType.OK);
+            alert.showAndWait();
             inputbutton.setDisable(true);
             textfield.setDisable(true);
             capitulatebutton.setDisable(true);
@@ -123,8 +122,8 @@ public class ControllerAgainstComp implements Initializable {
 
     @FXML
     private void capitulate() {
-        JOptionPane.showMessageDialog(null,
-                "Ви програли!\nПравильним числом було:" + gen.getGeneratedNumber());
+        Alert alert = new Alert(Alert.AlertType.INFORMATION, "Ви програли!\nПравильним числом було:" + gen.getGeneratedNumber(), ButtonType.OK);
+        alert.showAndWait();
         textfield.setText("");
         table.getItems().clear();
         guessing.getUsageNumbers().clear();

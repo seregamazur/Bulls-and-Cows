@@ -36,14 +36,47 @@ public class AgainstCompTest extends ApplicationTest {
     public void testNewGameClick () {
         clickOn("#newgamebutton");
     }  @Test
-    public void testCapitulateClick () {
-        press(KeyCode.ESCAPE);
+    public void testCapitulateClick ()  {
+        press(KeyCode.SPACE);
         clickOn("#capitulatebutton");
+
 
     }
     @Test
     public void testBackClick () {
         clickOn("#backbutton");
+    }
+    @Test
+    public void testEmptyFieldInput () {
+        clickOn("#inputbutton");
+        press(KeyCode.SPACE);
+
+    }
+    @Test
+    public void testLargeNumberFieldInput ()  {
+        clickOn("#textfield");
+            write("123456789");
+       clickOn("#inputbutton");
+       press(KeyCode.SPACE);
+    }
+    @Test
+    public void testStringFieldInput () {
+        clickOn("#textfield");
+            write("Hello");
+        press(KeyCode.ENTER);
+        press(KeyCode.SPACE);
+
+
+    }
+    @Test
+    public void testSameNumbFieldInput () {
+        clickOn("#textfield");
+            write("1234");
+            clickOn("#inputbutton");
+            write("1234");
+          clickOn("#inputbutton");
+          press(KeyCode.SPACE);
+
     }
 
 

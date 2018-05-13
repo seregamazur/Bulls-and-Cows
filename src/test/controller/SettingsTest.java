@@ -36,19 +36,6 @@ public class SettingsTest extends ApplicationTest {
     public void testCancel () {
         clickOn("#cancelbutton");
     }
-//    @Test
-//    public void testNewGameClick () {
-//        clickOn("#newgamebutton");
-//    }  @Test
-//    public void testCapitulateClick () {
-//        press(KeyCode.ESCAPE);
-//        clickOn("#capitulatebutton");
-//
-//    }
-//    @Test
-//    public void testBackClick () {
-//        clickOn("#backbutton");
-//    }
 
 
 }

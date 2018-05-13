@@ -32,7 +32,8 @@ public class MainMenuTest extends ApplicationTest {
     @Test
     public void testWithClick () {
         clickOn("#withcompbutton");
-    }  @Test
+    }
+    @Test
     public void testSettingsClick () {
         clickOn("#settingsbutton");
     }

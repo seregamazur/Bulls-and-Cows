@@ -4,9 +4,8 @@ import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.fxml.Initializable;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import model.ComputerGenerator;
@@ -16,12 +15,13 @@ import utils.CheckerNumber;
 import utils.GeneratorNumber;
 import view.MainMenu;
 
-import javax.swing.*;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 import static model.ComputerGenerator.GenerateStatus.FINISHED;
 import static model.ComputerGenerator.GenerateStatus.GENERATING;
 
-public class ControllerWithComp {
+public class ControllerWithComp implements Initializable {
     private final ComputerGenerator computerGenerator = new ComputerGenerator();
     private ObservableList<Number> data =
             FXCollections.observableArrayList();
@@ -43,6 +43,11 @@ public class ControllerWithComp {
     @FXML
     private TableColumn<Object, Object> cowcolumn;
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        setKeyListener(textfield);
+    }
+
     @FXML
     private void backMenu() throws Exception {
         Stage stage = (Stage) backbutton.getScene().getWindow();
@@ -54,17 +59,17 @@ public class ControllerWithComp {
     @FXML
     private void startGame() {
         gen.read();
-        setKeyListener(textfield);
+
         if (textfield.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null,
-                    "Вами не було введено число.");
+            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Вами не було введено число.", ButtonType.OK);
+            alert.showAndWait();
         } else {
             InputGetter.setInputNumber(Integer.parseInt(textfield.getText()));
         }
         if (Integer.toString(InputGetter.getInputNumber()).length() != gen.getDigits()
                 || (!CheckerNumber.hasNoDupes(InputGetter.getInputNumber()))) {
-            JOptionPane.showMessageDialog(null,
-                    "Ви задали число неправильно формату.\nКількість цифр в числі правильного формату: " + gen.getDigits());
+            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Ви задали число неправильно формату.\nКількість цифр в числі правильного формату: " + gen.getDigits(), ButtonType.OK);
+            alert.showAndWait();
         } else {
             while (computerGenerator.getGenerateStatus() != FINISHED) {
                 computerGenerator.generateAndCheck(gen);
@@ -86,7 +91,8 @@ public class ControllerWithComp {
                     new PropertyValueFactory<>("ourBulls"));
             cowcolumn.setCellValueFactory(
                     new PropertyValueFactory<>("ourCows"));
-            JOptionPane.showMessageDialog(null, "Комп'ютер відгадав ваше число за " + computerGenerator.getMoves().size() + " спроб!");
+            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Комп'ютер відгадав ваше число за " + computerGenerator.getMoves().size() + " спроб!" + gen.getDigits(), ButtonType.OK);
+            alert.showAndWait();
             startbutton.setDisable(true);
             textfield.setDisable(true);
             computerGenerator.getMoves().clear();
@@ -114,4 +120,6 @@ public class ControllerWithComp {
 
 
     }
+
+
 }
