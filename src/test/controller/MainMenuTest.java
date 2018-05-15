@@ -35,7 +35,7 @@ public class MainMenuTest extends ApplicationTest {
     }
     @Test
     public void testSettingsClick () {
-        clickOn("#settingsbutton");System.out.println( System.getProperties());
+        clickOn("#settingsbutton");
     }
 
 
