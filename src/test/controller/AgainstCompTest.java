@@ -3,7 +3,6 @@ package controller;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 import org.junit.After;
 import org.junit.Test;
@@ -38,7 +37,6 @@ public class AgainstCompTest extends ApplicationTest {
     }
     @Test
     public void testCapitulateClick ()  {
-        press(KeyCode.SPACE);
         clickOn("#capitulatebutton");
 
 
@@ -50,7 +48,6 @@ public class AgainstCompTest extends ApplicationTest {
     @Test
     public void testEmptyFieldInput () {
         clickOn("#inputbutton");
-        press(KeyCode.SPACE);
 
     }
     @Test
@@ -58,14 +55,12 @@ public class AgainstCompTest extends ApplicationTest {
         clickOn("#textfield");
             write("123456789");
        clickOn("#inputbutton");
-       press(KeyCode.SPACE);
     }
     @Test
     public void testStringFieldInput () {
         clickOn("#textfield");
             write("Hello");
         clickOn("#inputbutton");
-        press(KeyCode.SPACE);
 
 
     }
@@ -76,7 +71,6 @@ public class AgainstCompTest extends ApplicationTest {
             clickOn("#inputbutton");
             write("1234");
           clickOn("#inputbutton");
-          press(KeyCode.SPACE);
 
     }
 
