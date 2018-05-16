@@ -8,11 +8,13 @@ import org.junit.After;
 import org.junit.Test;
 import org.testfx.api.FxToolkit;
 import org.testfx.framework.junit.ApplicationTest;
+import view.MainMenu;
 
 import java.io.File;
 import java.net.URL;
 
 public class MainMenuTest extends ApplicationTest {
+    String[] args;
     @Override
     public void start(Stage stage) throws Exception {
         URL url = new File("src/resources/fxml/MainMenu.fxml").toURI().toURL();
@@ -37,8 +39,6 @@ public class MainMenuTest extends ApplicationTest {
     public void testSettingsClick () {
         clickOn("#settingsbutton");
     }
-
-
 
 
 }

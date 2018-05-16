@@ -52,7 +52,7 @@ public class Settings implements Serializable {
 
             primaryStage.show();
         } catch (IOException e) {
-            java.util.logging.Logger.getLogger(Settings.class.getName()).log(java.util.logging.Level.SEVERE, null, e);
+            java.util.logging.Logger.getLogger(Settings.class.getName()).log(java.util.logging.Level.SEVERE, "IOException", e);
         }
 
     }

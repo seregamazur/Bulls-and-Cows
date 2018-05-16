@@ -36,6 +36,7 @@ public class WithCompTest extends ApplicationTest {
             clickOn("#textfield");
             write("1234");
         clickOn("#startbutton");
+        press(KeyCode.SPACE);
 
     }
     @Test
@@ -43,10 +44,12 @@ public class WithCompTest extends ApplicationTest {
        clickOn("#textfield");
             write("123456789");
         clickOn("#startbutton");
+        press(KeyCode.SPACE);
     }
     @Test
     public void testEmptyFieldInput () {
         clickOn("#startbutton");
+        press(KeyCode.SPACE);
         }
     @Test
     public void testNewGameClick () {
@@ -58,6 +61,7 @@ public class WithCompTest extends ApplicationTest {
         clickOn("#textfield");
             write("Hello");
     clickOn("#startbutton");
+        press(KeyCode.SPACE);
     }
 
 
