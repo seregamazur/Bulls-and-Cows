@@ -62,6 +62,7 @@ public class ControllerAgainstComp implements Initializable {
         if (textfield.getText().isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION, "Вами не було введено число.", ButtonType.OK);
             alert.showAndWait();
+            return;
         } else {
             if (guessing.getUsageNumbers().contains(Integer.parseInt(textfield.getText()))) {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION, "Ви вже вводили дане число.", ButtonType.OK);
@@ -73,7 +74,7 @@ public class ControllerAgainstComp implements Initializable {
             }
         }
         if (Integer.toString(InputGetter.getInputNumb()).length() != gen.getDigits() || !CheckerNumber.hasNoDupes(InputGetter.getInputNumb())) {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Ви задали число неправильно формату.\nКількість цифр в числі правильного формату: " + gen.getDigits(), ButtonType.OK);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Потрiбно ввести число без повторiв цифр у ньому \n та правильної кiлькостi.\nКількість цифр у числі правильного формату: " + gen.getDigits(), ButtonType.OK);
             alert.showAndWait();
         } else {
             guessing.check(gen);

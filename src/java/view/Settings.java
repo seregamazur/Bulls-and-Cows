@@ -35,6 +35,7 @@ public class Settings implements Serializable {
             savechangesbutton.setLayoutX(117);
             savechangesbutton.setLayoutY(138);
             savechangesbutton.setText("Зберегти");
+            savechangesbutton.setDefaultButton(true);
             savechangesbutton.setOnAction(event -> {
                 contr.writeUserSettings(choiceBox);
                 primaryStage.close();

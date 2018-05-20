@@ -30,7 +30,6 @@ public class SettingsTest extends ApplicationTest {
     @Test
     public void initSettings(){
         new Thread(() -> settings.initSettings());
-
     }
     @Test
     public void testCancel () {

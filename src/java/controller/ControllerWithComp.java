@@ -59,16 +59,16 @@ public class ControllerWithComp implements Initializable {
     @FXML
     private void startGame() {
         gen.read();
-
         if (textfield.getText().isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION, "Вами не було введено число.", ButtonType.OK);
             alert.showAndWait();
+            return;
         } else {
             InputGetter.setInputNumber(Integer.parseInt(textfield.getText()));
         }
-        if (Integer.toString(InputGetter.getInputNumber()).length() != gen.getDigits()
+        if ((Integer.toString(InputGetter.getInputNumber()).length() != gen.getDigits())
                 || (!CheckerNumber.hasNoDupes(InputGetter.getInputNumber()))) {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Ви задали число неправильно формату.\nКількість цифр в числі правильного формату: " + gen.getDigits(), ButtonType.OK);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Число потрiбно загадати без повторiв у ньому \n та правильної кiлькостi.\nКількість цифр у числі правильного формату: " + gen.getDigits(), ButtonType.OK);
             alert.showAndWait();
         } else {
             while (computerGenerator.getGenerateStatus() != FINISHED) {
@@ -91,7 +91,7 @@ public class ControllerWithComp implements Initializable {
                     new PropertyValueFactory<>("ourBulls"));
             cowcolumn.setCellValueFactory(
                     new PropertyValueFactory<>("ourCows"));
-            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Комп'ютер відгадав ваше число за " + computerGenerator.getMoves().size() + " спроб!" + gen.getDigits(), ButtonType.OK);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Комп'ютер відгадав ваше число за " + computerGenerator.getMoves().size() + " спроб!", ButtonType.OK);
             alert.showAndWait();
             startbutton.setDisable(true);
             textfield.setDisable(true);

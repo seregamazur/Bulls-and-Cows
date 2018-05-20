@@ -50,7 +50,7 @@ public class AgainstCompTest extends ApplicationTest {
         clickOn("#backbutton");
     }
     @Test
-    public void testEmptyFieldInput () {
+    public void testEmptyFieldInput ()  {
         clickOn("#inputbutton");
         press(KeyCode.SPACE);
 
