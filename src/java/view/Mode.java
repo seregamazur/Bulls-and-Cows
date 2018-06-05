@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
 import java.net.URL;
+import java.util.logging.Logger;
 
 public class Mode implements Serializable {
     private static final long serialVersionUID = 2405172041950251802L;
@@ -25,7 +26,7 @@ public class Mode implements Serializable {
             primaryStage.setTitle("Вiдгадати число");}else primaryStage.setTitle("Загадати число");
             primaryStage.show();
         } catch (IOException e) {
-            java.util.logging.Logger.getLogger(Mode.class.getName()).log(java.util.logging.Level.SEVERE, null, e);
+            Logger.getLogger(Mode.class.getName()).log(java.util.logging.Level.SEVERE, null, e);
         }
 
 

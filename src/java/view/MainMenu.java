@@ -14,6 +14,7 @@ import java.net.URL;
 public class MainMenu extends Application implements Serializable {
     private static final long serialVersionUID = 2405172041950251804L;
 
+
     @Override
     public void start(Stage primaryStage) throws Exception {
         URL url = new File("src/resources/fxml/MainMenu.fxml").toURI().toURL();

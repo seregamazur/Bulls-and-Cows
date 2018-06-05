@@ -14,7 +14,8 @@ import java.io.File;
 import java.net.URL;
 
 public class SettingsTest extends ApplicationTest {
-    Settings settings = new Settings();
+    private Settings settings = new Settings();
+
     @Override
     public void start(Stage stage) throws Exception {
         URL url = new File("src/resources/fxml/Settings.fxml").toURI().toURL();
@@ -23,16 +24,19 @@ public class SettingsTest extends ApplicationTest {
         stage.show();
         stage.toFront();
     }
+
     @After
-    public void tearDown () throws Exception {
+    public void tearDown() throws Exception {
         FxToolkit.hideStage();
     }
+
     @Test
-    public void initSettings(){
+    public void initSettings() {
         new Thread(() -> settings.initSettings());
     }
+
     @Test
-    public void testCancel () {
+    public void testCancel() {
         clickOn("#cancelbutton");
     }
 

@@ -22,46 +22,88 @@ public class WithCompTest extends ApplicationTest {
         stage.show();
         stage.toFront();
     }
+
     @After
-    public void tearDown () throws Exception {
+    public void tearDown() throws Exception {
         FxToolkit.hideStage();
     }
+
     @Test
-    public void testBackClick () {
+    public void testBackClick() {
         clickOn("#backbutton");
+        closeCurrentWindow();
+    }
+
+    @Test
+    public void testAdd() {
 
     }
+
     @Test
-    public void testTextFieldInput () {
-            clickOn("#textfield");
-            write("1234");
-        clickOn("#startbutton");
-        press(KeyCode.SPACE);
+    public void testTextFieldInput() {
+        clickOn("#textfield")
+                .write("1234")
+                .clickOn("#startbutton")
+                .press(KeyCode.SPACE);
 
     }
+
     @Test
-    public void testLargeNumberFieldInput () {
-       clickOn("#textfield");
-            write("123456789");
-        clickOn("#startbutton");
-        press(KeyCode.SPACE);
+    public void testLargeNumberFieldInput() {
+        clickOn("#textfield")
+                .write("123456789")
+                .clickOn("#startbutton")
+                .press(KeyCode.SPACE);
     }
+
     @Test
-    public void testEmptyFieldInput () {
-        clickOn("#startbutton");
-        press(KeyCode.SPACE);
-        }
+    public void testEmptyFieldInput() {
+        clickOn("#startbutton")
+                .press(KeyCode.SPACE);
+    }
+
     @Test
-    public void testNewGameClick () {
+    public void testNewGameClick() {
         clickOn("#newgamebutton");
 
     }
+
     @Test
-    public void testStringFieldInput () {
-        clickOn("#textfield");
-            write("Hello");
-    clickOn("#startbutton");
-        press(KeyCode.SPACE);
+    public void testStringFieldInput() {
+        clickOn("#textfield")
+                .write("Hello")
+                .clickOn("#startbutton")
+                .press(KeyCode.SPACE);
+    }
+
+    @Test
+    public void testAllWith() {
+        clickOn("#startbutton")
+                .press(KeyCode.SPACE);
+        clickOn("#textfield")
+                .write("123456789")
+                .clickOn("#startbutton")
+                .press(KeyCode.SPACE);
+        clickOn("#textfield")
+                .write("1234")
+                .clickOn("#startbutton")
+                .press(KeyCode.SPACE);
+        clickOn("#textfield")
+                .write("+h")
+                .clickOn("#startbutton")
+                .press(KeyCode.SPACE);
+        clickOn("#textfield")
+                .write("aha1234as")
+                .clickOn("#startbutton")
+                .press(KeyCode.SPACE);
+        clickOn("#newgamebutton");
+        for (int i = 0; i < 3; i++) {
+            clickOn("#textfield")
+                    .write("    z  1234" + Integer.toString(i))
+                    .clickOn("#startbutton")
+                    .press(KeyCode.SPACE);
+        }
+
     }
 
 

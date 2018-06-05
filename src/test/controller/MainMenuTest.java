@@ -22,24 +22,30 @@ public class MainMenuTest extends ApplicationTest {
         stage.show();
         stage.toFront();
     }
+
     @After
-    public void tearDown () throws Exception {
+    public void tearDown() throws Exception {
         FxToolkit.hideStage();
     }
+
     @Test
-    public void testAgainstClick () {
+    public void testAgainstClick() {
         clickOn("#againstcompbutton");
+        closeCurrentWindow();
     }
+
     @Test
-    public void testWithClick () {
+    public void testWithClick() {
+
         clickOn("#withcompbutton");
+        closeCurrentWindow();
     }
+
     @Test
-    public void testSettingsClick () {
+    public void testSettingsClick() {
         clickOn("#settingsbutton");
         press(KeyCode.SPACE);
     }
-
 
 }
 

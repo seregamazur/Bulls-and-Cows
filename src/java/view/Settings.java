@@ -16,6 +16,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
 import java.net.URL;
+import java.util.logging.Logger;
 
 public class Settings implements Serializable {
     private static final long serialVersionUID = 2405172041950251803L;
@@ -53,7 +54,7 @@ public class Settings implements Serializable {
 
             primaryStage.show();
         } catch (IOException e) {
-            java.util.logging.Logger.getLogger(Settings.class.getName()).log(java.util.logging.Level.SEVERE, "IOException", e);
+            Logger.getLogger(Settings.class.getName()).log(java.util.logging.Level.SEVERE, "IOException", e);
         }
 
     }

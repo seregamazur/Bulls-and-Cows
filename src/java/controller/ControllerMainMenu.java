@@ -10,7 +10,6 @@ public class ControllerMainMenu {
     @FXML
     private void withCompStart() {
         closeButton();
-        closeButton();
         new Mode("WithComp");
     }
 
